@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			
+			<tx:method name="check*" read-only="true" propagation="SUPPORTS" timeout="60"/>
+			<tx:method name="decide*" read-only="true" propagation="SUPPORTS" timeout="60"/>
+			<tx:method name="find*" read-only="true" propagation="SUPPORTS" timeout="60"/>
+			<tx:method name="get*" read-only="true" propagation="SUPPORTS" timeout="60"/>
+			<tx:method name="isExist*" read-only="true" propagation="SUPPORTS" timeout="60"/>
+			<tx:method name="retrieve*" read-only="true" propagation="SUPPORTS" timeout="60"/>
+			<tx:method name="search*" read-only="true" propagation="SUPPORTS" timeout="60"/>
+			<tx:method name="select*" read-only="true" propagation="SUPPORTS" timeout="60"/>
+
+			<tx:method name="acquire*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="adjust*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="apply*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="calcurate*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="cancel*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="certify*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="change*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="create*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="delay*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="delete*" rollback-for="Exception" propagation="REQUIRED"  timeout="60"/>
+			<tx:method name="delevery*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="handle*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="inhouse*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="issue*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="make*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="manage*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="regist*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="request*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="save*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="send*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="update*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="wait*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="process*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			<tx:method name="insert*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			
+			<tx:method name="new*" rollback-for="Exception" propagation="REQUIRES_NEW" timeout="120"/>
+			<tx:method name="push*" rollback-for="Exception" propagation="REQUIRES_NEW" timeout="120"/> <!-- 알림톡(sms, email 등) -->
+
+			<!-- Long term transaction -->
+			<tx:method name="long*" rollback-for="Exception" propagation="REQUIRED" timeout="120"/>
+			
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="requiredTx" expression="execution(public * com.nexwrms.mobweb..svc.*Impl.*(..)) || execution(public * com.nexwrms.cfo..svc.*Impl.*(..)) ||  execution(public * com.nexwrms.nextlevel..svc.*Impl.*(..)) "/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="requiredTx" />
+	</aop:config>
+
+</beans>

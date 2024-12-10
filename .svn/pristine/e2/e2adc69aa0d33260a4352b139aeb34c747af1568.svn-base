@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+
+	<bean id="debugLogAspect" class="com.nexwrms.core.log.DebugLogAspect">
+		<property name="jsonMapper" ref="jsonObjectMapper" />
+	</bean>
+
+	<beans profile="pc">
+		<aop:config >
+		    <aop:aspect id="aspectLoggging" ref="debugLogAspect">
+
+		        <aop:pointcut id="svcPointcut" expression="execution(public * com.nexwrms..*.svc.*.*(..))" />
+		        <aop:around method="logAround" pointcut-ref="svcPointcut"  />
+
+		        <aop:pointcut id="daoPointcut" expression="execution(public * com.nexwrms..*.dao.CboCmDao.*(..)) || execution(public * com.nexwrms..*.dao.AbstractDao.*(..)) || execution(public * com.nexwrms..*.dao.AbstractMapper.*(..))" />
+		        <aop:around method="logAround" pointcut-ref="daoPointcut"  />
+
+		    </aop:aspect>
+		</aop:config>
+	</beans>
+
+
+
+<!-- 	<aop:config>
+		<aop:pointcut id="serviceMethod" expression="execution(* egovframework.example..impl.*Impl.*(..))" />
+
+		<aop:aspect ref="exceptionTransfer">
+			<aop:after-throwing throwing="exception" pointcut-ref="serviceMethod" method="transfer" />
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="exceptionTransfer" class="egovframework.rte.fdl.cmmn.aspect.ExceptionTransfer">
+		<property name="exceptionHandlerService">
+			<list>
+				<ref bean="defaultExceptionHandleManager" />
+				<ref bean="otherExceptionHandleManager" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="defaultExceptionHandleManager" class="egovframework.rte.fdl.cmmn.exception.manager.DefaultExceptionHandleManager">
+		<property name="reqExpMatcher">
+			<ref bean="antPathMater"/>
+		</property>
+		<property name="patterns">
+			<list>
+				<value>**service.impl.*</value>
+			</list>
+		</property>
+		<property name="handlers">
+			<list>
+				<ref bean="egovHandler" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="otherExceptionHandleManager" class="egovframework.rte.fdl.cmmn.exception.manager.DefaultExceptionHandleManager">
+		<property name="reqExpMatcher">
+			<ref bean="antPathMater"/>
+		</property>
+		<property name="patterns">
+			<list>
+				<value>**service.impl.*</value>
+			</list>
+		</property>
+		<property name="handlers">
+			<list>
+				<ref bean="otherHandler" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="egovHandler" class="egovframework.example.cmmn.EgovSampleExcepHndlr" />
+	<bean id="otherHandler" class="egovframework.example.cmmn.EgovSampleOthersExcepHndlr" />
+	 -->
+</beans>

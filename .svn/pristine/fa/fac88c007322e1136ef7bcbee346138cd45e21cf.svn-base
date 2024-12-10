@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %5p [%c] %m{nolookups} %n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+
+		<Logger name="com.nexwrms.core.context" level="INFO" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="com.nexwrms" level="DEBUG" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="org.springframework" level="INFO" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Logger name="org.apache.commons" level="INFO" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<logger name="org.apache.ibatis.logging.jdbc">
+			<level value="INFO" />
+		</logger>
+
+		<!-- <logger name="log4jdbc.log4j2" level="debug" additivity="false"> -->
+		<!-- <appender-ref ref="console" /> -->
+		<!-- </logger> -->
+
+		<!-- log SQL with timing information, post execution -->
+		<Logger name="jdbc.sqlonly" level="INFO" />
+		<Logger name="jdbc.sqltiming" level="WARN" />
+		<Logger name="jdbc.audit" level="WARN" />
+		<Logger name="jdbc.resultset" level="ERROR" />
+		<Logger name="jdbc.resultsettable" level="INFO" />
+		<Logger name="jdbc.connection" level="ERROR" />
+
+		<!-- <Logger name="java.sql" level="DEBUG" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="jdbc.sqltiming" level="DEBUG" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="java.sql.Connection" level="ERROR" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="java.sql.Statement" level="DEBUG" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="java.sql.PreparedStatement" level="DEBUG" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="java.sql.ResultSet" level="DEBUG" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		
+
+
+
+		<Root level="INFO">
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>

@@ -1,0 +1,395 @@
+/* header */
+body { background: #f3f3f3; }
+header.header { background: #f7f7f7; border-bottom: 1px solid #e7e7e7; }
+header .header-top-menu .fa, header .header-top-menu li a { color: #000; }
+
+/* banner */
+.banner { margin: 0; height: 500px; }
+.banner.counsel-banner { background: url("/img/calc/counsel-banner.png") center no-repeat; background-size: cover;  }
+.banner.rental-banner { background: url("/img/calc/rental-banner.png") center no-repeat; background-size: cover;  }
+.banner.faq-banner { background: url("/img/calc/faq-banner.png") center no-repeat; background-size: cover;  }
+.banner .contents { padding-top: 163px; color: #fff; }
+.banner .contents p { font-size: 20px; }
+.banner .contents h1 { font-size: 48px; font-weight: 700; margin-top: 12px; }
+
+/* shopping */
+.cde_detail_option { font-size: 14px; }
+.cde_detail_option p.cde_title { font-size: 16px; margin: 0 0 12px; line-height: 1.2; }
+.cde_detail_option span.cde_price_obj { font-size: 16px; vertical-align: bottom; margin: 0 8px 0 0; }
+.cde_detail_option span.cde_price_obj span { font-size: 20px; font-weight: 500; vertical-align: bottom; }
+
+.shop_list h5 { text-align: center; margin-bottom:10px; font-size: 34px; font-weight: 600; }
+.shop_list h5 span { color: #f5821f; }
+.shop_list p.shop_list_sub_title { text-align: center; color: #5e5e5e; font-weight: 500; margin: 0 0 50px; font-size: 19px; }
+.cmall-list { margin-bottom:105px;  }
+.cmall-list .cmall-tit { font-size: 14px; margin: 10px 0 0; text-align: center; font-weight: 500; }
+.cmall-list .cmall-txt { font-size: 13px; color: #777; margin-bottom: 7px; word-break: keep-all; word-wrap: break-word; height: 20px; line-height: 20px; overflow: hidden; text-overflow: ellipsis; text-align: center;   white-space: nowrap;  }
+.cmall-list .cmall-price { font-size: 14px; font-weight: 500; text-align: center; }
+
+
+.empty-list { padding: 55px 0; text-align: center; font-size: 15px; }
+.navbar-default .navbar-brand { padding: 28px 0 20px; }
+.navbar-brand > img { display: inline-block; width: auto;}
+
+.ci-box { margin-bottom: 20px;}
+
+.webseller { font-size: 12px; color: #aaa;  }
+.webseller a { font-size: 12px; color: #aaa;  }
+
+
+.sns { padding: 0 0 10px ; text-align: left; }
+.sns a { display: inline-block; width: 35px; height: 35px; line-height: 35px; text-align: center; background: #ddd; border-radius: 50%; margin-right: 8px; }
+.sns a .fa { color: #fff; font-size: 19px; }
+
+#side_menu .m_search { padding: 10px 0 0; }
+.m_close .fa { color: #ccc; }
+.header_line { background: #ddd; height: 2px; }
+
+.ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+#selectedOption { display: none; margin: 25px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 15px 0; }
+#selectedOption .form-group { }
+#selectedOption .form-group:last-child { margin-bottom: 0; }
+
+.product-no-box { }
+.product-no-box .product-no { }
+.product-no-box .product-no td { padding-left: 0; padding-right: 0; }
+.item_detail_table {}
+.item_detail_table.table td { padding-left: 0; padding-right: 0; }
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand { margin: 0; }
+
+section.default { padding: 60px 0 150px 0; }
+section.default.recom { background: #f9f9f9; border-top: 2px solid #cfcfcf; border-bottom: 2px solid #cfcfcf; }
+
+
+
+/* footer */
+footer { background: #393c44; border-top: 0; padding: 36px 0; }
+footer .contents { margin: 22px 0; }
+footer .copyright { font-size: 13px; color: #888888; }
+footer .copyright a { font-size: 13px; color: #fff; text-decoration: none; display: inline-block; margin-right: 12px; }
+footer .copyright .right-contents { float: right; text-align: right; }
+footer .copyright .right-contents h2 { color: #fff; font-size: 28px; }
+footer .copyright .right-contents p { font-size: 14px; margin-top: 4px;}
+footer .copyright .sns-contents { float: right; text-align: right;  }
+footer .copyright .sns-contents a { color: #888; display: inline-block; padding-left: 20px; }
+footer .container h3 { padding: 0; margin: 0 0 5px 0; border: 0; }
+footer .container h4 { padding: 0; margin: 0 0 8px 0; border: 0; font-size: 15px; }
+footer .copyright span { font-size: 14px; position: relative; padding-right: 12px; margin-left: 9px; }
+footer .copyright span:first-child { margin: 0; }
+footer .copyright span:before { content: ''; position: absolute; top: 20%; right: 0; width: 1px; height: 60%; background: #888a8f; }
+footer .copyright span:last-child:before { display: none; }
+
+.option_window { border-top: 1px solid #eaeaea; padding-top: 20px; }
+
+section.default.main-about-section {  }
+section.default.main-about-section h2 { font-weight: 700; font-size: 24px; margin-top: 38px; }
+section.default.main-about-section p { font-size: 15px; color: #999; margin-top: 11px; }
+section.default.main-about-section img { margin: 0 0 0 auto; }
+
+section.default.adv-section {}
+section.default.adv-section h2 { font-size: 24px; margin-bottom: 52px; }
+section.default.adv-section .row { }
+section.default.adv-section .row + .row { margin-top: 50px; }
+section.default.adv-section .card { min-height: 220px; }
+section.default.adv-section .card h4 { font-size: 16px; margin-bottom: 4px; font-weight: 700; }
+section.default.adv-section .card.card1 { background: url('/img/calc/benefit_01.png') no-repeat center bottom; }
+section.default.adv-section .card.card2 { background: url('/img/calc/benefit_02.png') no-repeat center bottom; }
+section.default.adv-section .card.card3 { background: url('/img/calc/benefit_03.png') no-repeat center bottom; }
+section.default.adv-section .card.card4 { background: url('/img/calc/benefit_04.png') no-repeat center bottom; }
+section.default.adv-section .card.card5 { background: url('/img/calc/benefit_05.png') no-repeat center bottom; }
+
+div.hr { }
+div.hr .contents { border-bottom: 1px solid #fff; background: #cecece; height: 2px; }
+
+.ad-banner { background: #fff; }
+
+.default-title { }
+.default-title.card-title { margin-top: 92px; margin-bottom: 30px; }
+.default-title h2 { font-size: 24px; }
+.default-title p { font-size: 14px; margin-top: 6px; }
+section.default.main-step-section {  }
+section.default.main-step-section h2 { font-size: 24px; }
+section.default.main-step-section .default-title p { color: #999; }
+section.default.main-step-section .contents { margin-top: 26px; }
+section.default.main-step-section .contents .num { font-size: 28px; color: #801494; }
+section.default.main-step-section .contents h4 { font-size: 18px; font-weight: 700; margin-top: 16px; position: relative; }
+section.default.main-step-section .contents h4:after { position: absolute; top: 0; right: 0; content: ''; width: 10px; height: 100px; background: url("/img/calc/service_step_bullet.png") center no-repeat; background-size: contain; }
+section.default.main-step-section .contents h4.last-child:after { display: none; }
+section.default.main-step-section .contents p { font-size: 14px; margin-top: 13px; margin-bottom: 30px;  }
+
+
+section.default.main-service-section {  }
+section.default.main-service-section .default-title p { color: #999; }
+section.default.main-service-section .contents { margin-top: 64px; }
+section.default.main-service-section .contents h1 { font-size: 24px; color: #801494; }
+section.default.main-service-section .contents h2 { font-size: 22px; margin-bottom: 4px; }
+section.default.main-service-section .contents .max-width { max-width: 900px; margin: 0 auto; }
+section.default.main-service-section .contents p { font-size: 14px;  }
+section.default.main-service-section .contents .card { padding-left: 30px; }
+section.default.main-service-section .contents .card.card1 { background: url('/img/calc/rental_type_01.png') no-repeat right center; background-size: contain; }
+section.default.main-service-section .contents .card.card2 { background: url('/img/calc/rental_type_02.png') no-repeat right center; background-size: contain; }
+section.default.main-service-section .contents .card.card3 { background: url('/img/calc/rental_type_03.png') no-repeat right center; background-size: contain; }
+section.default.main-service-section .contents .tab { margin-bottom: 16px; }
+section.default.main-service-section .contents .tab span { display: inline-block; padding-right: 16px; margin-right: 16px; font-size: 18px; border-right: 1px solid #ccc; cursor: pointer; }
+section.default.main-service-section .contents .tab span:last-child { padding: 0; border: 0; margin: 0; }
+section.default.main-service-section .contents .tab span.active { color: #801494; font-weight: 700; }
+section.default.main-service-section .contents .tab-contents { border-top: 1px solid #000; border-bottom: 1px solid #000; }
+section.default.main-service-section .contents .tab-contents img { display: none; }
+section.default.main-service-section .contents .tab-contents img.active { display: block; }
+section.default.main-service-section .contents img.main-service-img1 { margin-top: 23px; }
+
+section.default.main-service-section .contents .center-title { margin: 70px auto; text-align: center; height: 1px; border-bottom: 1px solid #812991; position: relative; width: 50%; }
+section.default.main-service-section .contents .center-title2 { text-align: center; margin-top: 40px; font-size: 14px; }
+section.default.main-service-section .contents .center-title span { color: #812991; font-size: 20px; display: inline-block; padding: 0 20px; position: relative; transform: translateY(-13px); background: #F3F3F3; }
+
+section.default.main-product-section {  }
+section.default.main-product-section .contents { margin-top: 30px;  }
+section.default.main-product-section .default-title p { color: #999; }
+section.default.main-product-section .contents ul.nav { margin-bottom: 43px; border: 0; }
+section.default.main-product-section .contents ul.nav li { border: 0; }
+section.default.main-product-section .contents ul.nav li a { background: #e0e2e2; border: 0; border-radius: 0 !important; color: #222; font-size: 16px; padding-top: 19px; padding-bottom: 19px; border-right: 1px solid #fff; }
+section.default.main-product-section .contents ul.nav li:last-child a { border: 0; }
+section.default.main-product-section .contents ul.nav li a:hover { text-decoration: none; }
+section.default.main-product-section .contents ul.nav li.active a { background: #393c44; color: #fff; border: 0; }
+section.default.main-product-section .contents .tab-content { }
+section.default.main-product-section .contents .tab-content span { font-size: 64px; color: #e0e2e2; display: inline-block; margin-right: 14px; font-weight: 700; }
+section.default.main-product-section .contents .tab-content span.small { font-size: 14px; color: #333; }
+section.default.main-product-section .contents .tab-content h3 { display: inline-block; width: auto; border: 0; margin: 0; padding: 0; font-size: 24px; line-height: 1.4; }
+section.default.main-product-section .contents .tab-content h3:after { display: inline-block; content: ' '; background: #333; width: 40px; height: 2px; margin-left: 10px; }
+section.default.main-product-section .contents .tab-content .article {}
+section.default.main-product-section .contents .tab-content .article.tel-article { font-size: 55px; font-weight: 700; color: #444; }
+section.default.main-product-section .contents .tab-content .article.tel-article.hana-card { position: relative; }
+section.default.main-product-section .contents .tab-content .article.tel-article.hana-card img { position: absolute; top: 0; right: 0; }
+section.default.main-product-section .contents .tab-content .article h5 { font-size: 16px; margin-bottom: 8px; }
+section.default.main-product-section .contents .tab-content .article + .article { margin-top: 30px; }
+section.default.main-product-section .contents .tab-content .article a { color: #222; margin-left: 20px; }
+section.default.main-product-section .contents .tab-content .row + .row { margin-top: 55px; }
+
+
+section.default.counsel-section {  }
+section.default.counsel-section .privacy-table-contents {  }
+section.default.counsel-section .privacy-table-contents span { display: block; margin-bottom: 10px; }
+section.default.counsel-section .privacy-table-contents .privacy-table { text-align: center; border-top: 1px solid #999999; border-bottom: 1px solid #999999; }
+section.default.counsel-section .privacy-table-contents .privacy-table h5 { font-size: 15px; margin-bottom: 10px; }
+section.default.counsel-section .privacy-table-contents .privacy-table p { font-size: 12px; }
+section.default.counsel-section .privacy-table-contents .privacy-table .col-xs-4 { position: relative; padding-top: 20px; padding-bottom: 20px; }
+section.default.counsel-section .privacy-table-contents .privacy-table .col-xs-4:after { position: absolute; top: 20%; left: 0; height: 60%; width: 1px; background: #ddd;  content: ''; }
+section.default.counsel-section .privacy-table-contents .privacy-table .col-xs-4:first-child:after { display: none; }
+
+section.default.counsel-section p.form-error { color: red; }
+
+#rentalCalc .form-section { margin-top: 60px;  }
+#rentalCalc .form-section h2 { font-size: 22px; margin-bottom: 20px; }
+#rentalCalc .form-section h2:after { content: ''; display: inline-block; width: 40px; height: 2px; background: #333;  margin-left: 20px;}
+#rentalCalc .form-section .form-group { border-bottom: 1px solid #999; }
+#rentalCalc .form-section .form-group .control-label { margin-top: 6px; font-size: 16px; position: relative; }
+#rentalCalc .form-section .form-group .control-label:after { content: ''; position: absolute; top: 0; right: 0; bottom: 4px; width: 1px; background: #DDDDDD; }
+#rentalCalc .form-section .form-group .control-label span { position: absolute; right: 20px; }
+#rentalCalc .form-section .form-group input { border: 0; background: none; box-shadow: none; height:auto; }
+#rentalCalc .form-section p { font-size: 12px; color: #999999; }
+#rentalCalc input[type="checkbox"] { display: inline-block; vertical-align: baseline;     appearance: auto; width:auto; }
+#rentalCalc .rental-section input[type="radio"] { vertical-align: baseline; display: inline-block; width: auto; height: auto; position: relative; clip: auto; overflow: auto;     appearance: auto; }
+
+
+.default-btn { background: #801494; font-size: 16px; padding: 16px 42px; color: #fff; line-height: 1; }
+.default-btn:hover { color: #fff; }
+.default-btn:active,
+.default-btn.active {
+    background-color: #710884;
+}
+
+
+section.default.rental-section {  }
+section.default.rental-section h2 { color: #710884; text-align: center; font-weight: 700; }
+section.default.rental-section .contents { margin-top: 92px;  }
+section.default.rental-section .contents .row {}
+section.default.rental-section .contents .row + .row {text-align: center; margin-top: 80px; }
+section.default.rental-section .cards { text-align: center; cursor: pointer; }
+section.default.rental-section .cards label { font-weight: 500; cursor: pointer; }
+/*section.default.rental-section .cards label > div { height: 105px; line-height: 105px; }*/
+section.default.rental-section .cards label input { margin-right: 8px; }
+section.default.rental-section .cards label p { margin-bottom: 22px; font-size: 18px; }
+
+
+section.default.rental-form-section { font-size: 16px; }
+section.default.rental-form-section .form-group { color: #666; }
+section.default.rental-form-section .form-group.mt { margin-top: 40px; }
+section.default.rental-form-section .form-group + .form-group { margin-bottom: 20px;  }
+section.default.rental-form-section .form-group label { font-weight: 500; }
+section.default.rental-form-section .form-group label.control-label { font-size: 16px; color: #222; }
+section.default.rental-form-section .form-group label.control-label span { cursor: pointer; position: relative; }
+section.default.rental-form-section .form-group label.control-label span img { display: none; position: absolute; top: 0; left: 0; z-index: 111; }
+section.default.rental-form-section .form-group label.control-label span:hover img { display: block; height: auto; max-width: unset;}
+section.default.rental-form-section .form-group:not(.add-service) label.radio-inline { width: 160px; margin: 0 0 6px; }
+section.default.rental-form-section .form-group.add-service h4 { margin-bottom: 40px; color: #811495; font-size: 16px; position: relative; }
+section.default.rental-form-section .form-group.add-service h4 span { display: inline-block; background: #f3f3f3; padding-right: 12px; }
+section.default.rental-form-section .form-group.add-service h4 span:after { position: absolute; top: 50%; left: 0; right: 0; width: 100%; height: 1px; background: #ddd; content: ''; z-index: -1; }
+
+section.default.rental-form-section .form-group label.radio-inline input[disabled] + span { color: #ddd; }
+section.default.rental-form-section .form-group .select-inline { display: inline-block; width: 240px; }
+section.default.rental-form-section .form-group .select-inline + .select-inline { margin-left: 10px; }
+section.default.rental-form-section .form-group .select-inline select { background: #fff url('/img/calc/select_arrow.png') center right no-repeat; background-size: 32px auto; }
+section.default.rental-form-section .form-group .rental-type-contents { display: block; text-align: center; width: 33.33332%; float: left; cursor: pointer; }
+section.default.rental-form-section .form-group .rental-type-contents > div {  background: #e0e2e2; overflow: hidden; padding: 16px 0;  }
+section.default.rental-form-section .form-group .rental-type-contents > div span { position: relative; }
+section.default.rental-form-section .form-group .rental-type-contents > div span img { width: 30px; position: absolute; top: -14px; right: -35px; }
+section.default.rental-form-section .form-group .rental-type-contents input { width: 1px; height: 1px; overflow: hidden;  }
+section.default.rental-form-section .form-group .rental-type-contents input:checked + div { background: #801494; color: #fff; }
+section.default.rental-form-section .form-group .result-contents { padding: 46px 0;  }
+section.default.rental-form-section .form-group .result-contents h1 { color: #333; }
+
+section.default.rental-form-section dl { overflow: hidden; color: #333; font-size: 14px; margin-bottom: 0; }
+section.default.rental-form-section dl dt { width: 25%; display: inline-block; font-size: 20px; font-weight: 500; vertical-align: top; }
+section.default.rental-form-section dl dd { width: 74%; text-align: right; display: inline-block; font-size: 16px; }
+section.default.rental-form-section dl dd p { text-align: right; color: #767676; font-size: 14px; }
+section.default.rental-form-section dl dd s { font-size: 14px; color: #767676; }
+section.default.rental-form-section dl dd span.chart-price { font-size: 30px; }
+section.default.rental-form-section dl + dl { padding-top: 20px; margin-top: 20px; border-top: 1px solid #ddd; }
+/*section.default.rental-form-section dl:first-child { margin-bottom: 23px; }*/
+/*section.default.rental-form-section dl:first-child dt { font-size: 20px; }*/
+/*section.default.rental-form-section dl:first-child dd span { font-size: 45px; color: #D43F77; }*/
+/*section.default.rental-form-section dl:last-child { margin-top: 16px; }*/
+/*section.default.rental-form-section dl:last-child dd { color: #444; font-size: 12px; }*/
+
+.n-card { font-size: 20px; font-weight: 500; color: #767676; }
+.y-card { display: none; }
+
+.calc-chart { background: #fff; border: 1px solid #ddd; padding: 30px 20px; }
+.calc-chart.no-bg { background: none; border: 0; padding: 20px 20px; }
+
+
+#rental-tag { margin-top: 40px; }
+#rental-tag > span { display: inline-block; line-height: 1; color: #666; background: #E4E5E5; border-radius: 6px; padding: 8px 12px; font-size: 13px; margin: 0 8px 8px; }
+
+#default-service-tag { margin-top: 40px; }
+#default-service-tag p { padding-left: 8px; margin-bottom: 8px; }
+#default-service-tag .inner > span { display: inline-block; line-height: 1; color: #666; background: #E4E5E5; border-radius: 6px; padding: 8px 12px; font-size: 13px; margin: 0 8px 8px; }
+/*#rental-tag > span + span { margin-left: 8px; }*/
+
+.gallery-tire-cards { background: #fff; padding: 33px 16px; margin-bottom: 20px; height: 285px; color: #333; position: relative; }
+.gallery-tire-cards .img-box { position: absolute; right: 15px; bottom: 20px; }
+.gallery-tire-cards .img-box img { }
+.gallery-tire-cards .info-text { padding-right: 204px; }
+.gallery-tire-cards .info-text h2 { font-size: 26px; }
+.gallery-tire-cards .info-text p { font-size: 12px; margin: 7px 0 19px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; }
+.gallery-tire-cards .info-text .article { overflow: hidden; }
+.gallery-tire-cards .info-text .article + .article { margin-top: 8px; }
+.gallery-tire-cards .info-text .article h5 { float: left; width: 108px; }
+.gallery-tire-cards .info-text .article .grade-graph { padding-left: 120px; position: relative; }
+.gallery-tire-cards .info-text .article .grade-graph .contents { background: #d5d5d5; height: 4px; transform: translateY(3px); }
+.gallery-tire-cards .info-text .article .grade-graph .contents span { display: block; float: left; height: 4px; width: 20%; background: #646464; border-right: 1px solid #fff; }
+.gallery-tire-cards .info-text .article .grade-graph .contents span:last-child { border: 0; }
+.gallery-tire-cards .icon-contents { position: absolute; top: 6px; right: 16px; }
+.gallery-tire-cards .icon-contents span { display: inline-block; }
+.gallery-tire-cards .icon-contents span + span { padding-left: 6px; }
+
+.tire-board .nav { border: 0 !important; }
+.tire-board .nav li { border-radius: 0 !important; border: 0 !important; }
+.tire-board .nav li a { background: #e0e2e2; border: 0 !important; border-radius: 0 !important; color: #fff; text-decoration: none !important; padding-top: 15px; padding-bottom: 15px; }
+.tire-board .nav li.active a, .tire-board .nav li:hover a { background: #801494; }
+
+.category-contents { margin-top: 40px; }
+.tip-title { margin: 20px 0 40px; font-weight: 700; }
+.tip-title a { color: #222; }
+
+.add-contents { float: left; width: 25%; }
+.add-contents .inner { position: relative; }
+.add-contents .dropdown button.btn { border: 1px solid #ccc; border-radius: 0 !important; text-align: left; padding: 10px 12px; color:#333; }
+.add-contents .dropdown button.btn .count-box { display: inline-block; margin-left: 8px; }
+.add-contents .dropdown button.btn .count-box span { display: inline-block; width: 22px; height: 22px; background: #801494; border-radius: 100%; text-align: center; color: #fff; line-height: 22px; margin-right: 4px; }
+.add-contents .dropdown button.btn i { color: #aaa; float: right; margin-top: 4px;  }
+.add-contents  a.tip-contents { position: absolute; left: 10px; bottom: 36px; z-index: 1; }
+.add-contents  a.tip-contents .normal { display: block; }
+.add-contents  a.tip-contents .hover { display: none; }
+.add-contents  a.tip-contents:hover .normal { display: none; }
+.add-contents  a.tip-contents:hover .hover { display: block; }
+.add-contents  a.tip-contents .hover-contents { position: absolute; bottom: 30px; z-index: -1; color: #333; padding: 30px 42px 50px; border-radius: 20px; border: 3px solid #801494; background: #fff; display: none; min-width: 700px; }
+.add-contents  a.tip-contents .hover-contents.hover1 { left: -200px; }
+.add-contents  a.tip-contents .hover-contents.hover2 { left: -400px; }
+.add-contents  a.tip-contents .hover-contents.hover3 { right: 0; }
+.add-contents  a.tip-contents:hover .hover-contents { display: block; }
+.add-contents  a.tip-contents .hover-contents h1 { font-size: 42px; color: #801494; border-bottom: 3px solid #801494; padding-bottom: 12px; }
+.add-contents  a.tip-contents .hover-contents h2 { font-size: 26px; color: #333; margin: 22px 0; line-height: 1.50; }
+.add-contents  a.tip-contents .hover-contents ul { }
+.add-contents  a.tip-contents .hover-contents ul li { display: table; width: 100%; table-layout: fixed;  }
+.add-contents  a.tip-contents .hover-contents ul li + li { margin-top: 5px; }
+.add-contents  a.tip-contents .hover-contents ul li span { display: table-cell; vertical-align: middle; font-size: 18px; font-style: italic; width: 40px; }
+.add-contents  a.tip-contents .hover-contents ul li div { display: table-cell; vertical-align: middle; font-size: 12px; white-space: pre-line;  }
+.add-contents  a.tip-contents .hover-contents ul.ul1 li span { width: 40%; }
+.add-contents  a.tip-contents .hover-contents ul.ul1 li div { width: 60%;}
+.add-contents  a.tip-contents .hover-contents img { margin-top: 30px; }
+
+
+.add-contents .dropdown button.btn:hover { background: #fff; }
+.add-contents .dropdown .dropdown-menu { border-radius: 0 !important; border: 1px solid #ccc; right: 0; margin: 0; min-height: 85px; max-height: 203px; overflow-y: scroll; }
+.add-contents .dropdown .dropdown-menu li { padding: 8px 14px; }
+.add-contents .dropdown .dropdown-menu li + li { border-top: 1px solid #ccc; }
+.add-contents .dropdown .dropdown-menu li a { color: #666; }
+.add-contents .dropdown .dropdown-menu li a:hover { color: #000; }
+.add-contents select { background: #fff url('/img/calc/select_arrow.png') center right no-repeat; background-size: 32px auto; }
+
+
+
+.custom-radio { position: relative; padding-left: 30px; }
+.custom-radio input[type="radio"] {border: 0;clip: rect(0 0 0 0);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px; }
+.custom-radio span:before { content: ''; position: absolute; top: 50%; width: 20px; height: 20px; left: 0; margin-top: -10px; background: url("/img/calc/uncheck.png") center no-repeat; background-size: contain; }
+.custom-radio input[type="radio"]:checked + span:before { background: url("/img/calc/check.png") center no-repeat; background-size: contain; }
+
+
+.notice-section { padding-left: 40px; margin-bottom: 100px; }
+.notice-section .notice-section-title { display: block; float: left; font-size: 22px; }
+.notice-section ul { padding-left: 120px; }
+.notice-section ul li {  }
+
+
+section.default.main-product-section ul.nav.card-tabs { background: #e8e8e8; }
+section.default.main-product-section ul.nav.card-tabs li {}
+section.default.main-product-section ul.nav.card-tabs li a { background: #e8e8e8; width: 190px; padding: 14px 20px; font-size: 16px; }
+section.default.main-product-section ul.nav.card-tabs li a i { float: right; color: #aaa; margin-top: 2px; }
+section.default.main-product-section ul.nav.card-tabs li.active a { background: #f3f3f3; border-top: 1px solid #999; color: #333; border-right: 1px solid #999; border-left: 1px solid #999; }
+section.default.main-product-section ul.nav.card-tabs li.active a i { color: #333; }
+
+.card-title { margin-bottom: 70px; }
+.card-title div { position: relative; font-size: 24px; font-weight: 700; color: #333; display: inline-block; }
+.card-title div:after { position: absolute; left: 0; right: 0; bottom: 0; height: 40%; background: #dcc6e0; content: ''; z-index: -1; }
+
+
+.navbar-default .navbar-toggle { border: 0; margin-top: 0; }
+.navbar-default .navbar-toggle span.icon-bar { background: #fff; transition: all .3s ease-out; }
+.navbar-default.scroll .navbar-toggle span.icon-bar { background: #000; }
+.navbar-default .navbar-toggle span.icon-bar + span.icon-bar { margin-top: 6px }
+
+section.counsel-success-section { text-align: center; }
+section.counsel-success-section p { margin-top: 40px; font-size: 18px; color: #000; }
+section.counsel-success-section p span { color: #801494; font-weight: 700; }
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn { opacity: .35; }
+
+
+.layout-fixed { position: fixed; right: 20px; bottom: 20px; z-index: 111; }
+.layout-fixed a { box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.14); width: 60px; height: 60px; background: #fff; border-radius: 50%; text-align: center; display: block; color: #000; line-height: 1.2; padding-top: 12px; float: right; }
+.layout-fixed .clearfix { margin-bottom: 20px; }
+.layout-fixed a.other { background: #801494; transition: .4s ease-out; border-radius: 30px; }
+.layout-fixed a.other span { display: none; color: #fff; margin-left: 12px; }
+.layout-fixed a.other:hover { width: auto; padding-left: 14px; padding-right: 14px; }
+.layout-fixed a.other:hover span { display: inline-block;  }
+
+.layout-fixed .mobile-fixed { background: #802a8f; display: table; width: 100%; table-layout: fixed; }
+.layout-fixed .mobile-fixed a { display: table-cell; width: 50%; padding: 20px 0; color: #fff; box-shadow: none; position: relative; border-radius: 0; height: auto; background: #801494 }
+.layout-fixed .mobile-fixed a:first-child { border-left: 1px solid #fff; }
+.layout-fixed .mobile-fixed a span { display: inline-block; }
+
+.rental_amount_show_box { margin-bottom: 12px; color: #802a8f; font-weight: 700; }
+.rental_amount_show_box .text-black { font-size: 14px; color: #222; }
+
+
+.form-group.link-wrap {  }
+.form-group.link-wrap .default-btn { display: inline-block; float: right; }
+#rental_amount_show { text-decoration: line-through; }
+
+.main-product1-card { background: #fff; padding: 35px 30px; }
+.main-product1-card h2 { font-size: 20px; margin-bottom: 4px; }
+.main-product1-card img {  margin-top: 10px;}
+.sub2-txt { color: #999; }

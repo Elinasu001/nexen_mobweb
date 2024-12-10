@@ -1,0 +1,243 @@
+#array \uad6c\ubd84\uc790 \ud30c\uc774\ud504(|)\ubb38\uc790 \uc0ac\uc6a9
+#\ub370\uc774\ud130\ud0c0\uc785 : String, boolean, int, long, double
+
+#\uc2dc\uc2a4\ud15c \uc815\ubcf4
+#Back Office B:BackOffice, F:FrontOffice,
+sys.name=EC
+
+#\uacf5\ud1b5\ucf54\ub4dc preloading
+cmcd.preload.enable=false
+#\ub4f1\ub85d\uc790, \uc218\uc815\uc790 ID
+default.usr.id=mobusr
+default.usr.name=mobusr
+
+jdbc.main.driver=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+jdbc.main.url=jdbc:log4jdbc:oracle:thin:@172.17.0.135:1521:nxnewbizdev
+#jdbc.main.url=jdbc:log4jdbc:oracle:thin:@172.17.0.138:1521:NXNEWBIZ
+jdbc.main.username=O2OUSER
+jdbc.main.password=o2ouser
+
+jdbc.nextlevel.driver=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+jdbc.nextlevel.url=jdbc:log4jdbc:oracle:thin:@172.17.0.135:1521:nxnewbizdev
+jdbc.nextlevel.username=NXRADMIN
+jdbc.nextlevel.password=rental~2015^*
+
+
+jdbc.nextlevel.shop.driver=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+jdbc.nextlevel.shop.url=jdbc:log4jdbc:oracle:thin:@172.17.0.135:1521:nxnewbizdev
+jdbc.nextlevel.shop.username=NEXENSHOP
+jdbc.nextlevel.shop.password=shop!0901#
+
+#\ucca8\ubd80\ud30c\uc77c \uc800\uc7a5 \uacbd\ub85c(\ub80c\ud0c8 \ubb34\uc0c1\ud30c\uc190  \uac00\uc785 \uc5c5\ub85c\ub4dc)
+upload.rental.join.file.dir=C:/NTRMS/ATTATCH
+#\ucca8\ubd80\ud30c\uc77c \uc800\uc7a5 \uacbd\ub85c(\ub80c\ud0c8 \ubb34\uc0c1\ud30c\uc190  \uc2e0\uccad \uc5c5\ub85c\ub4dc)
+upload.rental.req.file.dir=C:/NTRMS/ATTATCH
+#\ucca8\ubd80\ud30c\uc77c \uc800\uc7a5 \uacbd\ub85c(O2O \uc5c5\ub85c\ub4dc)
+upload.o2o.file.dir=C:/nexWrmsProject/workspace/data/files
+#\ucca8\ubd80\ud30c\uc77c \uc800\uc7a5 \uacbd\ub85c(\ub80c\ud0c8 \uc5c5\ub85c\ub4dc)
+upload.rental.file.dir=C:/WebApps/NEXEN_EBIZ/ROOT
+#\ucca8\ubd80\ud30c\uc77c \uc800\uc7a5 \uacbd\ub85c(\ub2e4\uc6b4\ub85c\ub4dc)
+download.file.path=C:/nexWrmsProject/workspace/data/files
+#\ud30c\uc77c \ubcf4\uae30 URL
+imgfile.url=http://dev-m.nexen-nextlevel.com:8888
+#imgfile.url=http://m.nexen-nextlevel.com
+#\ud30c\uc77c \ubcf4\uae30 URL(\ub80c\ud0c8)
+imgfile.rental.url=http://dev-m.nexen-nextlevel.com:8888
+#imgfile.rental.url=http://m.nexen-nextlevel.com
+
+#\uc5d1\uc140 \ud15c\ud50c\ub9bf \uacbd\ub85c :  root + \ub300\ubd84\ub958
+template.file.dir=C:/nexWrmsProject/workspace/data/files/bo_template/excel
+#\uc5d1\uc140\ud30c\uc77c \uc0dd\uc131 \uacbd\ub85c : root + \ub300\ubd84\ub958
+export.file.dir=C:/nexWrmsProject/workspace/data/files/bo/excel
+
+#KCP \uacb0\uc81c(WEB O2O)
+kcp.log.dir=C:/nexWrmsProject/workspace/nexwrms-mobweb/kcp/log
+kcp.conf.gw.url=testpaygw.kcp.co.kr
+kcp.conf.js.url=https://testpay.kcp.co.kr/plugin/payplus_web.jsp
+kcp.conf.server=false
+kcp.site.cd=A538L
+kcp.site.key=3cjxIKMq3d2dKoYkcSgbuyl__
+kcp.site.name=NEXEN TIRE
+kcp.conf.log.level=3
+kcp.conf.gw.port=8090
+kcp.module_type=01
+kcp.conf.tx.mode=0
+kcp.pay.method=110000000000
+kcp.quotaopt=12
+kcp.currency=WON
+
+
+#KCP \uacb0\uc81c(WEB RENTAL)
+kcp.rental.log.dir=C:/nexWrmsProject/workspace/nexwrms-mobweb/src/main/webapp/kcp/log_rental
+kcp.rental.key.file=C:/nexWrmsProject/workspace/nexwrms-mobweb/src/main/webapp/kcp_rental
+kcp.rental.conf.gw.url=paygw.kcp.co.kr
+kcp.rental.cancel.gw.url=testpaygw.kcp.co.kr
+kcp.rental.conf.js.url=https://pay.kcp.co.kr/plugin/payplus_test_un.js
+kcp.rental.site.cd=T0007
+kcp.rental.site.key=4Ho4YsuOZlLXUZUdOxM1Q7X__
+kcp.rental.site.name=KCP TEST SHOP
+kcp.rental.conf.log.level=3
+kcp.rental.conf.gw.port=8090
+kcp.rental.module_type=01
+
+
+#\uc740\ud589 \uc790\ub3d9\uc774\uccb4 \ucd9c\uae08 \ub3d9\uc758 \ud655\uc778
+ars.rental.url=http://dev.coocon.co.kr/sol/gateway/ars_wapi.jsp
+ars.rental.secret=jj0V4mXT1U4qeqx5CFAL
+
+#\uc740\ud589 \uc790\ub3d9\uc774\uccb4 \uc720\ud6a8\uc131 \uccb4\ud06c
+kftc.cms.ip=99.51.105.20
+kftc.cms.port=31415
+
+#\uce74\uce74\uc624\ud398\uc774(nexeno2o \uacc4\uc815 - cid\ub294 \uce74\uce74\uc624\uc5d0\uc11c \uc81c\uacf5\ud558\ub294 \ud14c\uc2a4\ud2b8\uc6a9 )
+kakopay.pay.adminkey=01a41561881b5f39fb19152cb091dbe3
+kakopay.pay.cid=TC0ONETIME
+kakopay.pay.failurl=http://172.17.82.29:18081/order/getKkoPaymentFail
+kakopay.pay.cancelurl=http://172.17.82.29:18081/order/getKkoPaymentCncl
+kakopay.pay.approvalurl=http://172.17.82.29:18081/order/getKkoPaymentResult
+kakopay.pay.payment.cancelreq.url=https://kapi.kakao.com/v1/payment/cancel
+kakopay.pay.approvalreq.url=https://kapi.kakao.com/v1/payment/approve
+kakopay.pay.authreq.url=https://kapi.kakao.com/v1/payment/ready
+
+#\ub124\uc774\ubc84\ud398\uc774
+naverpay.pay.partnerId=np_ugebc997125
+naverpay.pay.clientId=bby3NZykPIPQellSAS8F
+naverpay.pay.clientSecret=ECdhSGokzm
+naverpay.pay.mode=development
+naverpay.pay.returnurl=http://172.17.82.82:18081/order/getNPaymentResult
+
+naverpay.pay.approvalurl=https://dev.apis.naver.com/np_ugebc997125/naverpay/payments/v2.2/apply/payment
+naverpay.pay.cancelurl=https://dev.apis.naver.com/np_ugebc997125/naverpay/payments/v1/cancel
+
+#\uce74\uce74\uc624\ud1a1 \ub85c\uadf8\uc778(nexeno2o \uacc4\uc815 )
+login.kakao.openurl=https://kauth.kakao.com/oauth/authorize
+login.kakao.clientId=2847d268168d83b3696c440521da57bf
+login.kakao.redirecturi=http://localhost:18081/login/loginProcKakao
+login.kakao.responsetype=code
+login.kakao.encode=true
+login.kakao.secret=T7BNMWlXpyJsEuQHfzBW9JbohrL8lqw8
+login.kakao.tokenurl=https://kauth.kakao.com/oauth/token
+login.kakao.userinfourl=https://kapi.kakao.com/v2/user/me
+
+
+#\ub124\uc774\ubc84 \ub85c\uadf8\uc778  (nexeno2o \uacc4\uc815- \uc571 \uba85 \ub125\uc2a4\ud2b8\ub808\ubca8 \ub85c\uceec)
+login.naver.openurl=https://nid.naver.com/oauth2.0/authorize
+login.naver.clientId=3cLnf6sUZbicghsOZysI
+login.naver.redirecturi=http://localhost:18081/login/loginProcNaver
+login.naver.responsetype=code
+login.naver.secret=8GsxPaHRi3
+login.naver.tokenurl=https://nid.naver.com/oauth2.0/token
+login.naver.userinfourl=https://openapi.naver.com/v1/nid/me
+
+#\uad6c\uae00 \ub85c\uadf8\uc778(nexeno2o \uacc4\uc815 - \uc571 \uac80\uc218 \ud544\uc694)
+login.google.openurl=https://accounts.google.com/o/oauth2/auth
+login.google.clientId=98206290951-uck5djnp0000cv0qmv1h53351g5qj4o6.apps.googleusercontent.com
+login.google.redirecturi=http://localhost:18081/login/loginProcGoogle
+login.google.responsetype=code
+login.google.secret=YbPDVd2tSh9UHw8b8rsTv4JF
+login.google.scope=https://www.googleapis.com/auth/plus.login
+login.google.tokenurl=https://www.googleapis.com/oauth2/v4/token
+
+#\ud398\uc774\uc2a4\ubd81 \ub85c\uadf8\uc778(nexeno2o \uacc4\uc815 - \uc571 \uac80\uc218 \ud544\uc694)
+login.faceb.openurl=https://www.facebook.com/v5.0/dialog/oauth
+login.faceb.clientId=768111283704253
+login.faceb.redirecturi=http://localhost:18081/login/loginProcFaceb
+login.faceb.responsetype=code
+login.faceb.secret=820eb9d5d416b2c99afa820611b9bda5
+login.faceb.tokenurl=https://graph.facebook.com/v5.0/oauth/access_token
+login.faceb.userinfourl=https://graph.facebook.com/v5.0/me
+
+#NICE \ubcf8\uc778 \uc778\uc99d
+nice.site.cp=NEXENTIRE
+
+#NICE \ubcf8\uc778 \uc778\uc99d(\ud578\ub4dc\ud3f0)
+nice.phone.id=G9177
+nice.phone.pw=0S6ZT2AYXPFY
+nice.phone.success.url=http://localhost:18081/member/authPhoneSuccess
+nice.phone.error.url=http://localhost:18081/member/authPhoneFail
+
+#NICE \ubcf8\uc778 \uc778\uc99d(I-PIN)
+nice.ipin.id=L743
+nice.ipin.pw=Qwer1234
+nice.ipin.success.url=http://localhost:18081/member/authIpinSuccess
+
+#NICE(\uc2e0\uc6a9\uc870\ud68c)(\uc138\uc774\ud504 \ud0a4)\ub97c \uc704\ud55c \ud1b5\uc2e0
+nice.safekey.ip=172.17.0.137
+nice.safekey.port=10002
+nice.safekey.site.cd=V5407
+nice.safekey.site.key=089dGAVugWtXs6QQGWuEugT__
+
+#NICE(\uc2e0\uc6a9\uc870\ud68c)(\uc138\uc774\ud504 \ud0a4 \uc0dd\uc131 \ud31d\uc5c5)
+nice.safekey.open.url=https://nice.checkplus.co.kr/CheckPlusSafekeyModel/checkplus.cb
+nice.safekey.open.id=0023586
+nice.safekey.open.pw=2U81V4C0ZRH0
+nice.safekey.open.result.url=http://localhost:18081/member/safeKeySendResult
+nice.safekey.open.success.url=http://localhost:18081/member/safeKeySuccess
+nice.safekey.open.error.url=http://localhost:18081/member/safeKeyFail
+
+#NICE(\uc2e0\uc6a9\uc870\ud68c) - \uac1c\uc778
+nice.personal.credit.ip=172.17.0.135
+nice.personal.credit.port=10001
+
+#NICE(\uc2e0\uc6a9\uc870\ud68c) - \ubc95\uc778
+nice.company.credit.url=http://w.datapoint.co.kr/v1.0/lookup/lookup.info?resgp=LM0301&uid=nexen
+
+#\ub3c4\ub85c\uba85 \uc8fc\uc18c \uac80\uc0c9API
+zipcd.service.key=devU01TX0FVVEgyMDI0MDQyOTE2MDE1MjExNDcyOTQ=
+zipcd.url=https://www.juso.go.kr/addrlink/addrLinkApiJsonp.do
+zipcd.connect.ConnectTimeout=20000
+zipcd.connect.ReadTimeout=60000
+
+#Nice DNR
+nice.dnr.url=https://usedcardev.carisyou.net/carinfo/nexentire/S1/2
+nice.dnr.NewUrl=https://niceab.nicednr.co.kr/carInfos
+nice.dnr.ApiKey=5180E3845174A0BE16064EAC48FD3E17
+nice.dnr.loginId=nexentire
+nice.dnr.NexCorNum=6218110769
+nice.dnr.modCode=997
+
+#\uce74\uce74\uc624 \ub2e4\uc74c \ub9f5(nexeno2o \uacc4\uc815)
+#kakao.map.appkey=2847d268168d83b3696c440521da57bf
+#\uce74\uce74\uc624 JavaScript \ud0a4
+kakao.map.appkey=aa9c4a19066357f6507b6422119f8405
+
+#SKT TMAP \uc5f0\ub3d9 \uc815\ubcf4(nexeno2o \uacc4\uc815)
+skt.tmap.appkey=6f91fb01-e50b-4bc3-9c57-49f3d50a0633
+skt.tmap.routes.url=https://apis.openapi.sk.com/tmap/routes?version=1&format=json
+skt.tmap.poi.url=https://apis.openapi.sk.com/tmap/pois?version=1&format=json&callback=result
+
+#NEXEN SAP RFC
+sap.jco.ashost=172.17.0.35
+sap.jco.sysnr=00
+sap.jco.client=100
+#sap.jco.user=ZNXNEWBIZ  20201110 \ubcc0\uacbd
+#sap.jco.passwd=nx100sap
+sap.jco.user=012011
+sap.jco.passwd=Info#12345
+sap.jco.lang=en
+sap.jco.capacity=3
+sap.jco.peak.limit=10
+#sap.jco.group=N
+#sap.jco.r3name=KEQ
+
+#\ub125\uc13c SMS/\uc54c\ub9bc\ud1a1 \ubc1c\uc1a1 \uc815\ubcf4
+nex.sms.sender=18550100
+
+#\ub125\uc13c EAI \uc11c\ubc84
+nex.eai.connect.str=172.17.32.145:10101;172.17.32.146:10101
+nex.eai.connect.systemid=/DEV/OMS
+nex.eai.connect.timeout=600000
+
+#TMS
+tms.api.url=http://172.17.64.74:8080
+tms2.api.url=http://172.17.64.74:8081
+
+#COUPANG
+coupang.gateway.url=api-gateway-dev.coupang.com
+coupang.access.key=98a14283-09d0-4b22-80c6-2ce3aab346b9
+coupang.secret.key=7cfbfc3e24ffb804775de4b4c7b97827efebe3c1
+
+#Google reCAPTCHA v2
+google.recaptcha.siteverify=https://www.google.com/recaptcha/api/siteverify
+google.recaptcha.sitekey=6LeECz4kAAAAALS9Zsk_Hi3n74_j6WoU68-oXuDb
+google.recaptcha.secretkey=6LeECz4kAAAAAF1GrJiqGElQLZ6paT8gnBtXsjf5

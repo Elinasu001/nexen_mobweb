@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/jdbc  http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd">
+
+		<beans profile="pc">
+			<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+				<property name="driverClassName" value="${jdbc.main.driver}" />
+				<property name="url" value="${jdbc.main.url}" />
+				<property name="username" value="${jdbc.main.username}" />
+				<property name="password" value="${jdbc.main.password}" />
+			</bean>
+			<bean id="dataSourceNextlevel" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+				<property name="driverClassName" value="${jdbc.nextlevel.driver}" />
+				<property name="url" value="${jdbc.nextlevel.url}" />
+				<property name="username" value="${jdbc.nextlevel.username}" />
+				<property name="password" value="${jdbc.nextlevel.password}" />
+			</bean>
+			<bean id="dataSourceNextlevelShop" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+				<property name="driverClassName" value="${jdbc.nextlevel.shop.driver}" />
+				<property name="url" value="${jdbc.nextlevel.shop.url}" />
+				<property name="username" value="${jdbc.nextlevel.shop.username}" />
+				<property name="password" value="${jdbc.nextlevel.shop.password}" />
+			</bean>
+		</beans>
+
+		
+	<beans profile="dev">
+		<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+			<property name="jndiName">
+				<value>java:/comp/env/jdbc/DBCONFOMOB</value>
+			</property>
+		</bean>
+		<bean id="dataSourceNextlevel" class="org.springframework.jndi.JndiObjectFactoryBean">
+			<property name="jndiName">
+				<value>java:/comp/env/jdbc/DBCONFOMOBRENTAL</value>
+			</property>
+		</bean>
+		<bean id="dataSourceNextlevelShop" class="org.springframework.jndi.JndiObjectFactoryBean">
+			<property name="jndiName">
+				<value>java:/comp/env/jdbc/DBCONRENTALSHOP</value>
+			</property>
+		</bean>
+	</beans>
+	<beans profile="qlf">
+		<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+			<property name="jndiName">
+				<value>java:/comp/env/jdbc/DBCONFOMOB</value>
+			</property>
+		</bean>
+		<bean id="dataSourceNextlevel" class="org.springframework.jndi.JndiObjectFactoryBean">
+			<property name="jndiName">
+				<value>java:/comp/env/jdbc/DBCONFOMOBRENTAL</value>
+			</property>
+		</bean>
+		
+	</beans>
+	<beans profile="prd">		
+		<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+			<property name="jndiName">
+				<value>java:/comp/env/jdbc/DBCONFOMOB</value>
+			</property>
+		</bean>
+		<bean id="dataSourceNextlevel" class="org.springframework.jndi.JndiObjectFactoryBean">
+			<property name="jndiName">
+				<value>java:/comp/env/jdbc/DBCONFOMOBRENTAL</value>
+			</property>
+		</bean>
+		<bean id="dataSourceNextlevelShop" class="org.springframework.jndi.JndiObjectFactoryBean">
+			<property name="jndiName">
+				<value>java:/comp/env/jdbc/DBCONRENTALSHOP</value>
+			</property>
+		</bean>
+	</beans>
+
+</beans>

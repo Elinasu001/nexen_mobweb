@@ -1,0 +1,84 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+
+		<!--subContentsWrap-->
+        <div class="subContentsWrap">
+			<div class="subContents type02">
+				<div class="titleArea type03">
+					<h2 class="type01"><em>"${custNm}"님</em><span> 환</span><span>영</span><span>합</span><span>니</span><span>다.</span></h2>
+					<h3 class="type01">가입완료</h3>               
+				</div>
+				
+				<!--memberWrap-->
+				<div class="memberBoxWrap">
+					<!-- 개인 -->
+					<div id="member" class="titleDesc" style="display: none;">
+						<h3 class="type02">넥스트레벨 쇼핑몰<br/> 회원이 되신 것을 축하 드립니다.</h3>
+								
+						<p>
+							로그인하시면 다양한 넥센 O2O 서비스를 이용하실 수 있으며,<br/>
+							가입된 정보는 나의 정보  >  회원정보 수정 메뉴에서 변경하실 수 있습니다.                     
+						</p>
+					</div>
+					<!-- 개인 -->
+
+					<!-- 사업자 -->
+					<div id="business" class="titleDesc" style="display: none;">
+						<h3 class="type02">넥스트레벨 쇼핑몰<br/> 회원이 되신 것을 축하 드립니다.</h3>
+								
+						<p>
+							로그인하시면 다양한 넥센 O2O 서비스를 이용하실 수 있으며<br/>
+							가입된 정보는 나의 정보  >  회원정보 수정 메뉴에서 변경하실 수 있습니다.<br/>
+							등록해 주신 자료를 확인 후 회원 승인이 이루어지며, 승인여부는 고객님의 휴대폰에 문자로 알려드립니다. <br/><br/>
+
+<!-- 20210208 구광태선임요청 사업자 승인여부와 관계없이 o2o 주문이 가능하도록 변경 후 문구 삭제 -->
+<!-- 							회원 승인 전 까지는 상품주문/나의 정보 기능은 이용할 수 없으며 그 외 기능은 이용 가능합니다.<br/> -->
+<!-- 							승인 문자 확인 후 주문 부탁 드립니다.                      -->
+						</p>
+					</div>
+					<!-- 사업자 -->
+					
+					<div class="btnArea"> 
+						<button type="button" class="type01 w100per" id="moveLogin">로그인 <i class="ico01"></i></button>
+						<button type="button" class="type02 w100per" id="moveMain">홈으로 <i class="ico01"></i></button>
+					</div>
+				</div>
+				<!--memberWrap-->
+			</div>
+
+			<div class="allBgWrap">
+				<div class="member-ani-bg bg06"></div>
+			</div>
+		</div>
+		<!--subContentsWrap-->
+
+<script type="text/javascript">
+ex2cts.push('track', 'custInfoCom');
+	
+$(document).ready(function() {
+	/* page background image Start */
+	$('#bgFullImg').css('height', '100%');
+	$('#bgFullImg').append('<div class="member-ani-bg bg06"></div>');
+	/* page background image End */
+	
+	var menuGbn = '${viewGbn}'
+	if(menuGbn == 'b'){//사업자
+		 $('#business').css("display","");
+		 $('#member').css("display","none");		
+	}else{
+		 $('#business').css("display","none");
+		 $('#member').css("display","");
+	}
+	// 로그인 이동 
+	$("#moveLogin").on("click" , function(){
+		window.location.href="/login/userLogin";
+	});
+	
+	// 메인 이동
+	$("#moveMain").on("click" , function(){
+		window.location.href="/main";
+	});
+});	
+</script>
+

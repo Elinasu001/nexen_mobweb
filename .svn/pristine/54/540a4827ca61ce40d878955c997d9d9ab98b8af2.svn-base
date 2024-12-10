@@ -1,0 +1,796 @@
+package com.nexwrms.mobweb.mypage.ctl;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import CheckPlus.kisinfo.SCheckPlus;
+
+import com.nexwrms.cfo.com.cm.vo.PageVo;
+import com.nexwrms.cfo.com.cm.vo.UsrVo;
+import com.nexwrms.cfo.com.constants.WebConstants;
+import com.nexwrms.cfo.com.member.svc.MemberSvc;
+import com.nexwrms.cfo.com.member.vo.MemberVo;
+import com.nexwrms.core.context.AppContext;
+import com.nexwrms.core.session.SessionInfoUtil;
+import com.nexwrms.core.util.SessionUtil;
+import com.nexwrms.nextlevel.com.cm.svc.CommonCodeService;
+import com.nexwrms.nextlevel.com.cm.svc.RentalFileService;
+import com.nexwrms.nextlevel.com.cm.vo.AttfileVo;
+import com.nexwrms.nextlevel.com.cm.vo.RTCM0050SearchVo;
+import com.nexwrms.nextlevel.com.login.vo.ReRentalVo;
+import com.nexwrms.nextlevel.com.mypage.svc.MemberModifySvc;
+import com.nexwrms.nextlevel.com.mypage.vo.MemberModifySearchVo;
+import com.nexwrms.nextlevel.com.mypage.vo.MemberModifyVo;
+import com.nexwrms.nextlevel.to.member.vo.CustCarInfoToSearchVo;
+import com.nexwrms.nextlevel.to.member.vo.CustCarInfoToVo;
+
+
+/**
+ * @class Name : MyPage3Ctl.java
+ * @Description : FO mypage
+ * @RequestMapping
+ * @Modification Informat ion
+ * @
+ * @ Date            Author       Description
+ * @ -------------  -----------  -------------
+ * @ 2019. 11. 14.    KJLEE		  최초 생성
+ *
+ */
+@RequestMapping("/mypage")
+@Controller
+public class MyPage3Ctl {
+	private static final Logger logger = LoggerFactory.getLogger(MyPage3Ctl.class);
+
+    @Autowired
+    private CommonCodeService commonCodeService;
+
+    @Autowired
+	@Qualifier("com.nexwrms.nextlevel.com.mypage.svc.MemberModifySvc")
+	private MemberModifySvc memberModifySvc;
+
+    @Autowired
+    private MemberSvc memberSvc;
+
+    @Autowired
+	@Qualifier("com.nexwrms.nextlevel.com.cm.svc.RentalFileService")
+	private RentalFileService rentalFileService;
+
+	/**
+	 * 회원정보관리 > 회원정보 확인
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/memberModify")
+	public String memberModify(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+		String viewGbn = request.getParameter("viewGbn");
+		String rtnUrl = "/mypage/memberModify";
+
+		String userAddress=request.getRemoteAddr();
+		String sendUrl = (String) request.getParameter("sendUrl");
+
+		if(sendUrl == null){
+			sendUrl = "/mypage/memberModify";
+		} else{
+			sendUrl = StringEscapeUtils.unescapeHtml4(sendUrl);
+		}
+
+		//nice(인증) 정보 가져오기
+		MemberVo memberVo = memberSvc.authInfo(request, session);
+
+		model.addAttribute("sRtnMsg", memberVo.getMemberAuthVo().getsRtnMsg());
+		model.addAttribute("sEncData", memberVo.getMemberAuthVo().getsEncData());
+		model.addAttribute("sEncipData", memberVo.getMemberAuthVo().getsEncipData());
+		model.addAttribute("iRtn", memberVo.getMemberAuthVo().getsRtnMsg());
+
+		model.addAttribute("snsid", (String)request.getParameter("snsid"));
+		model.addAttribute("snsGbn", (String)request.getParameter("snsGbn"));
+
+		/*
+		 * Session Info
+		 * */
+		model.addAttribute("drmntYn", SessionUtil.getAttribute("drmntYn"));
+		model.addAttribute("custDivCd", SessionUtil.getAttribute("custDivCd"));
+		model.addAttribute("comDivCd", SessionUtil.getAttribute("comDivCd"));
+		model.addAttribute("userLoginId", SessionUtil.getAttribute("userLoginId"));
+		model.addAttribute("userLoginId", SessionUtil.getAttribute("userLoginNm"));
+		//model.addAttribute("userLoingNm", SessionInfoUtil.getUserVo().getUsrNm());
+		
+		// 일반회원 로그인 또는 SNS 로그인 구분
+		// 아이디로 구분을 한다 'S'로 시작하면  SNS회원가입
+		ReRentalVo clientVo = SessionUtil.getAttribute(SessionInfoUtil.SESSION_INFO_CLIENT_VO);
+		if(clientVo == null) {
+			rtnUrl = "/main/main";
+		} else {
+			String snsChk = clientVo.getCustId();
+			snsChk = snsChk.substring(0,1);
+			model.addAttribute("usrType", snsChk);
+			
+			// common box
+			RTCM0050SearchVo searchVO = new RTCM0050SearchVo();
+			searchVO.setsCdGrpCd("S001");  // 제조사
+			searchVO.setsUseYn("Y");  // 사용여부
+			model.addAttribute("searchCd1", commonCodeService.selectCommonCodeList(searchVO));
+			
+			searchVO.setsCdGrpCd("S006");  // 차량단면폭
+			model.addAttribute("resultList2", commonCodeService.selectCommonCodeList(searchVO));
+			
+			searchVO.setsCdGrpCd("S007");  // 차량평편비
+			model.addAttribute("resultList3", commonCodeService.selectCommonCodeList(searchVO));
+			
+			searchVO.setsCdGrpCd("S008");  // 차량평인치
+			model.addAttribute("resultList4", commonCodeService.selectCommonCodeList(searchVO));
+			
+			model.addAttribute("sendUrl", 		sendUrl);
+			model.addAttribute("userAddress", 	userAddress);
+			
+			/*model.addAttribute("attachPath", AppContext.getString(WebConstants.FileDir.IMGFILE_RENTAL_URL) + "/" + WebConstants.RENTAL_FILE_PATH_ATFILE+"/");*/
+			model.addAttribute("attachPath", AppContext.getString(WebConstants.FileDir.IMGFILE_RENTAL_URL) + "/" + WebConstants.RENTAL_FILE_PATH_ATPRDFILE+"/");
+		}
+
+		return rtnUrl;
+	}
+
+	/**
+	 * 회원정보관리 > 회원탈퇴
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/memberSecession")
+	public String memberSecession(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+		String viewGbn = request.getParameter("viewGbn");
+
+		String userAddress=request.getRemoteAddr();
+
+		//nice(인증) 정보 가져오기
+		MemberVo memberVo = memberSvc.authInfo(request, session);
+
+		model.addAttribute("sRtnMsg", memberVo.getMemberAuthVo().getsRtnMsg());
+		model.addAttribute("sEncData", memberVo.getMemberAuthVo().getsEncData());
+		model.addAttribute("sEncipData", memberVo.getMemberAuthVo().getsEncipData());
+		model.addAttribute("iRtn", memberVo.getMemberAuthVo().getsRtnMsg());
+
+		model.addAttribute("snsid", (String)request.getParameter("snsid"));
+		model.addAttribute("snsGbn", (String)request.getParameter("snsGbn"));
+
+		/*
+		 * Session Info
+		 * */
+		model.addAttribute("drmntYn", SessionUtil.getAttribute("drmntYn"));
+		model.addAttribute("custDivCd", SessionUtil.getAttribute("custDivCd"));
+		model.addAttribute("comDivCd", SessionUtil.getAttribute("comDivCd"));
+		model.addAttribute("userLoginId", SessionUtil.getAttribute("userLoginId"));
+		UsrVo usrVo = (UsrVo)SessionUtil.getAttribute(SessionInfoUtil.SESSION_INFO_USR_VO);
+		model.addAttribute("userLoginNm", usrVo.getUsrName());
+
+		// common box
+		RTCM0050SearchVo searchVO = new RTCM0050SearchVo();
+		searchVO.setsCdGrpCd("S001");  // 제조사
+		searchVO.setsUseYn("Y");  // 사용여부
+		model.addAttribute("searchCd1", commonCodeService.selectCommonCodeList(searchVO));
+
+		return "/mypage/memberSecession";
+	}
+
+	/**
+	 * 회원정보관리 > 비밀번호 확인
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/memberModifyPassword")
+	public String memberModifyPassword(HttpServletRequest request, Model model) throws Exception {
+		String userAddress=request.getRemoteAddr();
+		String sendUrl = (String) request.getParameter("sendUrl");
+
+		UsrVo userVo = SessionUtil.getAttribute(SessionInfoUtil.SESSION_INFO_USR_VO);
+		if(userVo != null) {
+			model.addAttribute("userVo", 		userVo);
+		}
+
+		if(sendUrl == null){
+			sendUrl = "/mypage/memberModify";
+		} else{
+			sendUrl = StringEscapeUtils.unescapeHtml4(sendUrl);
+		}
+
+		model.addAttribute("sendUrl", 		sendUrl);
+		model.addAttribute("userAddress", 	userAddress);
+
+		model.addAttribute("drmntYn", SessionUtil.getAttribute("drmntYn"));
+		model.addAttribute("custDivCd", SessionUtil.getAttribute("custDivCd"));
+		model.addAttribute("comDivCd", SessionUtil.getAttribute("comDivCd"));
+		model.addAttribute("userLoginId", SessionUtil.getAttribute("userLoginId"));
+
+
+		return "/mypage/memberModifyPassword";
+	}
+
+	//회원정보 불러오기
+	@RequestMapping("/selectMemberInfo")
+	@ResponseBody
+	public Map<String, Object> selectMemberInfo(HttpServletRequest request, Model model, @RequestBody MemberModifySearchVo searchVO) throws Exception {
+		UsrVo userVo = SessionUtil.getAttribute(SessionInfoUtil.SESSION_INFO_USR_VO);
+		//searchVO.setsRegId(userVo.getLoginId());
+		//searchVO.setsCustId(sCustId);
+		MemberModifyVo memberModifyVo = new MemberModifyVo();
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		memberModifyVo = memberModifySvc.selectMemberInfo(searchVO);
+
+		if (memberModifyVo != null) {
+
+			String snsChk = memberModifyVo.getCustId().substring(0,1);
+			PageVo pageVo = new PageVo();
+			if("S".equals(snsChk)) {
+				// SNS 회원임
+				pageVo.setTotalCount(memberModifySvc.selectSnsUsrInfoList(searchVO).size());
+				pageVo.setPageNo(searchVO.getPageNo());
+				pageVo.setPageSize(9);
+				rtn.put("pageCommon", pageVo);
+				rtn.put("selectSnsUsrInfoList", memberModifySvc.selectSnsUsrInfoList(searchVO));
+				rtn.put("memberType", "S");
+			} else {
+				// 일반회원
+				rtn.put("memberType", "N");
+				
+				// 일반회원 중 SNS 연동이 있는 지 확인
+				pageVo.setTotalCount(memberModifySvc.selectSnsUsrInfoList(searchVO).size());
+				pageVo.setPageNo(searchVO.getPageNo());
+				pageVo.setPageSize(9);
+				rtn.put("pageCommon", pageVo);
+				rtn.put("selectSnsUsrInfoList", memberModifySvc.selectSnsUsrInfoList(searchVO));
+			}
+
+			// 사업자이면 첨부파일을 확인 한다.
+			if ("2".equals(memberModifyVo.getCustDivCd()) ) {
+				rtn.put("selectCustAttachFileList", memberModifySvc.selectCustAttachFileList(searchVO));
+			}
+
+			rtn.put("selectMemberInfo", memberModifyVo);
+
+			CustCarInfoToSearchVo custCarInfoToSearchVo = new CustCarInfoToSearchVo();
+			custCarInfoToSearchVo.setsCustId(searchVO.getsCustId());
+			rtn.put("selectCustCarInfoList", memberModifySvc.selectCustCarInfoList(custCarInfoToSearchVo));
+		}
+
+		if (memberModifyVo == null) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		} else {
+			//성공일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+			//rtn.put("list", noticeList);
+			//rtn.put("pageCommon", pageVo);
+
+		}
+
+		//제휴코드 확인
+		rtn.put("selectIssInfo", memberModifySvc.selectIssInfo(searchVO.getsCustId()));
+		
+		return rtn;
+	}
+
+	//회원 차량정보 불러오기
+	@RequestMapping("/selectCustCarInfoList")
+	@ResponseBody
+	public Map<String, Object> selectCustCarInfoList(HttpServletRequest request, Model model, @RequestBody CustCarInfoToSearchVo searchVO) throws Exception {
+		UsrVo userVo = SessionUtil.getAttribute(SessionInfoUtil.SESSION_INFO_USR_VO);
+		Map<String, Object> rtn = new HashMap<String, Object>();
+		int chkCnt = 0;
+		chkCnt = memberModifySvc.selectCustCarInfoList(searchVO).size();
+		rtn.put("selectCustCarInfoList", memberModifySvc.selectCustCarInfoList(searchVO));
+
+		if (chkCnt <= 0) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		} else {
+			//성공일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+
+		}
+
+		return rtn;
+	}
+
+	//회원정보 저장
+	@RequestMapping("/updateMemberInfo")
+	@ResponseBody
+	public Map<String, Object> updateMemberInfo(HttpServletRequest request, Model model, @RequestBody MemberModifyVo vo) throws Exception {
+		UsrVo userVo = SessionUtil.getAttribute(SessionInfoUtil.SESSION_INFO_USR_VO);
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		try {
+			int upCnt = memberModifySvc.updateMemberInfo(vo);
+
+			if (upCnt == 0) {
+				//실패일 때 리턴 형식
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+			} else {
+				//성공일 때 리턴 형식
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+			}
+		} catch(Exception e) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+
+		return rtn;
+	}
+
+	//회원정보 파일 저장
+	@RequestMapping(value="/updateMemberInfoFile"  , method={RequestMethod.POST})
+	@ResponseBody
+	public Map<String, Object> updateMemberInfoFile(MultipartHttpServletRequest mRequest, MemberModifyVo vo, Model model ) throws Exception {
+		Map<String, Object> rtn = new HashMap<String, Object>();
+		mRequest.setCharacterEncoding("UTF-8");
+
+		try {
+			//int upCnt = memberModifySvc.updateMemberInfo(vo);
+			String fileFlag01 = mRequest.getParameter("fileFlag01");
+			String fileFlag02 = mRequest.getParameter("fileFlag02");
+			String fileFlag03 = mRequest.getParameter("fileFlag03");
+
+			List<MultipartFile> mfl = new ArrayList<MultipartFile>();
+			List<MultipartFile> bizFiles1 = mRequest.getFiles("bizFiles1");
+			List<MultipartFile> bizFiles2 = mRequest.getFiles("bizFiles2");
+			List<MultipartFile> bizFiles3 = mRequest.getFiles("bizFiles3");
+
+			List<AttfileVo> list = new ArrayList<AttfileVo>();
+			int upCnt = 0;
+			try {
+				if ("C".equals(fileFlag01)) {
+					list = rentalFileService.upload(bizFiles1, WebConstants.RENTAL_FILE_PATH_ATPRDFILE);
+					vo.setAtflSeq("1");
+					upCnt = memberModifySvc.updateMemberInfoFile(list, vo);
+				}
+				if ("C".equals(fileFlag02)) {
+					list = rentalFileService.upload(bizFiles2, WebConstants.RENTAL_FILE_PATH_ATPRDFILE);
+					vo.setAtflSeq("2");
+					upCnt = memberModifySvc.updateMemberInfoFile(list, vo);
+				}
+				if ("C".equals(fileFlag03)) {
+					list = rentalFileService.upload(bizFiles3, WebConstants.RENTAL_FILE_PATH_ATPRDFILE);
+					vo.setAtflSeq("3");
+					upCnt = memberModifySvc.updateMemberInfoFile(list, vo);
+				}
+			} catch (Exception e) {
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+				return rtn;
+			}
+
+			if (upCnt == 0) {
+				//실패일 때 리턴 형식
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+			} else {
+				//성공일 때 리턴 형식
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+			}
+		} catch(Exception e) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+
+		return rtn;
+	}
+
+	// SNS 회원 탈퇴
+	@RequestMapping("/deleteSnsCust")
+	@ResponseBody
+	public Map<String, Object> deleteSnsCust(HttpServletRequest request, Model model, @RequestBody MemberVo vo) throws Exception {
+
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		int upCnt = memberModifySvc.deleteSnsCust(vo);
+		if (upCnt == 0) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		} else {
+			//성공일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+		}
+
+		return rtn;
+	}
+
+	// 회원 탈퇴
+	@RequestMapping("/deleteCustInfo")
+	@ResponseBody
+	public Map<String, Object> deleteCustInfo(HttpServletRequest request, Model model, @RequestBody MemberModifyVo vo) throws Exception {
+
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		MemberModifySearchVo searchVO = new MemberModifySearchVo();
+
+		try {
+			searchVO.setsCustId(vo.getCustId());
+			MemberModifyVo memberModifyVo = memberModifySvc.selectMemberInfo(searchVO);
+
+			vo.setCustNo(memberModifyVo.getCustNo());
+			vo.setBrkyYmd("Y");
+
+			int upCnt = memberModifySvc.deleteCustInfo(vo);
+
+			if (upCnt == 0) {
+				//실패일 때 리턴 형식
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+			} else {
+				HttpSession session = request.getSession(false);
+				//성공일 때 리턴 형식
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+			}
+		} catch(Exception e) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+
+		return rtn;
+	}
+
+	// 회원차량삭제
+	@RequestMapping("/deleteCustCarInfo")
+	@ResponseBody
+	public Map<String, Object> deleteCustCarInfo(HttpServletRequest request, Model model, @RequestBody CustCarInfoToVo vo) throws Exception {
+
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		int upCnt = memberModifySvc.deleteCustCarInfo(vo);
+		if (upCnt == 0) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		} else {
+			//성공일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+		}
+
+		return rtn;
+	}
+
+	// 회원차량등록
+	@RequestMapping("/insertCustCarInfo")
+	@ResponseBody
+	public Map<String, Object> insertCustCarInfo(HttpServletRequest request, Model model, @RequestBody CustCarInfoToVo vo) throws Exception {
+
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		if(StringUtils.isBlank(vo.getRegId())) {
+			vo.setRegId(SessionUtil.getAttribute("userLoginId"));
+			vo.setChgId(SessionUtil.getAttribute("userLoginId"));
+		}
+
+		int upCnt = memberModifySvc.insertCustCarInfo(vo);
+
+		if (upCnt == 0) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		} else {
+			//성공일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+		}
+
+		return rtn;
+	}
+
+	// 핸드폰 인증번호 요청
+	@RequestMapping("/requestMobileAccess")
+	@ResponseBody
+	public Map<String, Object> requestMobileAccess(HttpServletRequest request, Model model, @RequestBody MemberModifyVo vo) throws Exception {
+
+		String sSiteCode	= AppContext.getString(WebConstants.NICE_SITE_ID);		// 사이트 코드 (NICE평가정보에서 발급한 사이트코드)
+		String sSitePw		= AppContext.getString(WebConstants.NICE_SITE_PW); 		// 사이트 패스워드 (NICE평가정보에서 발급한 사이트패스워드)
+		String sCPRequest	= AppContext.getString(WebConstants.NICE_SITE_CP);
+
+		String sJumin		= "0000000000000";		// 주민등록번호 체크안함
+		String sMobileCo	= "1";		// 이통사 구분 없음
+		//String aa = request.getParameter("phone4");
+		String sMobileNo	= vo.getrPhone01() + vo.getrPhone02() + vo.getrPhone03();		// 휴대폰 번호
+
+		/*
+		┌ sCPRequest 변수에 대한 설명  ─────────────────────────────────────────────────────
+			[CP 요청번호]로 귀사에서 데이타를 임의로 정의하시면 됩니다.
+
+			CP 요청번호는 인증 완료 후, 결과 데이타에 함께 제공되며
+			데이타 위변조 방지 및 특정 사용자가 요청한 것임을 확인하기 위한 목적으로 이용하실 수 있습니다.
+
+			따라서 귀사의 프로세스에 응용하여 이용할 수 있는 데이타이기에, 필수값은 아닙니다.
+		└────────────────────────────────────────────────────────────────────
+		*/
+
+		// 객체 생성
+		SCheckPlus cpMobile = new SCheckPlus();
+
+		// Method 결과값(iRtn)에 따라, 프로세스 진행여부를 파악합니다.
+		int iRtn = cpMobile.fnRequestSMSAuth(sSiteCode, sSitePw, sJumin, "", sMobileCo, sMobileNo, sCPRequest);
+
+		// Method 결과값에 따른 처리사항
+		String resCd = "";
+		String resDetail = "";
+		String resSeq = "";
+		if (iRtn == 0)
+		{
+			/*
+				- 응답코드에 따라 SMS 인증 여부를 판단합니다.
+
+				- 응답코드 정의 : 첨부해드린 xls 파일을 참고하세요.
+			*/
+			logger.info("RETURN_CODE=" + cpMobile.getReturnCode());              // 응답코드
+			logger.info("REQ_SEQ=" + cpMobile.getRequestSEQ());                  // 요청 고유번호
+			logger.info("RES_SEQ=" + cpMobile.getResponseSEQ());                 // 응답 고유번호
+
+			resCd = cpMobile.getReturnCode();
+			resDetail = getResCdDetail(resCd);
+			resSeq = cpMobile.getResponseSEQ();
+	    }
+	    else if (iRtn == -7 || iRtn == -8)
+	    {
+	    	logger.info("서버 네트웍크 및 방확벽 관련하여 아래 IP와 Port를 오픈해 주셔야 이용 가능합니다.");
+	    	logger.info("IP : 203.234.219.235 / Port : 3700 ~ 3715");
+
+	    	resCd = "9999";
+	    	resDetail = "서버 네트웍크 및 방확벽 관련하여 아래 IP와 Port를 오픈해 주셔야 이용 가능합니다.";
+		}
+		else if (iRtn == -9 || iRtn == -10)
+		{
+			logger.info("입력값 오류 : fnRequest 함수 처리시, 필요한 6개의 파라미터값의 정보를 정확하게 입력해 주시기 바랍니다.");
+			resCd = "9999";
+	    	resDetail = "입력값 오류 : fnRequest 함수 처리시, 필요한 6개의 파라미터값의 정보를 정확하게 입력해 주시기 바랍니다.";
+		}
+		else
+		{
+			logger.info("iRtn 값 확인 후, NICE신용평가정보 개발 담당자에게 문의해 주세요.");
+			resCd = "9999";
+	    	resDetail = "iRtn 값 확인 후, NICE신용평가정보 개발 담당자에게 문의해 주세요.";
+		}
+
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		rtn.put("resCd", resCd);
+		rtn.put("resDetail", resDetail);
+		rtn.put("resSeq", resSeq);
+
+		if (iRtn == 0) {
+			//성공일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+		} else {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+
+		return rtn;
+	}
+	// 핸드폰 인증번호 요청
+	@RequestMapping("/setMobileAccess")
+	@ResponseBody
+	public Map<String, Object> setMobileAccess(HttpServletRequest request, Model model, @RequestBody MemberModifyVo vo) throws Exception {
+
+		String sSiteCode	= AppContext.getString(WebConstants.NICE_SITE_ID);		// 사이트 코드 (NICE평가정보에서 발급한 사이트코드)
+		String sSitePw		= AppContext.getString(WebConstants.NICE_SITE_PW); 		// 사이트 패스워드 (NICE평가정보에서 발급한 사이트패스워드)
+		String sCPRequest	= AppContext.getString(WebConstants.NICE_SITE_CP);
+
+		String sJumin		= "0000000000000";		// 주민등록번호 체크안함
+
+    	String sResSeq		= vo.getResSeq();
+    	String sAuthNo		= vo.getAccessNum();
+
+		/*
+		┌ sCPRequest 변수에 대한 설명  ─────────────────────────────────────────────────────
+			[CP 요청번호]로 귀사에서 데이타를 임의로 정의하시면 됩니다.
+
+			CP 요청번호는 인증 완료 후, 결과 데이타에 함께 제공되며
+			데이타 위변조 방지 및 특정 사용자가 요청한 것임을 확인하기 위한 목적으로 이용하실 수 있습니다.
+
+			따라서 귀사의 프로세스에 응용하여 이용할 수 있는 데이타이기에, 필수값은 아닙니다.
+		└────────────────────────────────────────────────────────────────────
+		 */
+
+		// 객체 생성
+		SCheckPlus cpMobile = new SCheckPlus();
+
+		// Method 결과값(iRtn)에 따라, 프로세스 진행여부를 파악합니다.
+		int iRtn = cpMobile.fnRequestConfirm(sSiteCode, sSitePw, sResSeq, sAuthNo, sJumin, sCPRequest);
+
+		// Method 결과값에 따른 처리사항
+		String resCd = "";
+		String resDetail = "";
+		String resSeq = "";
+		if (iRtn == 0)
+		{
+			/*
+				- 응답코드에 따라 SMS 인증 여부를 판단합니다.
+
+				- 응답코드 정의 : 첨부해드린 xls 파일을 참고하세요.
+			 */
+			logger.info("RETURN_CODE=" + cpMobile.getReturnCode());              // 응답코드
+			logger.info("REQ_SEQ=" + cpMobile.getRequestSEQ());                  // 요청 고유번호
+			logger.info("RES_SEQ=" + cpMobile.getResponseSEQ());                 // 응답 고유번호
+
+			resCd = cpMobile.getReturnCode();
+			resDetail = getResCdDetail(resCd);
+			resSeq = cpMobile.getResponseSEQ();
+
+
+		}
+		else if (iRtn == -7 || iRtn == -8)
+		{
+			logger.info("서버 네트웍크 및 방확벽 관련하여 아래 IP와 Port를 오픈해 주셔야 이용 가능합니다.");
+			logger.info("IP : 203.234.219.235 / Port : 3700 ~ 3715");
+
+			resCd = "9999";
+			resDetail = "서버 네트웍크 및 방확벽 관련하여 아래 IP와 Port를 오픈해 주셔야 이용 가능합니다.";
+		}
+		else if (iRtn == -9 || iRtn == -10)
+		{
+			logger.info("입력값 오류 : fnRequest 함수 처리시, 필요한 6개의 파라미터값의 정보를 정확하게 입력해 주시기 바랍니다.");
+			resCd = "9999";
+			resDetail = "입력값 오류 : fnRequest 함수 처리시, 필요한 6개의 파라미터값의 정보를 정확하게 입력해 주시기 바랍니다.";
+		}
+		else
+		{
+			logger.info("iRtn 값 확인 후, NICE신용평가정보 개발 담당자에게 문의해 주세요.");
+			resCd = "9999";
+			resDetail = "iRtn 값 확인 후, NICE신용평가정보 개발 담당자에게 문의해 주세요.";
+		}
+
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		rtn.put("resCd", resCd);
+		rtn.put("resDetail", resDetail);
+		rtn.put("resSeq", resSeq);
+
+		if (iRtn == 0) {
+			//성공일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+		} else {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+
+		return rtn;
+	}
+
+	/**
+	 * 핸드폰 인증 결과 코드 값 변환
+	 * @param String
+	 * @return String
+	 * @throws
+	 */
+	public String getResCdDetail(String resCd){
+		String resDetail = "";
+
+		if("0000".equals(resCd)){
+			resDetail = "인증성공";
+		} else if("0001".equals(resCd)){
+			resDetail = "인증불일치(사용자인증, 인증번호 불일치)";
+		} else if("0011".equals(resCd)){
+			resDetail = "유효하지 않은 응답 SEQ";
+		} else if("0012".equals(resCd)){
+			resDetail = "유효하지 않은 인증정보(주민번호, 휴대폰번호, 이통사)";
+		} else if("0013".equals(resCd)){
+			resDetail = "암호화 데이터 처리오류";
+		} else if("0014".equals(resCd)){
+			resDetail = "암호화 프로세스 오류";
+		} else if("0015".equals(resCd)){
+			resDetail = "암호화 데이터 오류";
+		} else if("0016".equals(resCd)){
+			resDetail = "복호화 프로세스 오류";
+		} else if("0017".equals(resCd)){
+			resDetail = "복호화 데이터 오류";
+		} else if("0018".equals(resCd)){
+			resDetail = "이통사 통신오류";
+		} else if("0020".equals(resCd)){
+			resDetail = "유효하지 않은 제휴사 코드";
+		} else if("0021".equals(resCd)){
+			resDetail = "중단된 제휴사 코드";
+		} else if("0022".equals(resCd)){
+			resDetail = "휴대폰인증 사용이 불가한 제휴사 코드";
+		} else if("0031".equals(resCd)){
+			resDetail = "인증번호 확인 실패(해당 데이터 없음)";
+		} else if("0032".equals(resCd)){
+			resDetail = "인증번호 확인 실패(주민번호 불일치)";
+		} else if("0033".equals(resCd)){
+			resDetail = "인증번호 확인 실패(요청SEQ 불일치)";
+		} else if("0034".equals(resCd)){
+			resDetail = "인증번호 확인 실패(기 처리건)";
+		} else if("9999".equals(resCd)){
+			resDetail = "정의되지 않은 오류";
+		}
+
+		return resDetail;
+	}
+
+	// 모델명 가져오기
+	@RequestMapping("/selectMemCarModelList")
+	@ResponseBody
+	public Map<String, Object> selectMemCarModelList(HttpServletRequest request, Model model, @RequestBody RTCM0050SearchVo searchVO) throws Exception {
+
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		try {
+			rtn.put("modelList", commonCodeService.selectMemCarModelList(searchVO));
+
+			if (commonCodeService.selectMemCarModelList(searchVO).size() == 0) {
+				//실패일 때 리턴 형식
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+			} else {
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+			}
+		} catch(Exception e) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+
+		return rtn;
+	}
+	
+	@RequestMapping("/selectChkCd")
+	@ResponseBody
+	public Map<String, Object> selectChkCd(HttpServletRequest request, Model model, @RequestBody Map<String, Object> map) throws Exception {
+
+		Map<String, Object> rtn = new HashMap<String, Object>();
+
+		try {
+			rtn.put("modelList", memberModifySvc.selectChkCd(map));
+
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+		} catch(Exception e) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+
+		return rtn;
+	}	
+
+}

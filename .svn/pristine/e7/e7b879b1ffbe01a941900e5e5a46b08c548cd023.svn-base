@@ -1,0 +1,529 @@
+package com.nexwrms.mobweb.login.ctl;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.nexwrms.cfo.com.cm.svc.RecaptchaSvc;
+import com.nexwrms.cfo.com.cm.svc.RestCallSvc;
+import com.nexwrms.cfo.com.cm.vo.UsrVo;
+import com.nexwrms.cfo.com.constants.WebConstants;
+import com.nexwrms.cfo.com.login.svc.LoginSvc;
+import com.nexwrms.cfo.com.member.svc.MemberSvc;
+import com.nexwrms.cfo.com.member.vo.MemberAuthVo;
+import com.nexwrms.cfo.com.member.vo.MemberVo;
+import com.nexwrms.cfo.util.CookieUtil;
+import com.nexwrms.cfo.util.JsPrinter;
+import com.nexwrms.core.constants.CoreConstants;
+import com.nexwrms.core.util.SessionUtil;
+import com.nexwrms.core.util.StringUtil;
+import com.nexwrms.nextlevel.com.login.svc.RentalLoginSvc;
+import com.nexwrms.nextlevel.com.login.vo.ReRentalVo;
+import com.nexwrms.nextlevel.com.test.svc.NoticeSvc;
+import com.nexwrms.nextlevel.to.member.vo.MemberToVo;
+/**
+ * @class Name : LoginCtl.java
+ * @Description : FO Login
+ * @RequestMapping 
+ * @Modification Informat ion
+ * @
+ * @ Date            Author       Description
+ * @ -------------  -----------  -------------
+ * @ 2019. 09. 05.    주영완		  최초 생성
+ * 
+ */
+@RequestMapping("/login")
+@Controller
+public class LoginCtl {
+	private static final Logger logger = LoggerFactory.getLogger(LoginCtl.class);
+	
+	@Autowired
+	@Qualifier("com.nexwrms.cfo.com.cm.svc.RestCallSvc")
+	private RestCallSvc restCallSvc;
+		
+	@Autowired
+	@Qualifier("com.nexwrms.cfo.com.login.svc.LoginSvc")	
+	private LoginSvc loginSvc;	
+	
+	@Autowired
+	@Qualifier("com.nexwrms.cfo.com.member.svc.MemberSvc")	
+	private MemberSvc memberSvc;
+		
+	@Autowired
+	@Qualifier("com.nexwrms.nextlevel.com.test.svc.NoticeSvc")
+	private NoticeSvc noticeSvc;
+	
+	@Autowired
+	@Qualifier("com.nexwrms.nextlevel.com.login.svc.RentalLoginSvc")	
+	private RentalLoginSvc rentalLoginSvc;
+	
+	@Autowired
+	@Qualifier("com.nexwrms.cfo.com.cm.svc.RecaptchaSvc")
+	private RecaptchaSvc recaptchaSvc;
+	
+	@Autowired
+	private CookieUtil cookieUtil;
+	
+	/*
+	 * 첫 로그인 진입화면 호출 2019-09-17
+	 */
+	@RequestMapping("/userLogin")
+	public String userLogin(HttpServletResponse response , HttpServletRequest request, Model model
+			, @RequestParam(required = false) String utm_source) {
+		String userAddress=request.getRemoteAddr();
+		String hostId = System.getProperty(CoreConstants.HOST_ID_NAME);
+		/*String url = request.getRequestURL().toString();
+		String urlN = request.getServerName().toString();*/
+		
+		String sendUrl = (String) request.getParameter("sendUrl");
+		
+		if(sendUrl == null){
+			sendUrl = "/main";
+		} else{
+			sendUrl = StringEscapeUtils.unescapeHtml4(sendUrl);
+		}	
+
+		model.addAttribute("drmntYn", SessionUtil.getAttribute("drmntYn")); //휴면계정
+		SessionUtil.setAttribute("drmntYn", "");//삭제		
+		model.addAttribute("re", 			request.getParameter("re"));
+		model.addAttribute("sendUrl", 		sendUrl);
+		model.addAttribute("userAddress", 	userAddress);
+		
+		//Cookie 생성
+		if(StringUtil.isNotEmpty(utm_source)){
+			
+			cookieUtil.getInstance().newAddCookie(response, "ifwChnCookie", utm_source);
+		}
+		
+		//10233006 GA title tag 동적 변경
+		model.addAttribute("title", "로그인 | NEXT LEVEL");
+		
+		return "/login/userLogin";
+	} 		
+
+	
+	/** 
+	 * sns로그인  팝업 호출
+	 */
+	@RequestMapping("/snsLoginPopup")
+	public String snsLoginPopup(HttpServletRequest request, Model model) {
+		model.addAttribute("type", 		(String) request.getParameter("type"));
+		model.addAttribute("sendUrl", 		(String) request.getParameter("sendUrl"));
+		model.addAttribute("menu_page", 		(String) request.getParameter("menu_page"));
+		
+		return "/login/snsLoginPopup";
+	}
+	
+	
+	/**
+	 * 일반회원 로그인
+	 */
+	@RequestMapping("/loginProc")
+	public String loginProc(@RequestParam("usrId")String usrId, @RequestParam("password")String password, HttpServletRequest request, Model model) throws Exception {
+
+		UsrVo vo = null;
+		Map<String,Object> map = new HashMap<String,Object>();
+		String accessIp = (String) request.getParameter("accessIp");
+		String SendUrl = (String) request.getParameter("sendUrl");
+		model.addAttribute("sendUrl", SendUrl); //로그인 처리 후 돌아갈 페이지	
+		model.addAttribute("gbn",     "normal");
+		model.addAttribute("snsid",    "");
+		model.addAttribute("snsGbn",   "");
+		
+		String gbn = "nomal";/*일반 회원정보*/
+		
+		// 로그인페이지에서 로그인하는 경우 봇 검증
+		if(SendUrl.indexOf("main") > 0) {
+			/** reCaptcha 검증 **/
+			map = recaptchaSvc.botVerify(request.getParameter("g-recaptcha-response"));
+					
+			if(map.get("success").equals(false)) {
+				//실패일 때 리턴 형식 
+				model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, "recaptcha 검증 오류 : "+map.get("errorCodes"));
+				
+				return "/login/userLogin";
+			}
+			/** reCaptcha 검증 **/
+		}
+		
+		if(!StringUtil.isEmpty(usrId)){
+			try {
+				vo = loginSvc.login(usrId, password, gbn, accessIp);
+			} catch (Exception e) {
+				logger.error(e.getMessage());				
+			}
+		}
+		else{
+			//실패일 때 리턴 형식 
+			model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+		
+		if(vo != null){
+			model.addAttribute("drmntYn", SessionUtil.getAttribute("drmntYn"));
+			model.addAttribute("custDivCd", SessionUtil.getAttribute("custDivCd"));
+			model.addAttribute("comDivCd", SessionUtil.getAttribute("comDivCd"));
+			model.addAttribute("userLoginId", SessionUtil.getAttribute("userLoginId"));
+			// 일치하는 id가 없는경우
+			if(vo.getLoginId() == "noId"){
+				model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+			}else{
+				model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+				model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+			}
+		}
+				
+		return "/login/auth";
+	}	
+	
+	/**
+	 * 일반회원 팝업 로그인
+	 */
+	@RequestMapping("/loginPopProc")
+	@ResponseBody
+	public Map<String, Object> loginPopProc(@RequestBody MemberVo mvo, HttpServletRequest request) {
+		UsrVo vo = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		String accessIp = (String) request.getParameter("accessIp");
+		String gbn = "normalPopup";/*일반 회원정보*/
+
+		if(!StringUtil.isEmpty(mvo.getCustId())){
+			try {
+				vo = loginSvc.login(mvo.getCustId(), mvo.getCustPwd(), gbn, accessIp);
+			} catch (Exception e) {
+				logger.error(e.getMessage());				
+			}
+		}
+		else{
+			//실패일 때 리턴 형식 
+			map.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			map.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+		
+		if(vo != null){
+			map.put("custDivCd", SessionUtil.getAttribute("custDivCd"));
+			map.put("comDivCd", SessionUtil.getAttribute("comDivCd"));
+			map.put("userLoginId", SessionUtil.getAttribute("userLoginId"));
+			map.put("drmntYn", SessionUtil.getAttribute("drmntYn"));
+			map.put("reRentUseYN", SessionUtil.getAttribute("reRentUseYN"));
+			map.put("safeKey", SessionUtil.getAttribute("safekey"));
+			
+			//임직원코드 세팅
+			map.put("officerCd", SessionUtil.getAttribute("officerCd"));
+			
+			//임직원상품 주문가능횟수
+			map.put("purcAblCnt", SessionUtil.getAttribute("purcAblCnt"));
+			
+			// 일치하는 id가 없는경우
+			if(vo.getLoginId() == "noId"){
+				map.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				map.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+			}else{
+				map.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+				map.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+			}
+		}else{
+			map.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			map.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);			
+		}
+		return map;
+	}			
+		
+	/*로그아웃*/
+	@RequestMapping("/logout")
+	public String logout(@RequestParam("usrId")String usrId, HttpServletRequest request, Model model) {
+		request.getSession().invalidate();
+		
+		model.addAttribute("drmntYn", SessionUtil.getAttribute("drmntYn")); //휴면계정
+		SessionUtil.setAttribute("drmntYn", "");//삭제
+		model.addAttribute("re", 			request.getParameter("re"));
+		model.addAttribute("sendUrl", "/main");
+		return "/login/userLogin";
+	}	
+	
+	/*
+	 * 카카오톡 간편로그인
+	 */
+	@RequestMapping("/loginProcKakao")
+	public String loginProcKakao(@RequestParam("code")String code, @RequestParam("state")String state,Model model) {
+		UsrVo vo = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		model.addAttribute("sendUrl", state); //로그인 처리 후 돌아갈 페이지
+		model.addAttribute("gbn",     "kakao");
+
+		if(!StringUtil.isEmpty(code)){
+			try {
+				map = loginSvc.loginKakao(code);
+				
+				vo = (UsrVo)map.get("loginVo");
+				model.addAttribute("snsid", map.get("snsid").toString());
+				model.addAttribute("snsGbn",map.get("snsGbn").toString());		
+				
+			} catch (Exception e) {
+				logger.error(e.getMessage());				
+			}
+		}	
+		else{
+			//실패일 때 리턴 형식 
+			model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+		if(vo != null){			
+			model.addAttribute("drmntYn", SessionUtil.getAttribute("drmntYn")); //휴면계정
+			model.addAttribute("custDivCd", SessionUtil.getAttribute("custDivCd"));
+			model.addAttribute("comDivCd", SessionUtil.getAttribute("comDivCd"));
+			model.addAttribute("userLoginId", SessionUtil.getAttribute("userLoginId"));
+			model.addAttribute("safeKey", SessionUtil.getAttribute("safekey"));
+			model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);					
+		}
+		return "/login/auth";
+	}	
+	
+	/*
+	 * 네이버 간편로그인
+	 */	
+	@RequestMapping("/loginProcNaver")
+	public String loginProcNaver(HttpServletRequest request, Model model) {
+		String error = (String)request.getParameter("error");
+		if(!StringUtil.isEmpty(error)){
+			
+			logger.debug("error : " + error);
+			logger.debug("error_description : " + (String)request.getParameter("error_description"));
+			return "/login/snsLoginFailPopup";
+		}
+		String state = (String)request.getParameter("state");
+		String code = (String)request.getParameter("code");
+		
+		UsrVo vo = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		model.addAttribute("sendUrl", state); //로그인 처리 후 돌아갈 페이지					
+		model.addAttribute("gbn",     "naver");
+
+		if(!StringUtil.isEmpty(code)){
+			try {
+				map = loginSvc.loginNaver(code);
+				
+				vo = (UsrVo)map.get("loginVo");
+				model.addAttribute("snsid", map.get("snsid").toString());
+				model.addAttribute("snsGbn",map.get("snsGbn").toString());		
+			} catch (Exception e) {
+				logger.error(e.getMessage());				
+			}
+		}
+		else{
+			//실패일 때 리턴 형식 
+			model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+		
+		if(vo != null){				
+			model.addAttribute("drmntYn", SessionUtil.getAttribute("drmntYn")); //휴면계정
+			model.addAttribute("custDivCd", SessionUtil.getAttribute("custDivCd"));
+			model.addAttribute("comDivCd", SessionUtil.getAttribute("comDivCd"));
+			model.addAttribute("userLoginId", SessionUtil.getAttribute("userLoginId"));
+			model.addAttribute("safeKey", SessionUtil.getAttribute("safekey"));			
+			model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);					
+		}
+		
+		return "/login/auth";
+		
+	}
+	
+
+	/*
+	 * 페이스북 간편로그인
+	 */
+	@RequestMapping("/loginProcFaceb")
+	public String loginProcFaceb(HttpServletRequest request, Model model) {
+		String error = (String)request.getParameter("error");
+		if(!StringUtil.isEmpty(error)){
+			
+			logger.debug("error : " + error);
+			logger.debug("error_message : " + (String)request.getParameter("error_message"));
+			return "/login/snsLoginFailPopup";
+		}
+		String state = (String)request.getParameter("state");
+		String code = (String)request.getParameter("code");
+		UsrVo vo = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		model.addAttribute("sendUrl", state); //로그인 처리 후 돌아갈 페이지
+		model.addAttribute("gbn",     "faceb");
+
+		if(!StringUtil.isEmpty(code)){
+			try {
+				map = loginSvc.loginFaceb(code);
+				
+				vo = (UsrVo)map.get("loginVo");
+				model.addAttribute("snsid", map.get("snsid").toString());
+				model.addAttribute("snsGbn",map.get("snsGbn").toString());				
+				
+			} catch (Exception e) {
+				logger.error(e.getMessage());				
+			}
+		}
+		else{
+			//실패일 때 리턴 형식 
+			model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+		
+		if(vo != null){					
+			model.addAttribute("drmntYn", SessionUtil.getAttribute("drmntYn")); //휴면계정
+			model.addAttribute("custDivCd", SessionUtil.getAttribute("custDivCd"));
+			model.addAttribute("comDivCd", SessionUtil.getAttribute("comDivCd"));
+			model.addAttribute("userLoginId", SessionUtil.getAttribute("userLoginId"));
+			model.addAttribute("safeKey", SessionUtil.getAttribute("safekey"));			
+			model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);					
+		}
+		
+		return "/login/auth";
+		
+	}
+	
+
+	/*
+	 * 구글 간편로그인
+	 */
+	@RequestMapping("/loginProcGoogle")
+	public String loginProcGoogle(@RequestParam("code")String code, @RequestParam("state")String state, Model model) {
+		
+		UsrVo vo = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		model.addAttribute("sendUrl", state); //로그인 처리 후 돌아갈 페이지
+		model.addAttribute("gbn",     "google");
+
+		if(!StringUtil.isEmpty(code)){
+			try {
+				map = loginSvc.loginGoogle(code);
+				
+				vo = (UsrVo)map.get("loginVo");
+				model.addAttribute("snsid", map.get("snsid").toString());
+				model.addAttribute("snsGbn",map.get("snsGbn").toString());				
+				
+			} catch (Exception e) {
+				logger.error(e.getMessage());				
+			}
+		}
+		else{
+			//실패일 때 리턴 형식 
+			model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+		
+		if(vo != null){		
+			model.addAttribute("drmntYn", SessionUtil.getAttribute("drmntYn")); //휴면계정
+			model.addAttribute("custDivCd", SessionUtil.getAttribute("custDivCd"));
+			model.addAttribute("comDivCd", SessionUtil.getAttribute("comDivCd"));
+			model.addAttribute("userLoginId", SessionUtil.getAttribute("userLoginId"));
+			model.addAttribute("safeKey", SessionUtil.getAttribute("safekey"));
+			model.addAttribute(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			model.addAttribute(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);					
+		}
+		
+		return "/login/auth";
+		
+	}	
+	
+	/**
+	 *  아이디 비밀번호 찾기 화면 진입
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/findIdPwd")
+    public String findIdPwd(HttpServletRequest request, HttpSession session, Model model) throws Exception {		
+		//nice(인증) 정보 가져오기
+		MemberVo memberVo = new MemberVo();
+		memberVo = memberSvc.authInfo(request, session);
+		
+		model.addAttribute("sRtnMsg", memberVo.getMemberAuthVo().getsRtnMsg());
+		model.addAttribute("sEncData", memberVo.getMemberAuthVo().getsEncData());
+		model.addAttribute("sEncipData", memberVo.getMemberAuthVo().getsEncipData());
+		model.addAttribute("iRtn", memberVo.getMemberAuthVo().getsRtnMsg());
+		
+		return "/login/findIdPwd";
+	}
+	
+	/**
+	 *  아이디 찾기
+	 * @return
+	 * @throws Exception
+	 */	
+	@RequestMapping("/findUserId")
+	public @ResponseBody Map<String, Object> findUserId(HttpServletRequest request, @RequestBody String cond) throws Exception{
+		Map<String, Object> rtn = new HashMap<String, Object>();
+		
+		//23.10.16 10233006 아이디 찾기 오류 수정
+		JSONObject json = new JSONObject(cond);
+		String diVal = json.getString("diVal");
+		
+		//Map to Vo
+		MemberVo searchVo = new MemberVo();		
+		searchVo.setMemberAuthVo(new MemberAuthVo());
+		searchVo.getMemberAuthVo().setDiVal(diVal);
+		MemberVo vo = new MemberVo();
+		vo = rentalLoginSvc.findUserId(searchVo);
+		
+		rtn.put("resultMap", vo);
+		
+		return rtn;
+	}	
+	
+	/**
+	 * 비밀번호 변경
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/updateUserPwd")
+	public void updateUserPwd(HttpServletRequest request, HttpServletResponse response, MemberToVo rvo) throws Exception{
+		String custId = rvo.getCustId();
+		String custPwd = rvo.getCustPwd();
+		rentalLoginSvc.updateUserPwd(custId, custPwd);		
+		StringBuilder returnPath = new StringBuilder();
+		returnPath.append("/login/userLogin");
+		JsPrinter.replace(response, returnPath.toString(), "변경되었습니다.");
+	}
+	
+	/**
+	 * 휴면계정 해제
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/usrDrmntCancellation" , method={RequestMethod.POST})
+	@ResponseBody  
+	public Map<String, Object> usrDrmntCancellation(HttpServletRequest request, @RequestBody ReRentalVo vo, Model model) throws Exception {
+		Map<String, Object> rtn = new HashMap<String, Object>();
+		ReRentalVo rvo = new ReRentalVo();
+		rvo = rentalLoginSvc.usrDrmntCancellation(vo);
+		rtn.put("result", rvo);
+		return rtn;
+	}	
+}

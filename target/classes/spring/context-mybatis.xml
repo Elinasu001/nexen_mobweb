@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+	<!--  bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">-->
+	<beans profile="pc">
+		<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/mobweb/**/*.xml</value>
+					<value>classpath*:sqlmap/cfo/**/*.xml</value>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+		<bean id="sqlSessionNextlevel" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSourceNextlevel" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+		<bean id="sqlSessionNextlevelShop" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSourceNextlevelShop" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+	</beans>
+	<beans profile="dev">
+		<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/mobweb/**/*.xml</value>
+					<value>classpath*:sqlmap/cfo/**/*.xml</value>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+		<bean id="sqlSessionNextlevel" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSourceNextlevel" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+		<bean id="sqlSessionNextlevelShop" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSourceNextlevelShop" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+	</beans>
+	<beans profile="qlf">
+		<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/mobweb/**/*.xml</value>
+					<value>classpath*:sqlmap/cfo/**/*.xml</value>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+		<bean id="sqlSessionNextlevel" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSourceNextlevel" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+		<bean id="sqlSessionNextlevelShop" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSourceNextlevelShop" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+	</beans>
+	<beans profile="prd">
+		<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/mobweb/**/*.xml</value>
+					<value>classpath*:sqlmap/cfo/**/*.xml</value>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+		<bean id="sqlSessionNextlevel" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSourceNextlevel" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+		<bean id="sqlSessionNextlevelShop" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSourceNextlevelShop" />
+			<property name="configLocation" value="classpath:spring/mybatis-config.xml"/>
+			<property name="mapperLocations">
+				<list>
+					<value>classpath*:sqlmap/nextlevel/**/*.xml</value>
+				</list>
+			</property>
+		</bean>
+		
+	</beans>
+</beans>

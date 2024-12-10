@@ -1,0 +1,337 @@
+
+
+
+
+.upload-box{
+    display:inline-block; margin-right: 10px;
+    label {
+        display: inline-block;
+        padding: .3em .5em;
+        color: #FFF;
+        line-height: normal;
+        vertical-align: middle;
+        background-color: #864092;
+        cursor: pointer;
+        border: 1px solid #6b2677;
+        border-radius: 3px;;
+        font-size: 0.7em;
+
+        &:before{
+            content: "";
+            display: inline-block;
+                background-image: url(/img/mypage/ico-photo.png);
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: center center;
+                width: 1em;
+                height: 1em;
+                margin-right: 0.3em;;
+        }
+        
+      }
+      input[type="file"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip:rect(0,0,0,0);
+        border: 0;
+      }
+}
+
+.dam-notic,.dam-notic3{
+    margin:30px 0 10px;
+    h4{
+        font-size: 18px;
+        font-weight: bold;
+        color:#333333;
+        margin:10px 0;
+    }
+    ul{
+        display: block;
+        flex-wrap: wrap;
+        justify-content:space-around;
+        li{
+            margin:10px 0px;
+            width: 100%;
+            position: relative;
+            // text-indent: 10px;
+            padding-left: 1em;
+            &:after{
+                content: "·";
+                color:#812990;
+                // position: abso;
+                position: absolute;
+                left: 0;;
+                top:0;
+            }
+        }
+    }
+}
+
+.dam-notic2{
+    h4{
+        // font-size: 18px;
+        font-weight: bold;
+        color:#58595b;
+        margin:20px 0;
+    }
+    ol{
+        li{
+            font-size: 0.9em;;
+            // font-size: 14px;
+            color:#58595b;
+            margin:10px 0px;
+            position: relative;
+            text-indent: -1em;
+            padding-left: 1em;
+            & > ol{
+                padding-left: 20px;
+                li{
+                    font-size: 0.8em;
+                    text-indent: -1em;
+                    padding-left: 1em;
+                }
+        
+            }
+        }
+    }
+}
+
+h3.type11.add-desc{ margin-bottom: 10px;;}
+.h3-desc{
+    font-weight: 18px;
+    color:#58595b;
+}
+
+.tire-desc{
+    padding:2em 0;
+    border-top:1px solid #e6e6e6;
+    border-bottom:1px solid #e6e6e6;
+    margin-bottom: 2em;;
+}
+.tire-item-container{
+    margin:20px 0 40px 0;
+    // padding:50px 0;
+    // border-top:1px solid #999;
+    // border-bottom:1px solid #999;
+
+    // background-image: url( /img/mypage/car_in.png );
+    background-repeat: no-repeat;
+
+
+    .tire-item{
+        // width:295px;
+        // position: absolute;
+        margin-bottom: 1em;;
+    }
+    h4{
+        width:25%;
+        font-weight: normal;
+        font-size: 0.8em;
+        font-family: 'Spoqa Han Sans', sans-serif;
+        color:#864092;
+    }
+    .tire-block{
+        background-color: #FFF;
+        border-top:1px dashed #d1d1d1;
+        border-bottom:1px dashed #d1d1d1;
+        
+        padding:0.5em 0;
+        // width:250px;
+        // height:120px;
+        // padding:20px;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content:space-around;
+        align-content:center;
+        align-items:center;
+
+    }
+    .tire-thumb{
+        width:30%;
+        margin-right: 5px;
+        // height: 80px;
+        // width: 120px;;
+        overflow: hidden;
+        text-align: center;
+        border:1px solid #ccc;
+        position: relative;
+        img{
+            max-width: 100%;
+            max-height: 80px;
+        }
+        button.img-zoom{
+            position: absolute;
+            bottom: 0;
+            right:0;
+            background-color: #8d8d8d;
+            background-image: url(/img/mypage/ico-search.png);
+            background-size: 80%;;
+            background-repeat: no-repeat;
+            background-position: center center;
+            width: 24px;
+            height: 24px;
+            overflow: hidden;
+            color: transparent;
+        }
+    }
+
+    .tire-block.file-request .tire-thumb:after{
+        content: " ";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url(/img/mypage/upload_request.png);
+        left: 0;
+        top: 0;
+        background-size: 100%;
+    }
+
+    .tire-actions{
+        width:30%;
+        .upload-box{
+            margin:5px 0;
+        }
+
+        .dist{
+            margin:5px 0;
+            font-size: 0.7em;;
+            input{
+                height: 25px;
+                border:none;
+                border-bottom: 1px solid #999;
+                width:70%;
+                color:#000;
+            }
+        }
+
+    }
+    .opt-checkbox{
+        text-align: right;
+        margin-top: 5px;;
+        padding-right: 5px;;
+        font-weight: bold;;
+        font-size: 0.8em;
+        // input{
+        //     display: inline-block;
+        // }
+/* radio */
+        input[type="radio"]{overflow:hidden; clip:rect(0 0 0 0); position:absolute; height:1px; width:1px; margin: -1px; padding:0; border:0}
+        input[type="radio"] + label{
+            height:15px;
+             display:inline-block;
+             background:url('/img/common/radio_04.png') no-repeat 0 0;
+             background-size: 15px auto;
+              line-height:18px;
+             padding-left:18px;
+             cursor:pointer;
+            color:#000;
+             margin-right: 10px;
+            }
+        input[type="radio"]:checked + label{background-position: 0 -15px; color:#000}
+
+
+    }
+
+    .check-counter{
+        text-align: center;
+        // position: absolute;
+        // bottom:-20px;
+        width:100%;
+        & > span{
+            display: inline-block;
+            background-color: #999999;
+            color:#FFF;
+            line-height: 1;
+            font-size: 18px;
+            text-align: center;
+            padding:10px 30px;
+            // height:40px;
+        }
+    }
+}
+
+.tire-item.item-1{ //계기판
+    top:30px;
+    left:180px;
+}
+.tire-item.item-2{ //차량 전면
+    top: 30px;
+    left: 720px;
+}
+.tire-item.item-3{ //타이어 전륜(좌)
+    left: 110px;
+    top: 240px;
+}
+.tire-item.item-4{ //타이어 전륜(우)
+    top: 240px;
+    left: 770px;
+}
+.tire-item.item-5{ //타이어 후륜(좌)
+    left: 170px;
+    top: 440px;
+}
+.tire-item.item-6{ //타이어 후륜(우)
+    top: 450px;
+    left: 720px;
+}
+
+
+.img-zoom-popup .popContents{
+    height: 90%;
+    overflow-y: scroll;
+    text-align: center;
+    img{ max-width: 100%; }
+}
+
+// panel  / 계기판
+// front  / 전면
+// tire  / 타이어
+// damage  / 파손
+// abrasion  / 마모
+// front  / 전륜
+// rear  / 후륜
+
+
+div.popZoomImage{
+    display:none;
+    position: fixed;
+    background-color:#FFF;// rgba(0, 0, 0, 0.5);
+    z-index: 3000;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    .nice-select{
+        display: inline-block;
+        float: none;
+        border-radius: 0;
+        border:1px solid #aaa;
+    }
+
+    .modal-wrap{
+        background-color: #FFF;
+        margin:0 auto;
+        width: 100%;
+        height:100%;
+        overflow-y: auto;;
+        padding:10% 5% 10%;
+        // height: 650px;
+        margin-top: 0px;
+        position: relative;
+        .close-btn{
+            position: absolute;
+            right:10px;
+            top:10px;
+            
+        }
+    }
+    .popContents{
+        margin-top: 1em;;
+    }
+    
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;">
+    <g transform="matrix(1,0,0,1,-21,-868)">
+        <g id="btn_필터" transform="matrix(1,0,0,1,0.00425524,0.00135279)">
+            <g id="icon_필터">
+                <path id="Shape-27" serif:id="Shape 27" d="M32.987,918.999L32.987,876.999" style="fill:none;stroke:rgb(51,51,51);stroke-width:4px;"/>
+                <path id="Ellipse-1" serif:id="Ellipse 1" d="M32.996,884.998C36.309,884.998 38.996,887.685 38.996,890.998C38.996,894.312 36.309,896.998 32.996,896.998C29.682,896.998 26.996,894.312 26.996,890.998C26.996,887.685 29.682,884.998 32.996,884.998Z" style="fill:rgb(243,243,243);stroke:rgb(51,51,51);stroke-width:4px;"/>
+                <path id="Shape-27-copy-2" serif:id="Shape 27 copy 2" d="M68.996,918.999L68.996,876.999" style="fill:none;stroke:rgb(51,51,51);stroke-width:4px;"/>
+                <path id="Ellipse-1-copy-2" serif:id="Ellipse 1 copy 2" d="M68.996,884.998C72.31,884.998 74.996,887.685 74.996,890.998C74.996,894.312 72.31,896.998 68.996,896.998C65.682,896.998 62.995,894.312 62.995,890.998C62.995,887.685 65.682,884.998 68.996,884.998Z" style="fill:rgb(243,243,243);stroke:rgb(51,51,51);stroke-width:4px;"/>
+                <path id="Shape-27-copy" serif:id="Shape 27 copy" d="M50.996,918.999L50.996,876.999" style="fill:none;stroke:rgb(51,51,51);stroke-width:4px;"/>
+                <path id="Ellipse-1-copy" serif:id="Ellipse 1 copy" d="M50.996,898.999C54.309,898.999 56.996,901.685 56.996,904.998C56.996,908.312 54.309,910.998 50.996,910.998C47.683,910.998 44.995,908.312 44.995,904.998C44.995,901.685 47.683,898.999 50.996,898.999Z" style="fill:rgb(243,243,243);stroke:rgb(51,51,51);stroke-width:4px;"/>
+            </g>
+        </g>
+        <g transform="matrix(1.05263,0,0,1.09091,-91.6316,-186.909)">
+            <rect x="107" y="967" width="57" height="55" style="fill:none;"/>
+        </g>
+    </g>
+</svg>

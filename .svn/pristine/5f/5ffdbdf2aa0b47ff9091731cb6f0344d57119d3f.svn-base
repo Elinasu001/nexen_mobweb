@@ -1,0 +1,890 @@
+package com.nexwrms.mobweb.member.ctl;
+
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import Kisinfo.Check.IPINClient;
+
+import com.nexwrms.cfo.com.cm.svc.AlTalkSendSvc;
+import com.nexwrms.cfo.com.cm.vo.AlTalkSendVo;
+import com.nexwrms.cfo.com.constants.WebConstants;
+import com.nexwrms.cfo.com.member.svc.MemberSvc;
+import com.nexwrms.cfo.com.member.vo.MemberVo;
+import com.nexwrms.cfo.util.JsPrinter;
+import com.nexwrms.core.context.AppContext;
+import com.nexwrms.core.util.StringUtil;
+import com.nexwrms.nextlevel.com.cm.svc.RentalFileService;
+import com.nexwrms.nextlevel.com.cm.vo.AttfileVo;
+import com.nexwrms.nextlevel.com.member.svc.RentalMemberSvc;
+import com.nexwrms.nextlevel.com.member.vo.RentalMemberVo;
+
+
+/**
+ * @class Name : MemberCtl.java
+ * @Description : FO member
+ * @RequestMapping
+ * @Modification Informat ion
+ * @
+ * @ Date            Author       Description
+ * @ -------------  -----------  -------------
+ * @ 2019. 09. 05.    주영완		  최초 생성
+ *
+ */
+@RequestMapping("/member")
+@Controller
+public class MemberCtl {
+	private static final Logger logger = LoggerFactory.getLogger(MemberCtl.class);
+
+
+    @Autowired
+    private MemberSvc memberSvc;
+
+    @Autowired
+    private RentalMemberSvc rentalMemberSvc;
+
+    @Autowired
+	@Qualifier("com.nexwrms.nextlevel.com.cm.svc.RentalFileService")
+	private RentalFileService rentalFileService;
+
+    @Autowired
+	@Qualifier("com.nexwrms.cfo.com.cm.svc.AlTalkSendSvc")
+	private AlTalkSendSvc alTalkSendSvc;
+
+	/**
+	 * 회원 가입 > 회원 선택 화면(일반 / 개인)
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/join")
+	public String joinView(HttpServletRequest request, Model model) throws Exception {
+		return "/member/join";
+	}
+
+	/**
+	 * 회원 가입 > 아이디 중복 체크
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/IdOverLapCheck" , method={RequestMethod.POST})
+	@ResponseBody
+	public Map<String, Object> IdOverLapCheck(HttpServletRequest request, @RequestBody RentalMemberVo vo, Model model) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		String overLapYn = rentalMemberSvc.selectIdOverLapCheck(vo);
+
+		map.put("overLapYn", overLapYn);
+
+		return map;
+	}
+
+	/**
+	 * 회원 가입 > 아이디 중복 체크
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/employeeCdCheck" , method={RequestMethod.POST})
+	@ResponseBody
+	public Map<String, Object> employeeCdCheck(HttpServletRequest request, @RequestBody RentalMemberVo vo, Model model) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		String employeeCdYn = rentalMemberSvc.selectEmployeeCdCheck(vo);
+
+		map.put("employeeCdYn", employeeCdYn);
+
+		map.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+		map.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+
+		return map;
+	}
+	
+	/**
+	 * 회원 가입 > 추천인코드 인증
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 * @author 엄수현 매니저 
+	 */
+	@RequestMapping(value="/recNumCheck" , method={RequestMethod.POST})
+	@ResponseBody
+	public Map<String, Object> recNumCheck(HttpServletRequest request, @RequestBody RentalMemberVo vo, Model model) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		
+		RentalMemberVo memberVo = null;
+		 
+	    memberVo = rentalMemberSvc.selectRecNumCheck(vo);
+
+		if( memberVo != null ) {
+			
+		map.put("recNumYn", memberVo.getRecNum());        /** 추천인 코드 */
+		map.put("recCustNo", memberVo.getRecCustNo());    /** 고객 번호 */
+		
+		}
+
+		map.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+		map.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+
+		return map;
+	}
+
+
+	//사업자 회원 저장
+	@RequestMapping(value="/insertBizCust" , method={RequestMethod.POST})
+	@ResponseBody
+	public Map<String, Object> insertBizCust(MultipartHttpServletRequest mRequest, MemberVo vo, Model model) throws Exception {
+		Map<String, Object> rtn = new HashMap<String, Object>();
+		mRequest.setCharacterEncoding("UTF-8");
+		
+		/*멀티파트시 한글깨짐 때문에 해줌 20191231*/
+		//대표자명
+		String decodeCustNm = URLDecoder.decode(vo.getCustNm(), "UTF-8");
+		String decodeBizRegNm = URLDecoder.decode(vo.getBizRegNm(), "UTF-8");
+		String decodeBizType = URLDecoder.decode(vo.getBizType(), "UTF-8");
+		String decodeBizCondition = URLDecoder.decode(vo.getBizCondition(), "UTF-8");
+		String decodePerCharge = URLDecoder.decode(vo.getPerCharge(), "UTF-8");
+		
+		vo.setCustNm(decodeCustNm);		
+		vo.setBizRegNm(decodeBizRegNm);		
+		vo.setBizType(decodeBizType);		
+		vo.setBizCondition(decodeBizCondition);		
+		vo.setPerCharge(decodePerCharge);
+		/*
+			vo.setCustNm(new String(vo.getCustNm().getBytes("8859_1"),"utf-8"));
+			//법인명
+			vo.setBizRegNm(new String(vo.getBizRegNm().getBytes("8859_1"),"utf-8"));
+			//업종
+			vo.setBizType(new String(vo.getBizType().getBytes("8859_1"),"utf-8"));
+			//업태
+			vo.setBizCondition(new String(vo.getBizCondition().getBytes("8859_1"),"utf-8"));
+			//담당자명
+			vo.setPerCharge(new String(vo.getPerCharge().getBytes("8859_1"),"utf-8"));
+		*/
+		/*멀티파트시 한글깨짐 때문에 해줌 끝*/
+		
+		try {
+			//safeKey 조회
+			//String safeKey = "10165007";  // 테스트용
+			String safeKey = "";
+			try {
+				safeKey = memberSvc.doIrSafeKeyCreateNew(mRequest, vo);
+				if("".equals(safeKey)){
+					rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+					rtn.put(WebConstants.Rtn.RETURN_MESSEGE, "safeKey 생성에 실패 하였습니다.");
+					//return rtn;
+				}
+				vo.setSafeKey(safeKey);
+			} catch(Exception e) {
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, "safeKey 생성에 실패 하였습니다.");
+				//return rtn;
+			}
+
+			List<MultipartFile> mfl = mRequest.getFiles("bizFiles");
+
+			List<AttfileVo> list = new ArrayList<AttfileVo>();
+
+			try {
+				//list = rentalFileService.upload(mfl, WebConstants.RENTAL_FILE_PATH_ATPRDFILE_CMS "atprdfile");
+				list = rentalFileService.upload(mfl, WebConstants.RENTAL_FILE_PATH_ATPRDFILE);
+			} catch (Exception e) {
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+				return rtn;
+			}
+
+			//저장
+			//String rs = rentalMemberSvc.insertBizCust(mRequest, vo);
+			String rs = rentalMemberSvc.insertBizCust(list, vo);
+			if("S".equals(rs)) {
+				//성공일 때 리턴 형식
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+			}else {
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+			}
+		} catch(Exception e) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+		}
+
+		return rtn;
+	}
+
+	/**
+	 * 회원 가입 > 사업자 회원  > 약관 동의 화면
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/termsConditionAgree")
+	public String termsConditionAgree(HttpServletRequest request, Model model) throws Exception {
+		String url = "";
+		if("".equals(request.getParameter("viewGbn")) || request.getParameter("viewGbn") == null){
+			url = "/member/join";
+		}else{		
+			url = "/member/termsConditionAgree";
+			model.addAttribute("viewGbn", request.getParameter("viewGbn"));
+			model.addAttribute("snsGbn", request.getParameter("snsGbn"));
+			model.addAttribute("snsid", request.getParameter("snsid"));
+			model.addAttribute("loginStatus", request.getParameter("loginStatus"));
+		}
+		return url;
+	}
+
+	/**
+	 * 회원 가입 > 사업자 회원 > 사업자 번호 인증 화면
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/businessAuth")
+	public String businessAuth(HttpServletRequest request, Model model, MemberVo vo) throws Exception {
+
+		model.addAttribute("receptionSms"		, vo.getReceptionSms());
+	 	model.addAttribute("receptionPhone"		, vo.getReceptionPhone());
+	 	model.addAttribute("receptionEmail"		, vo.getReceptionEmail());
+	 	model.addAttribute("receptionAdress"	, vo.getReceptionAdress());
+
+		return "/member/businessAuth";
+	}
+
+	/**
+	 * 회원 가입 > 사업자 회원 > 사업자 번호 조회
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/selectBizNoYno" , method={RequestMethod.POST})
+	public @ResponseBody Map<String, Object> selectBizNoYno(HttpServletRequest request, @RequestBody RentalMemberVo vo, Model model) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		String bizNoYn = rentalMemberSvc.selectBusinessNo(vo);
+		map.put("bizNoYn", bizNoYn);
+
+		return map;
+	}
+
+	@RequestMapping(value="/searchBusinessNo1")
+	public @ResponseBody Map<String, Object> searchBusinessNo1(HttpServletRequest request, @RequestBody Map map) throws Exception{
+
+		Map condMap = (Map)map.get("pSendData");
+
+		MemberVo vo = new MemberVo();
+		//vo.setBusinessNo(condMap.get("businessNo").toString());
+
+		//MemberVo mVo = memberSvc.selectBusinessNo(vo);
+
+		Map<String, Object> rtn = new HashMap<String, Object>();
+		rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+		rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+		//rtn.put("rsVo", mVo);
+
+		return rtn;
+	}
+
+	/**
+	 * 회원 가입 > 사업자 회원 > 회원 정보 입력 화면
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/businessInput")
+	public String infoInput(HttpServletRequest request, MemberVo vo , Model model) throws Exception {
+
+		if(vo.getBizNo()==null){
+			return "/member/businessAuth";
+		}
+		
+		model.addAttribute("bizNo"				, vo.getBizNo());
+		model.addAttribute("comDivCd"			, vo.getComDivCd());
+		model.addAttribute("receptionSms"		, vo.getReceptionSms());
+	 	model.addAttribute("receptionPhone"		, vo.getReceptionPhone());
+	 	model.addAttribute("receptionEmail"		, vo.getReceptionEmail());
+	 	model.addAttribute("receptionAdress"	, vo.getReceptionAdress());
+
+		return "/member/businessInput";
+	}
+
+
+	/**
+	 * 회원 가입 > 인증 선택 화면(IPIN / 휴대폰)
+	 * @param request
+	 * @param session
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/mamberAuth")
+	public String memberJoin(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+		//nice(인증) 정보 가져오기
+		MemberVo memberVo = memberSvc.authInfo(request, session);
+
+		model.addAttribute("sRtnMsg", memberVo.getMemberAuthVo().getsRtnMsg());
+		model.addAttribute("sEncData", memberVo.getMemberAuthVo().getsEncData());
+		model.addAttribute("sEncipData", memberVo.getMemberAuthVo().getsEncipData());
+		model.addAttribute("iRtn", memberVo.getMemberAuthVo().getsRtnMsg());
+
+		return "/member/ipin/ipin";
+		//return "/member/ipin/ipin_main";
+	}
+
+	/**
+	 * IPIN 인증 성공 후 값 받아 오기
+	 * @param request
+	 * @param session
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/authIpinSuccess")
+	public String authIpinSuccess(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+
+		String sSiteCode				= AppContext.getString(WebConstants.Nice.IPIN_ID);			// IPIN 서비스 사이트 코드		(NICE평가정보에서 발급한 사이트코드)
+		String sSitePw					= AppContext.getString(WebConstants.Nice.IPIN_PW);			// IPIN 서비스 사이트 패스워드	(NICE평가정보에서 발급한 사이트패스워드)
+
+		// 사용자 정보 및 CP 요청번호를 암호화한 데이타입니다.
+	    String sResponseData = requestReplace(request.getParameter("enc_data"), "encodeData");
+
+	    // CP 요청번호 : ipin_main.jsp 에서 세션 처리한 데이타
+	    String sCPRequest = (String)session.getAttribute("CPREQUEST");
+
+	    // 객체 생성
+		IPINClient pClient = new IPINClient();
+
+		/*
+		┌ 복호화 함수 설명  ──────────────────────────────────────────────────────────
+			Method 결과값(iRtn)에 따라, 프로세스 진행여부를 파악합니다.
+
+			fnResponse 함수는 결과 데이타를 복호화 하는 함수이며,
+			'sCPRequest'값을 추가로 보내시면 CP요청번호 일치여부도 확인하는 함수입니다. (세션에 넣은 sCPRequest 데이타로 검증)
+
+			따라서 귀사에서 원하는 함수로 이용하시기 바랍니다.
+		└────────────────────────────────────────────────────────────────────
+		*/
+		int iRtn = pClient.fnResponse(sSiteCode, sSitePw, sResponseData);
+		//int iRtn = pClient.fnResponse(sSiteCode, sSitePw, sResponseData, sCPRequest);
+
+		String sRtnMsg				= "";							// 처리결과 메세지
+		String sVNumber				= pClient.getVNumber();			// 가상주민번호 (13자리이며, 숫자 또는 문자 포함)
+		String sName				= pClient.getName();			// 이름
+		String sDupInfo				= pClient.getDupInfo();			// 중복가입 확인값 (DI - 64 byte 고유값)
+		String sAgeCode				= pClient.getAgeCode();			// 연령대 코드 (개발 가이드 참조)
+		String sGenderCode			= pClient.getGenderCode();		// 성별 코드 (개발 가이드 참조)
+		String sBirthDate			= pClient.getBirthDate();		// 생년월일 (YYYYMMDD)
+		String sNationalInfo		= pClient.getNationalInfo();	// 내/외국인 정보 (개발 가이드 참조)
+		String sCPRequestNum		= pClient.getCPRequestNO();		// CP 요청번호
+
+		MemberVo memberVo = memberSvc.authIpinSuccess(request, session);
+
+
+	 	String diVal 		= StringUtil.nvl(memberVo.getMemberAuthVo().getsDupInfo(),"");
+	    String vnVal 		= StringUtil.nvl(memberVo.getMemberAuthVo().getsVNumber(),"");
+	 	String ciVal 		= StringUtil.nvl(memberVo.getMemberAuthVo().getsConnInfo(),"");
+	 	String custNm 		= StringUtil.nvl(memberVo.getMemberAuthVo().getsName(),"");
+	 	String gendCd 		= StringUtil.nvl(memberVo.getMemberAuthVo().getsGenderCode(),"");
+	 	String legrBrthYmd 	= StringUtil.nvl(memberVo.getMemberAuthVo().getsBirthDate(),"");
+	 	String frgnCd 		= StringUtil.nvl(memberVo.getMemberAuthVo().getsNationalInfo(),"");
+
+	 	model.addAttribute("sName", sName);
+	 	model.addAttribute("sBirthDate", sBirthDate);
+	 	model.addAttribute("custNm", custNm);
+	 	model.addAttribute("diVal", diVal);
+	 	model.addAttribute("vnVal", vnVal);
+	 	model.addAttribute("ciVal", ciVal);
+	 	model.addAttribute("legrBrthYmd", legrBrthYmd);
+	 	model.addAttribute("gendCd", gendCd);
+	 	model.addAttribute("frgnCd", frgnCd);
+
+		return "/member/ipin/ipinSuccess";
+	}
+
+	/**
+	 * 휴대폰 인증 성공 후 값 받아 오기
+	 * @param request
+	 * @param session
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/authPhoneSuccess")
+	public String authPhoneSuccess(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+		String sEncodeData = requestReplace(request.getParameter("EncodeData"), "encodeData");
+		MemberVo memberVo = memberSvc.authPhoneSuccess(request, session);
+
+	 	String diVal 		= memberVo.getMemberAuthVo().getsDupInfo();
+	    String vnVal 		= memberVo.getMemberAuthVo().getsVNumber();
+	 	String ciVal 		= memberVo.getMemberAuthVo().getsConnInfo();
+	 	String custNm 		= memberVo.getMemberAuthVo().getsName();
+	 	String gendCd 		= memberVo.getMemberAuthVo().getsGenderCode();
+	  	String legrBrthYmd 	= memberVo.getMemberAuthVo().getsBirthDate();
+	 	String frgnCd 		= memberVo.getMemberAuthVo().getsNationalInfo();
+	 	String mobCo 		= memberVo.getMemberAuthVo().getSmobileCo();
+	 	String phone 		= memberVo.getMemberAuthVo().getSmobileNo();
+
+	 	model.addAttribute("diVal", diVal);
+	 	model.addAttribute("vnVal", vnVal);
+	 	model.addAttribute("ciVal", ciVal);
+	 	model.addAttribute("custNm", custNm);
+	 	model.addAttribute("phone", phone);
+	 	model.addAttribute("gendCd", gendCd);
+	 	model.addAttribute("legrBrthYmd", legrBrthYmd);
+
+		return "/member/ipin/ipinSuccess";
+	}
+
+	/**
+	 * 회원 가입 > 일반회원가입 인증화면
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/customerAuth")
+	public String customerAuth(HttpServletRequest request,HttpSession session, Model model, MemberVo vo) throws Exception {
+
+		//nice(인증) 정보 가져오기
+		MemberVo memberVo = new MemberVo();
+		memberVo = memberSvc.authInfo(request, session);
+		String url = "";
+		
+		if(vo.getReceptionSms() == null && vo.getReceptionPhone() ==null
+				&& vo.getReceptionEmail() ==null && vo.getReceptionAdress() == null){
+			url = "/member/join";
+		}else{
+			url = "/member/customerAuth";
+			model.addAttribute("sRtnMsg", memberVo.getMemberAuthVo().getsRtnMsg());
+			model.addAttribute("sEncData", memberVo.getMemberAuthVo().getsEncData());
+			model.addAttribute("sEncipData", memberVo.getMemberAuthVo().getsEncipData());
+			model.addAttribute("iRtn", memberVo.getMemberAuthVo().getsRtnMsg());
+			
+			model.addAttribute("snsid", 		 vo.getSnsid());
+			model.addAttribute("snsGbn", 		 vo.getSnsGbn());
+			model.addAttribute("viewGbn", 		 vo.getViewGbn());
+			
+			model.addAttribute("receptionSms",   vo.getReceptionSms());
+			model.addAttribute("receptionPhone", vo.getReceptionPhone());
+			model.addAttribute("receptionEmail", vo.getReceptionEmail());
+			model.addAttribute("receptionAdress",vo.getReceptionAdress());
+			model.addAttribute("loginStatus",vo.getLoginStatus());
+		}
+
+
+		return url;
+	}
+
+	/**
+	 * 회원 가입 > 입력화면 전환
+	 * @param request
+	 * @param model
+	 * @param vo
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/custInput")
+	public String custInput(HttpServletRequest request, HttpServletResponse res, Model model, RentalMemberVo vo) throws Exception {
+		String viewGbn = request.getParameter("viewGbn");
+
+		try {
+			/* 일반회원가입이 이미 되어있으면 sns회원가입은 다시 할 수 있다.
+			 * sns회원가입으로 이미 되어있으면 일반 회원가입으로는 등록할 수 없고 sns회원가입으로 중복가입을 할 수 있다.
+			 * result 회원가입할 수 있는지 여부만 리턴한다. Y: 회원가입 진행 N: 회원가입 진행 불가
+			 * */
+			String result = rentalMemberSvc.memberNomalSnsOverlap(vo);
+
+			 if("N".equals(result)){
+					StringBuilder returnPath = new StringBuilder();
+					returnPath.append("/login/userLogin");
+					JsPrinter.replace(res, returnPath.toString(), "이미 등록되어있는 회원이십니다. 로그인 하시기 바랍니다.");
+			 }
+
+			 //sns가입일 경우 회원정보가 있는지 확인하여 기본정보를 가져온다(sns회원가입은 중복가입 할 수 있기 때문에
+			 if("s".equals(viewGbn)) {
+				 RentalMemberVo rvo = new RentalMemberVo();
+				 rvo = rentalMemberSvc.selectSnsUserInfo(vo);
+				 if(!"".equals(rvo) && rvo != null){
+					 if(!"".equals(rvo.getMobNo()) && rvo.getMobNo() != null){
+						 String mobNo = rvo.getMobNo().replaceAll("-","");	 
+						 if(rvo.getMobNo().length() < 11){
+							 model.addAttribute("phone01",   mobNo.substring(0,3));
+							 model.addAttribute("phone02",   mobNo.substring(3,6));
+							 model.addAttribute("phone03",   mobNo.substring(6,10));
+						 }else{
+							 model.addAttribute("phone01",   mobNo.substring(0,3));
+							 model.addAttribute("phone02",   mobNo.substring(3,7));
+							 model.addAttribute("phone03",   mobNo.substring(7,11));
+						 }
+						 model.addAttribute("phone",   rvo.getMobNo());
+					 } else {
+						 if(!StringUtils.isEmpty(vo.getPhone())) {
+							 String mobNo = vo.getPhone().replaceAll("-","");	 
+							 if(mobNo.length() < 11){
+								 model.addAttribute("phone01",   mobNo.substring(0,3));
+								 model.addAttribute("phone02",   mobNo.substring(3,6));
+								 model.addAttribute("phone03",   mobNo.substring(6,10));
+							 }else{
+								 model.addAttribute("phone01",   mobNo.substring(0,3));
+								 model.addAttribute("phone02",   mobNo.substring(3,7));
+								 model.addAttribute("phone03",   mobNo.substring(7,11));
+							 }
+							 model.addAttribute("phone",   vo.getPhone());
+						 }
+					 }
+					 model.addAttribute("custId",  rvo.getCustId());
+				 }
+			 }else{				 
+				 if(!"".equals(request.getParameter("phone")) && request.getParameter("phone") != null){
+					 String phone = request.getParameter("phone");
+					 if(phone.length() < 11){
+						 model.addAttribute("phone01",   phone.substring(0,3));
+						 model.addAttribute("phone02",   phone.substring(3,6));
+						 model.addAttribute("phone03",   phone.substring(6,10));
+					 }else{
+						 model.addAttribute("phone01",   phone.substring(0,3));
+						 model.addAttribute("phone02",   phone.substring(3,7));
+						 model.addAttribute("phone03",   phone.substring(7,11));
+					 }				
+				 }
+			 }
+
+			model.addAttribute("diVal",   		request.getParameter("diVal"));				//실명 인증 - diVal
+			model.addAttribute("ciVal",   		request.getParameter("ciVal"));				//실명 인증 - ciVal
+			model.addAttribute("vnVal",   		request.getParameter("vnVal"));				//실명 인증 - vnVal
+			model.addAttribute("custNm",        request.getParameter("custNm"));            //실명 인증 - 이름
+			//model.addAttribute("phone",   		request.getParameter("phone"));				//실명 인증 - 핸드폰번호
+			model.addAttribute("gendCd",   		request.getParameter("gendCd"));				//실명 인증 - 성별
+			model.addAttribute("legrBrthYmd",   request.getParameter("legrBrthYmd"));	//생일
+			model.addAttribute("frgnCd",   request.getParameter("frgnCd"));	//내외국인
+
+			model.addAttribute("viewGbn", request.getParameter("viewGbn"));
+			model.addAttribute("snsGbn",  request.getParameter("snsGbn"));
+			model.addAttribute("snsid",   request.getParameter("snsid"));
+			model.addAttribute("loginStatus",   request.getParameter("loginStatus"));
+
+			System.out.println(request.getParameter("snsGbn"));
+			model.addAttribute("receptionSms"    ,	request.getParameter("receptionSms"));		//약관 동의 - sms
+			model.addAttribute("receptionPhone"  ,	request.getParameter("receptionPhone"));	//약관 동의 - 전화
+			model.addAttribute("receptionEmail"  ,	request.getParameter("receptionEmail"));	//약관 동의 - 이메일
+			model.addAttribute("receptionAdress" ,	request.getParameter("receptionAdress"));	//약관 동의 - 주소
+		} catch(Exception e) {
+			model.addAttribute("error",   e);
+			return "";
+		}
+
+	 	//이전 화면 구분에 따른 화면 분기 처리
+	 	String returnUrl = "";
+
+	 	if("b".equals(viewGbn)) {
+	 		returnUrl="/member/businessInput";
+	 	} else if("m".equals(viewGbn)) {
+	 		returnUrl="/member/custInput";
+	 	} else if("s".equals(viewGbn)) {
+	 		returnUrl="/member/custSnsInput";
+	 	}
+
+		return returnUrl;
+	}
+
+	/**
+	 * 회원 가입 > 일반회원가입 - 회원 정보 저장
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/insertCust")
+	@ResponseBody
+	public Map<String, Object> insertCust(HttpServletRequest request, Model model, MemberVo vo, HttpServletResponse response) throws Exception {
+		Map<String, Object> rtn = new HashMap<String, Object>();
+		response.setContentType("text/html;charset=UTF-8");
+		String decodeCustNm = URLDecoder.decode(vo.getCustNm(), "UTF-8");
+		vo.setCustNm(decodeCustNm);
+		
+		//safeKey 조회
+		String safeKey = "";
+		try {
+				safeKey = memberSvc.doIrSafeKeyCreateNew(request, vo);
+				logger.debug("---------safeKey-------- " + safeKey);
+				//safeKey = "1533550165528";
+			if("".equals(safeKey)){
+				logger.debug("-111-::::::");
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, "safeKey 생성에 실패 하였습니다.");
+				//return rtn;
+			}
+
+			vo.setSafeKey(safeKey);
+
+		} catch(Exception e) {
+			logger.debug("-222-::::::");
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, "safeKey 생성에 실패 하였습니다.");
+			//return rtn;
+		}
+
+		int rs = 0;
+		
+		
+		
+		/* 엄수현 매니저 추가 
+		 * 위 로직은 SafeKey로 구별 하는 로직 
+		 * 지금 서비스가 개인 회원가입 로직 
+		 * */		
+		logger.debug("-333-::::::");
+		rs = rentalMemberSvc.insertCust(vo);
+		logger.debug("-444-::::::");
+		if(rs > 0) {
+			//성공일 때 리턴 형식
+			logger.debug("-555-::::::");
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+		}
+		
+		if(rs > 0) {
+			try {
+				//회원가입 알림톡 보내기
+				logger.debug("-666-::::::");
+				List<AlTalkSendVo> list = new ArrayList<AlTalkSendVo>();
+				HashMap<String, String> cols = new HashMap<String, String>();
+				cols.put("$1$", vo.getCustNm());		//고객명
+				String temp = "NXO2O000000000000001";
+				
+				AlTalkSendVo al = new AlTalkSendVo();
+				if(!StringUtils.isEmpty(vo.getPhone())) {
+					al.setRcverNo(vo.getPhone().replace("-", ""));
+				}
+				al.setCustNo(Integer.toString(rs));
+				al.setCols(cols);
+				list.add(al);
+				
+				alTalkSendSvc.startSendAlTalk(temp, list);
+			} catch(Exception e) {
+				logger.debug("---------kakao alert talk error-------- " + vo.getCustNo());
+			}
+		}
+		return rtn;
+	}
+
+	/**
+	 * 회원 가입 > SNS회원가입 - 회원 정보 저장
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/insertSnsCust")
+	@ResponseBody
+	public Map<String, Object> insertSnsCust(HttpServletRequest request, Model model, MemberVo vo) throws Exception {
+		Map<String, Object> rtn = new HashMap<String, Object>();
+		//safeKey 조회
+		String safeKey = "";
+		String newMemYn = "Y"; //Y: 정보가 있다. N:정보가 없다.
+
+		try {
+		/**
+		 * sns로그인 회원가입 전 이미 가입이 되어있는지 확인해야 한다.
+		 * 가입이 되어있으면 sns정보만 등록해주고s
+		 * 첫 신규가입이면 회원정보 마스터 테이블에도 등록을 해준다.
+		 * */
+		 newMemYn = rentalMemberSvc.selectMemberTbInfo(vo);
+
+		} catch(Exception e) {
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, "회원정보 조회에 실패하였습니다.");
+			return rtn;
+		}
+
+		if("N".equals(newMemYn)){//회원정보가 없으면 세이프키 발급
+			try {
+			safeKey = memberSvc.doIrSafeKeyCreateNew(request, vo);
+			logger.debug("---------safeKey--------"+safeKey);
+			if("".equals(safeKey)){
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, "safeKey 생성에 실패 하였습니다.");
+				return rtn;
+			}
+			vo.setSafeKey(safeKey);
+
+			} catch(Exception e) {
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, "safeKey 생성에 실패 하였습니다.");
+				return rtn;
+			}
+		}
+
+		int rs = 0;
+		try {
+			//저장
+			rs = rentalMemberSvc.insertSnsCust(vo,newMemYn);
+			if(rs > 0) {
+				//성공일 때 리턴 형식
+				rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_OK);
+				rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_OK);
+			}
+		} catch(Exception e) {
+			//실패일 때 리턴 형식
+			rtn.put(WebConstants.Rtn.RETURN_CODE, WebConstants.Rtn.RETURN_CODE_BIZ_ERROR);
+			rtn.put(WebConstants.Rtn.RETURN_MESSEGE, WebConstants.Rtn.RETURN_MESSEGE_ERROR);
+			return rtn;
+		}
+		
+		if(rs > 0) {
+			try {
+				//회원가입 알림톡 보내기
+				List<AlTalkSendVo> list = new ArrayList<AlTalkSendVo>();
+				HashMap<String, String> cols = new HashMap<String, String>();
+				cols.put("$1$", vo.getCustNm());		//고객명
+				String temp = "NXO2O000000000000001";
+				
+				AlTalkSendVo al = new AlTalkSendVo();
+				if(!StringUtils.isEmpty(vo.getPhone())) {
+					al.setRcverNo(vo.getPhone().replace("-", ""));
+				}	
+				al.setCustNo(Integer.toString(rs));
+				al.setCols(cols);
+				list.add(al);
+				
+				alTalkSendSvc.startSendAlTalk(temp, list);
+			} catch(Exception e) {
+				logger.debug("---------kakao alert talk error-------- " + vo.getCustNo());
+			}
+		}
+		return rtn;
+	}
+
+
+	public String requestReplace (String paramValue, String gubun) {
+        String result = "";
+        if (paramValue != null) {
+
+        	paramValue = paramValue.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+
+        	paramValue = paramValue.replaceAll("\\*", "");
+        	paramValue = paramValue.replaceAll("\\?", "");
+        	paramValue = paramValue.replaceAll("\\[", "");
+        	paramValue = paramValue.replaceAll("\\{", "");
+        	paramValue = paramValue.replaceAll("\\(", "");
+        	paramValue = paramValue.replaceAll("\\)", "");
+        	paramValue = paramValue.replaceAll("\\^", "");
+        	paramValue = paramValue.replaceAll("\\$", "");
+        	paramValue = paramValue.replaceAll("'", "");
+        	paramValue = paramValue.replaceAll("@", "");
+        	paramValue = paramValue.replaceAll("%", "");
+        	paramValue = paramValue.replaceAll(";", "");
+        	paramValue = paramValue.replaceAll(":", "");
+        	paramValue = paramValue.replaceAll("-", "");
+        	paramValue = paramValue.replaceAll("#", "");
+        	paramValue = paramValue.replaceAll("--", "");
+        	paramValue = paramValue.replaceAll("-", "");
+        	paramValue = paramValue.replaceAll(",", "");
+
+        	if(gubun != "encodeData"){
+        		paramValue = paramValue.replaceAll("\\+", "");
+        		paramValue = paramValue.replaceAll("/", "");
+            paramValue = paramValue.replaceAll("=", "");
+        	}
+
+        	result = paramValue;
+        }
+        return result;
+	}
+
+	/**
+	 * 회원 가입 > 회원완료
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/custInfoComp")
+	public String custInfoComp(HttpServletRequest request, Model model) throws Exception {
+		model.addAttribute("custNm",  request.getParameter("custNm"));//실명 인증 - 이름
+		model.addAttribute("viewGbn", request.getParameter("viewGbn"));
+		return "/member/custInfoComp";
+	}
+	
+	/**
+	 * 고객 세이프키 생성팝업
+	 * @param request
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/checkplusSend")
+	public String checkplusSend(HttpServletRequest request, HttpSession session, Model model, MemberVo vo) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		//nice(인증) 정보 가져오기
+		MemberVo memberVo = new MemberVo();
+		memberVo = memberSvc.checkplusSend(request, session, vo);
+		model.addAttribute("sendgubun", memberVo.getSendgubun());
+		model.addAttribute("sEncData", 	memberVo.getsEncData());
+		model.addAttribute("username", 	memberVo.getParam_r1());
+		model.addAttribute("mobileno", 	memberVo.getParam_r2());
+		model.addAttribute("birthGen", 	memberVo.getParam_r3());
+		return "/member/safekey/checkplusSend";
+	}
+	
+	/**
+	 * 세이프키 생성 성공값 받아 오기
+	 * @param request
+	 * @param session
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/safeKeySuccess")
+	public String safeKeySuccess(HttpServletRequest request, HttpSession session, Model model, MemberVo vo) throws Exception {
+		String result = memberSvc.safeKeySuccess(request, session, vo);
+		model.addAttribute("sMessage", result);
+
+		return "/member/safekey/safeKeyResult";
+	}	
+	
+	/**
+	 * 세이프키 생성 에러값 받아 오기
+	 * @param request
+	 * @param session
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/safeKeyFail")
+	public String safeKeyFail(HttpServletRequest request, HttpSession session, Model model, MemberVo vo) throws Exception {
+		String result = memberSvc.safeKeyFail(request, session, vo);
+		model.addAttribute("sMessage", result);
+		return "/member/safekey/safeKeyResult";
+	}		
+}

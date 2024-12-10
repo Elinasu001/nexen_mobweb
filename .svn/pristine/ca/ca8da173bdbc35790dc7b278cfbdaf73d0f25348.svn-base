@@ -1,0 +1,258 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!--subContentsWrap-->
+        <div class="subContentsWrap">
+			<div class="stepTitle type02 perStep02">
+				<ul class="step03">
+					<li class="step01 borLine">약관동의 <span class="stepIco"></span></li>
+					<li class="step02 borLine">실명인증 <span class="stepIco"></span></li>
+					<li class="step03 active">회원정보</li>
+				</ul>
+            </div>
+			
+			<div class="subContents">
+				<div class="titleArea type03">
+					<h2 class="type01">꼭! <span>필</span><span>요</span><span>해</span><span>요.</span></h2>
+				</div>
+				
+				<!--memberWrap-->
+				<div class="memberBoxWrap">
+					<div class="certification">
+						<div class="business">
+							<h3 class="type02" style="margin-top:10px;">개인회원 정보를 입력해 주세요.</h3>
+							<p style="color:#ffffff; margin-bottom:20px; margin-top:10px;">
+								회원님의 개인정보가 보호받을 수 있도록 최선을 다하고 있습니다.                     
+							</p>
+						<form name="frm" id="frm" method="post" >
+							<!-- 이전 화면에서(약관동의) 넘어온 값 -->
+							<input type="hidden" value="${diVal}"			name ="diVal"   		id="diVal" />
+							<input type="hidden" value="${ciVal}"			name ="ciVal"   		id="ciVal" />
+							<input type="hidden" value="${vnVal}"			name ="vnVal"  			id="vnVal" />
+							<input type="hidden" value="${custNm}"			name ="custNm" 	 		id="custNm" />
+							<input type="hidden" value="${phone}"			name ="phone"  			id="phone" />		
+							<input type="hidden" value="${gendCd}"			name ="gendCd"  		id="gendCd" />
+							<input type="hidden" value="${frgnCd}"		name ="frgnCd"  id="frgnCd"/>		<!-- 실명 인증 - 내, 외국인 구분 -->
+							
+							<input type="hidden" value="${legrBrthYmd}"		name ="legrBrthYmd"  	id="legrBrthYmd" />																						
+							<input type="hidden" value="${receptionSms}"	name ="receptionSms"   	id="receptionSms" />
+							<input type="hidden" value="${receptionPhone}"	name ="receptionPhone"  id="receptionPhone" />
+							<input type="hidden" value="${receptionEmail}"	name ="receptionEmail"  id="receptionEmail" />
+							<input type="hidden" value="${receptionAdress}"	name ="receptionAdress" id="receptionAdress" />
+							<input type="hidden" id="viewGbn" name="viewGbn" value="${viewGbn}" />
+							<input type="hidden" name="snsGbn" id="snsGbn" value="${snsGbn}">
+							<input type="hidden" name="snsid" id="snsid" value="${snsid}">
+							<input type="hidden" name="custId" id="custId" value="${custId}">
+							<input type="hidden" name="loginStatus" id="loginStatus" value="${loginStatus}">	<!-- 로그인상태에서  sns 가입하는지 -->
+							
+							<!-- 가입정보 -->
+							<div class="submitAreaWrap">
+									<!-- <div class="submitLeft"> -->
+									<div class="submitArea">
+										<label for="custName"><span>이름</span></label>
+										<div class="submit">
+											<input type="text" name="custName" class="type02 w205" id="custName" readonly="readonly" value="${custNm}"> 	
+										</div>
+									</div>									
+									<div class="submitArea">
+										<label for="snsgbn"><span>SNS계정</span></label>
+										<div class="submit">
+											<input type="text" name="snsgbn" class="type02 w205" id="snsgbn" readonly="readonly" value="${snsGbn}"> 	
+										</div>
+									</div>										
+									<div class="submitArea">
+										<label for="phone01"><span class="essen">휴대전화</span></label>
+										<div class="submit">
+											<input type="hidden" name="mobNo" id="mobNo">
+											<select class="type01 w28per"  title="휴대전화 선택" id="phone01" name="phone01" value="${phone01}">
+													<option value="010">010</option>
+													<option value="011">011</option>
+													<option value="016">016</option>
+													<option value="017">017</option>
+													<option value="018">018</option>
+													<option value="019">019</option>        
+											</select> 
+											<span class="divi po_m03"></span>
+											<input type="text" name="phone02" class="type04 w25per" id="phone02" maxlength="4" value="${phone02}" onkeyup="evManager.btnDisabled(); return validNumberCheck.keyUp(event);"><span class="divi po_m03"></span>
+											<input type="text" name="phone03" class="type04 w25per" id="phone03" maxlength="4" value="${phone03}" onkeyup="evManager.btnDisabled(); return validNumberCheck.keyUp(event);">
+										</div>																			
+									</div>
+								
+							    	<div class="submitArea">
+									  <label for="recNum"><span>추천인코드</span></label>
+										<div class="submit">
+											<input type="text" name="recNum" class="type02 w280" id="recNum" title="추천인코드 입력란" placeholder="추천인코드를 입력해 주세요." onkeyup="this.value=evManager.noKorean(this.value); evManager.btnDisabled();" maxlength="20"> 
+											<input type="hidden" id="recNumChk" name="recNumChk" value="">
+                                    		<input type="hidden" id="recCustNo" name="recCustNo" value="" >	
+								       </div>
+										<p class="validation" style="display: none; color:#FFF;" id="recNumTxt" btnChk="0">
+											<span><i class="ico07"></i></span>
+										</p>
+									</div>	
+								<!-- </div> -->
+								<!-- left -->
+							</div>
+							<!-- 가입정보 -->
+							</form>
+							
+						</div>
+					</div>
+				</div>
+				<!--memberWrap-->
+			</div>
+			<c:if test="${loginStatus == 'Y'}">
+				<button type="button" class="type02 w100per" id="btnJoin" disabled="disabled" >연동하기<i class="ico01"></i></button>
+			</c:if>
+			<c:if test="${loginStatus == ''}">
+				<button type="button" class="type02 w100per" id="btnJoin" disabled="disabled" >가입하기<i class="ico01"></i></button>
+			</c:if>
+        </div>
+		<!--subContentsWrap-->
+
+<script type="text/javascript">
+	var evManager = {
+		
+		init : function(){
+			if(!ValidUtil.isEmpty($('#phone').val())){
+				$('#phone01').attr('disabled',true);
+				$('#phone02').attr('readonly',true);
+				$('#phone03').attr('readonly',true);				
+				$("#btnJoin").removeClass();
+				$("#btnJoin").addClass("type01 w100per");
+				$("#btnJoin").removeAttr("disabled");
+			}
+		}
+		,
+		//가입하기 버튼 활설화
+		btnDisabled : function() {
+			var isBtnDisabled = true;	
+			
+			//담당자 전화번호 두번째 자리 체크 3자리 이상
+			if($("#phone02").val().length < 3) {
+				isBtnDisabled = false;
+			}
+			//대표자  전화번호 두번째 자리 체크 4자리 이상
+			if($("#phone03").val().length < 4) {
+				isBtnDisabled = false;
+			}
+			
+			// 추천인 코드  check 엄수현 매니저 추가
+			if(!ValidUtil.isEmpty($("#recNum").val()) && Number($("#recNumTxt").val()) == 0) {
+				isBtnDisabled = false;
+			}
+			
+			if(isBtnDisabled) {
+				$("#btnJoin").removeClass();
+				$("#btnJoin").addClass("type01 w400");
+				$("#btnJoin").removeAttr("disabled");
+			} else {
+				$("#btnJoin").removeClass();
+				$("#btnJoin").addClass("type02 w400");
+				$("#btnJoin").prop("disabled", true);
+			}				
+		}
+		,
+		//한글 입력 방지 
+		noKorean : function(str) {
+			return str.replace(/\s|[^a-zA-Z0-9]/gi, "");
+		}
+		,
+		//추천인코드 인증  엄수현 매니저 추가 
+		recNumCheck : function () {
+			
+			if(!ValidUtil.isEmpty($("#recNum").val().trim())) {
+			
+			//common ajax call
+			var pUrl = "/member/recNumCheck";
+			var pSendData = { recNum : $("#recNum").val().trim()};
+				pSendData = JSON.stringify(pSendData);
+			
+			$.ajax({
+			    url: pUrl,
+			    type: "POST",
+			    cache:false,
+			    data: pSendData,
+			    contentType:"application/json;charset=UTF-8",  // ajax 통신으로 보내는 타입
+			    success: function(data) {
+			    	if(data.recNumYn == "Y") {
+			    		$("#recNumTxt").val("1");
+				    	$('#recNumTxt').html('<i class="ico07" ></i>인증되었습니다.');
+				    	$("#recCustNo").val(data.recCustNo); // 추천인 고객번호
+			    	} else {
+			    		$("#recNum").val("");
+			    		$("#recNumTxt").val("0");
+			    		$('#recNumTxt').html('<i class="ico07" ></i>지금은 추천인 이벤트 기간이 아닙니다.');
+// 			    		$('#recNumTxt').html('<i class="ico07" ></i>존재하지 않는 추천인 코드 입니다.');
+			    	}
+			    	
+			    	$('#recNumTxt').show();
+			    	evManager.btnDisabled();
+			    },
+			    error: function (request, status, error) {
+					console.log('error callback : ' + error);
+				}
+			});
+			
+		}else{
+			
+			//	$('#recNumTxt').hide();
+			// 공백이라면 추천인코드의 모든 값은 초기화 한다.
+				   $('#recNum').val('');
+				   $('#recCustNo').val('');
+				   $('#recNumTxt').val('0');
+		    	   $('#recNumTxt').html('');
+		}
+	}	
+}
+
+	
+	$(document).ready(function() {
+		/* page background image Start */
+		$('#bgFullImg').css('height', '100%');
+		$('#bgFullImg').append('<div class="member-ani-bg bg04"></div>');
+		/* page background image End */
+		
+		//init
+		evManager.init();
+		
+		// 가입하기 버튼 area!! 
+		$("#btnJoin").on("click" , function(){
+	      	//폼객체를 불러와서
+	        var form = $('form')[0];
+	        var param = new FormData(form);
+	        
+	        var frgnCd = $('[name="frgnCd"]').val();
+			if($.trim(frgnCd) == ""){
+				$('[name="frgnCd"]').val("0");
+			}
+			
+	        $("#phone").val($("#phone01").val()+"-"+$("#phone02").val()+"-"+$("#phone03").val());
+	        $("#mobNo").val($("#phone01").val()+"-"+$("#phone02").val()+"-"+$("#phone03").val());
+	        $.ajax({
+	            type: "POST",
+	            url: "/member/insertSnsCust",
+	            data: $("#frm").serialize(),
+	            cache: false,
+	            processData: false,
+	            success: function (data) {
+	             	var frm = document.frm;
+	        		frm.action = "/member/custInfoComp";
+	        		frm.submit();
+	            },
+	            error: function (e) {
+	                console.log("ERROR : ", e);
+	                alert("fail");
+	            }
+	        });
+		});
+		
+		// 추천인  확인  엄수현 매니저 추가 !! 
+		$("#recNum").on("focusout" , function(){
+			evManager.recNumCheck();
+		});
+		
+	});	
+
+</script>
+

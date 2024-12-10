@@ -1,0 +1,107 @@
+.banner { height: 380px; }
+.banner .contents h1 { font-size: 34px; }
+.banner .contents p { font-size: 14px; }
+
+section.default.ad-banner-section { padding: 32px 0 0; }
+section.default.main-about-section p { margin-bottom: 40px; }
+
+section.default.main-step-section .contents p { margin-bottom: 20px; }
+section.default.main-step-section .contents img { margin-bottom: 60px; }
+
+section.default.main-service-section .contents h1.xs-h1 { margin-top: 64px; }
+
+section.default.main-service-section .contents .tab span { font-size: 14px; }
+section.default.main-product-section .contents ul.nav li a { font-size: 14px; padding-top: 10px; padding-bottom: 10px; margin-right: 0; width: auto; }
+section.default.main-product-section .contents ul.nav li a i { display: none; }
+section.default.main-product-section ul.nav.card-tabs li { width: 25%; }
+
+.card-title { margin-bottom: 40px; }
+section.default.main-product-section .contents .tab-content .article.tel-article { font-size: 26px; }
+section.default.main-product-section .contents .tab-content h3 { font-size: 16px; }
+/*section.default.main-product-section .contents .tab-content h3 br { display: none; }*/
+section.default.main-product-section .contents .tab-content span { font-size: 44px; margin-right: 9px; }
+/*section.default.main-product-section ul.nav.card-tabs li,*/
+/*section.default.main-product-section ul.nav.card-tabs li a { width: 100%; display: block; }*/
+
+.notice-section { padding: 0; }
+section.default.main-product-section .contents .tab-content .article.tel-article.hana-card img { position: relative; }
+section.default.main-product-section .contents .tab-content .article a { margin: 0; display: block; }
+
+
+footer .copyright .right-contents { float: none; text-align: center; margin-top: 20px; }
+footer .copyright span { display: block; padding: 0; }
+footer .copyright span:before { display: none; }
+
+.navbar.navbar-default:hover .bg { display: none; }
+
+/*section.default.rental-section .cards label img { margin-bottom: 40px; }*/
+
+section.default.rental-section .contents { margin-top: 40px; }
+
+/*section.default.rental-form-section .form-group .rental-type-contents { display: block; width: 100%; float: none; }*/
+section.default.rental-form-section .form-group .select-inline { margin: 0; display: block; width: 100%; }
+section.default.rental-form-section .form-group .select-inline + .select-inline { margin: 0; margin-top: 4px; }
+.add-contents { float: none; width: 100%; }
+.add-contents + .add-contents { margin-top: 50px; }
+
+/*.add-contents .dropdown button.btn a.tip-contents { display: none; }*/
+
+#rental-tag { margin-top: 10px; margin-bottom: 40px; }
+
+section.default.rental-form-section .form-group label.radio-inline { margin-bottom: 12px; font-size: 14px; width: 100px;  }
+section.default.rental-form-section .form-group.add-service label.radio-inline { font-size: 14px; width: auto;  }
+
+section.counsel-success-section p { font-size: 16px; }
+section.counsel-success-section img { max-width: 180px; }
+
+/*section.default.rental-form-section .form-group label.radio-inline { display: block; }*/
+
+.gallery-tire-cards .info-text .article h5 { float: none; }
+.gallery-tire-cards .info-text .article .grade-graph { display: block; padding: 0; }
+.gallery-tire-cards .info-text { padding-right: 120px; }
+
+.gallery-tire-cards .img-box img { width: 120px; }
+
+section.default.rental-form-section .container,
+section.default.rental-form-section .col-sm-10,
+section.default.rental-form-section .col-sm-2  { padding-left: 10px; padding-right: 10px; }
+
+section.default.rental-form-section .form-group .rental-type-contents > div { font-size: 14px; padding: 10px 0; }
+
+.n-card { font-size: 16px; }
+section.default.rental-form-section .form-group:not(.add-service) label.radio-inline { width: 140px; }
+section.default.rental-form-section dl dt { float: left; font-size: 16px; }
+
+span#show_card_discount,
+span#show_count,
+span#show_month { color: #fe3f3d; }
+span#show_total_price { font-weight: 900; }
+
+section.default.rental-section .cards label { display: block; }
+section.default.rental-section .cards label p { margin-top: 20px; font-size: 16px; }
+#post-content iframe { display: block; width: 100%; height: auto;  }
+
+.tire-board .nav li { float: left; width: 25%; }
+
+section.default.rental-form-section .form-group label.control-label span img { width: 60vw; }
+
+footer { margin-bottom: 76px; }
+.layout-fixed { right: 0; left: 0; bottom: 0; }
+.layout-fixed > a { display: none; }
+.layout-fixed .clearfix { display: none; }
+
+.add-contents a.tip-contents .hover-contents { max-width: 280px; min-width: 90vw; padding: 10px 22px 30px }
+.add-contents a.tip-contents .hover-contents h1 { font-size: 22px; }
+.add-contents a.tip-contents .hover-contents h2 { font-size: 16px; }
+
+.add-contents a.tip-contents .hover-contents.hover1,
+.add-contents a.tip-contents .hover-contents.hover2,
+.add-contents a.tip-contents .hover-contents.hover3 { left: auto; right: auto; }
+
+section.default.main-service-section .contents .card.card1,
+section.default.main-service-section .contents .card.card2,
+section.default.main-service-section .contents .card.card3 { max-width: 260px; margin: 0 auto; padding: 0; }
+section.default.main-service-section .contents .card.card2,
+section.default.main-service-section .contents .card.card3 { margin-top: 40px; }
+
+.main-product1-card { margin-top: 20px; }

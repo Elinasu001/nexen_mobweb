@@ -1,0 +1,15 @@
+
+/* common */
+form.icon-form .icon-box { top: 10px; left: 28px; font-size: 16px; }
+.btn:not(.btn-xs):not(.btn-sm):not(.default-btn) { padding: 4px 11px; line-height: normal; height: 36px; line-height: 26px; }
+.form-control:not(.default-control) { -webkit-box-shadow: none; -webkit-appearance: none; box-shadow: none; border-radius: 3px; padding: 6px 18px; height: 36px; }
+
+.display-table { display: block; }
+.display-table .display-table-cell { display: block; width: 100% !important; }
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.popup_layer { left: 15px !important; right: 15px !important; }
+.popup_layer_con { width: auto !important; height: auto !important; }

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+				http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+				http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"  default-lazy-init="true">
+	
+	<context:component-scan base-package="com.nexwrms.mobweb,com.nexwrms.core,com.nexwrms.cfo">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+	</context:component-scan>
+	
+	<!-- LocaleResolver 선언 시작 -->
+	<!-- multi language message Resolver request가 가지고 있는 session으로 부터 locale 정보를 가져온다 -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	<!-- LocaleResolver 선언 끝 -->
+
+	<!-- resource 지정 -->
+	<mvc:annotation-driven />
+	<mvc:resources mapping="/css/**" location="/css/"/>
+	<mvc:resources mapping="/html/**" location="/html/"/>
+	<mvc:resources mapping="/img/**" location="/img/"/>
+	<mvc:resources mapping="/js/**" location="/js/"/>
+	<mvc:resources mapping="/publ/**" location="/publ/"/>
+	<mvc:resources mapping="/tail/**" location="/tail/"/>	
+	
+	
+	
+
+	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1" 
+		p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView" />
+	
+	
+	 	 		
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="2"
+ 			p:prefix="/WEB-INF/view/"  p:suffix=".jsp" />
+  			
+  			
+	<!-- jsonView -->
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<property name="contentType" value="text/html;charset=UTF-8"/>
+	</bean>
+
+	
+
+
+ 	<mvc:interceptors>
+		<!-- login  interceptor -->
+    	<mvc:interceptor>
+	        <mvc:mapping path="/**/**" />
+	        <mvc:exclude-mapping path="/error/**"/>        
+	        <mvc:exclude-mapping path="/css/**"/>
+	        <mvc:exclude-mapping path="/js/**"/>
+	        <mvc:exclude-mapping path="/html/**"/>
+	        <mvc:exclude-mapping path="/img/**"/>
+	        <mvc:exclude-mapping path="/publ/**"/>
+	        
+        	<bean id="loginCheckInterceptor" class="com.nexwrms.mobweb.com.interceptor.LoginCheckInterceptor"/>
+    	</mvc:interceptor>
+
+	</mvc:interceptors>
+
+	<!--
+		- This bean processes annotated handler methods, applying Application-specific PropertyEditors
+		- for request parameter binding. It overrides the default AnnotationMethodHandlerAdapter.
+	-->
+	<bean name="webBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+		<property name="conversionService" ref="conversionService" />
+		<!-- TODO 아래 내용에 대해 검토하자. -->
+<!-- 		<property name="validator" ref="validator" /> -->
+		<!-- <property name="propertyEditorRegistrar" ref="propertyEditorRegistrar" />  -->
+	</bean>
+
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">		
+		<property name="webBindingInitializer" ref="webBindingInitializer"/>
+		<property name="messageConverters" >
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+					<property name="objectMapper">
+						<bean class="com.fasterxml.jackson.databind.ObjectMapper"/>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="conversionService"
+		  class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		  <!--  <property name="converters"></property><property name="formatters"></property> -->
+	</bean>
+
+	  <!-- Multipart Resolver
+		  최대 50메가 바이트 까지 업로드가 가능하도록 설정
+	  -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="52428800" />
+		<property name="maxInMemorySize" value="100000000" />
+	</bean>  
+
+	
+
+
+	<bean id="urlFilenameViewController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+
+	<!-- 화면에러처리
+	<bean id="exceptionResolver" class="com.nexwrms.mobweb.com.exceptionHnadler.CustomSimpleMappingExceptionResolver" p:order="1">
+	
+	</bean>  
+	-->	 
+	<aop:config>
+		<aop:aspect id="aspectLoggging" ref="debugLogAspect">
+
+			<aop:pointcut id="ctlPointcut" expression="execution(public * com.nexwrms..*.ctl.*.*(..))" />
+			<aop:around method="errorlogAround" pointcut-ref="ctlPointcut" />
+
+		</aop:aspect>
+	</aop:config> 
+
+
+</beans>

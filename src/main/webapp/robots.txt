@@ -1,0 +1,6 @@
+User-agent: *
+
+Allow: /
+Disallow: /mypage
+
+Sitemap:https://m.nexen-nextlevel.com/sitemap.xml

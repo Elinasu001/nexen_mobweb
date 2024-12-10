@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %X{guid} %5p [%c] %m{nolookups} %n" />
+		</Console>
+
+		<!-- <RollingFile name="rollingFile" fileName="/logs/jeus/applog/${sys:was.id}/${sys:was.id}.log" filePattern="/logs/jeus/applog/${sys:was.id}/${sys:was.id}_%d{yyyy-MM-dd}.log" ignoreExceptions="false"> -->
+		<!-- <PatternLayout> -->
+		<!-- <Pattern>%d %p %c{1.} [%t] %m%n</Pattern> -->
+		<!-- </PatternLayout> -->
+		<!-- <TimeBasedTriggeringPolicy /> -->
+		<!-- </RollingFile> -->
+
+		<RollingFile name="rollingFile" fileName="/server/logs/mapi/${sys:was.id}.log" filePattern="/server/logs/mapi/%i_${sys:was.id}.log" ignoreExceptions="false">
+			<PatternLayout>
+				<Pattern>%d %X{guid} %5p [%c] %m%n</Pattern>
+			</PatternLayout>
+			<SizeBasedTriggeringPolicy size="50 MB" />
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+		<Async name="AsyncFile">
+			<AppenderRef ref="rollingFile" />
+		</Async>
+
+	</Appenders>
+	<Loggers>
+
+		<Logger name="com.nexacro" level="ERROR" additivity="false">
+			<AppenderRef ref="AsyncFile" />
+		</Logger>
+
+		<Logger name="com.nexwrms.core.context" level="INFO" additivity="false">
+			<AppenderRef ref="AsyncFile" />
+		</Logger>
+
+		<Logger name="com.wrms" level="DEBUG" additivity="false">
+			<AppenderRef ref="AsyncFile" />
+		</Logger>
+
+		<Logger name="org.springframework" level="INFO" additivity="false">
+			<AppenderRef ref="AsyncFile" />
+		</Logger>
+
+		<Logger name="org.apache.commons" level="INFO" additivity="false">
+			<AppenderRef ref="AsyncFile" />
+		</Logger>
+
+		<logger name="org.apache.ibatis.logging.jdbc">
+			<level value="INFO" />
+		</logger>
+
+		<!-- log SQL with timing information, post execution -->
+		<Logger name="jdbc.sqlonly" level="INFO" />
+		<Logger name="jdbc.sqltiming" level="WARN" />
+		<Logger name="jdbc.audit" level="WARN" />
+		<Logger name="jdbc.resultset" level="ERROR" />
+		<Logger name="jdbc.resultsettable" level="ERROR" />
+		<Logger name="jdbc.connection" level="ERROR" />
+
+		<!-- <Logger name="java.sql" level="DEBUG" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="jdbc.sqltiming" level="DEBUG" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="java.sql.Connection" level="ERROR" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="java.sql.Statement" level="DEBUG" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="java.sql.PreparedStatement" level="DEBUG" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+		<!-- <Logger name="java.sql.ResultSet" level="DEBUG" additivity="false"> -->
+		<!-- <AppenderRef ref="console" /> -->
+		<!-- </Logger> -->
+<!-- 		<Logger name="com.nexacro.spring.resolve" level="DEBUG" additivity="false"> -->
+<!-- 			<AppenderRef ref="AsyncFile" /> -->
+<!-- 		</Logger> -->
+<!-- 		<Logger name="com.nexacro.spring.servlet" level="DEBUG" additivity="false"> -->
+<!-- 			<AppenderRef ref="AsyncFile" /> -->
+<!-- 		</Logger> -->
+
+		<Root level="DEBUG">
+			<AppenderRef ref="AsyncFile" />
+		</Root>
+	</Loggers>
+</Configuration>

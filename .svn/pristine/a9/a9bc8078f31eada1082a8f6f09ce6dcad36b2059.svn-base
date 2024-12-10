@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+/* Spoqa Han Sans 폰트 */
+@font-face { 
+	font-family: 'Spoqa Han Sans Regular'; 
+	src: url('../css/font/Spoqa Han Sans Regular.eot'); 
+	src: url('../css/font/Spoqa Han Sans Regular?#iefix') format('embedded-opentype'), 
+	url('../css/font/Spoqa Han Sans Regular.woff2') format('woff2'), 
+	url('../css/font/Spoqa Han Sans Regular.woff') format('woff'), 
+	url('../css/font/Spoqa Han Sans Regular.ttf') format('truetype'), 
+	url('../css/font/Spoqa Han Sans Regular.svg#Spoqa Han Sans Regular') format('svg'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
+
+@font-face {
+    font-family: 'Spoqa Han Sans Bold';
+    src: url('../css/font/Spoqa Han Sans Bold.eot');
+    src: url('../css/font/Spoqa Han Sans Bold.eot?#iefix') format('embedded-opentype'),
+         url('../css/font/Spoqa Han Sans Bold.woff2') format('woff2'),
+         url('../css/font/Spoqa Han Sans Bold.woff') format('woff'),
+         url('../css/font/Spoqa Han Sans Bold.ttf') format('truetype'),
+         url('../css/font/Spoqa Han Sans Bold.svg#Spoqa Han Sans Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Spoqa Han Sans Light';
+    src: url('../css/font/Spoqa Han Sans Light.eot');
+    src: url('../css/font/Spoqa Han Sans Light.eot?#iefix') format('embedded-opentype'),
+         url('../css/font/Spoqa Han Sans Light.woff2') format('woff2'),
+         url('../css/font/Spoqa Han Sans Light.woff') format('woff'),
+         url('../css/font/Spoqa Han Sans Light.ttf') format('truetype'),
+         url('../css/font/Spoqa Han Sans Light.svg#Spoqa Han Sans Light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Spoqa Han Sans Thin';
+    src: url('../css/font/Spoqa Han Sans Thin.eot');
+    src: url('../css/font/Spoqa Han Sans Thin.eot?#iefix') format('embedded-opentype'),
+         url('../css/font/Spoqa Han Sans Thin.woff2') format('woff2'),
+         url('../css/font/Spoqa Han Sans Thin.woff') format('woff'),
+         url('../css/font/Spoqa Han Sans Thin.ttf') format('truetype'),
+         url('../css/font/Spoqa Han Sans Thin.svg#Spoqa Han Sans Thin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 은영체 */
+@font-face {
+    font-family: 'KCC-eunyoung'; 
+    src: url('../css/font/KCC-eunyoung-Regular.woff') format('woff'); 
+    font-weight: normal; 
+    font-style: normal;
+} 
+
+/* NanumBarunGothic 기본 폰트 */
+@font-face{
+	font-family: "NanumBarunGothic";
+	src: url('../css/font/NanumBarunGothic.eot') format('eot');
+	src: url('../css/font/NanumBarunGothic.woff') format('woff');
+}
+/* NanumBarunGothic 굵은 폰트 */
+@font-face{
+	font-family: "NanumBarunGothicBold";
+	src: url('../css/font/NanumBarunGothicBold.eot') format('eot');
+	src: url('../css/font/NanumBarunGothicBold.woff') format('woff');
+}

@@ -1,0 +1,207 @@
+
+#bgFullImg{
+    position: relative;
+    padding-bottom: 50%;
+    border:none;
+    // height: unset;;
+    // top:-30px;
+    .member-bg.service-o2o{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: url('../img/service/o2o/key_visual.jpg') no-repeat center top;
+        background-size: cover;
+        
+    }
+}
+
+.subContentsWrap .o2o{
+    .page-header{
+        padding:3.5rem 1.5rem;
+        img{
+            max-width: 60%;;
+        }
+    }
+
+}
+
+.o2oserviceintroWrap{
+    overflow: hidden;
+}
+
+.service-seciton-01{
+    background: #F3f3f3;
+    padding:5% 5% 0 5%;
+    margin-top: 0;
+    h3{
+        font-size: 16pt;
+        color: #231f20;
+        // margin-top: 40px;
+        font-weight: normal;
+    }    
+    p{
+        font-size: 13pt;
+        color: #231f20;
+        line-height: 1.385;
+        text-align: left;
+    }
+
+    img{ margin:7% 0;}
+}
+
+.service-seciton-02{
+    margin:40px 5% 0 5%;
+    h3{
+        font-size: 14pt;
+        color: #231f20;
+        margin-top: 40px;
+        font-weight: normal;
+    }    
+    .slick-slider .slick-slide{
+        margin:0 10px;
+    }
+
+    
+
+}
+
+ul.benefit-caroucel{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    justify-content:space-between;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    li{
+        width: 230px;
+        position: relative;
+        height: 100%;
+        margin:0;
+        .benefit-item{
+            background-color: #FFF;
+            padding: 0.7em 20px;;
+            overflow: hidden;
+            letter-spacing: -0.2px;
+            height: 100%;
+            .ico{
+                text-align: center;
+                margin-top: 30px;
+                margin-bottom: 25px;
+                margin : 5% auto 4% auto;
+                max-width: 50%;
+            }
+            .subject{
+                font-size: 20px;
+                color: rgb(35, 31, 32);
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            .desc{
+                font-size: 13px;
+                color: #231f20;
+                line-height: 1.467;
+                text-align: center;
+                
+                
+                margin-bottom: 25px;
+                small{
+                    font-size: 0.9em;;
+                    color: #231f20;
+                }
+                small.block{
+                    display: inline-block;
+                    text-align: left;
+                }
+                .link-box{
+                    margin-top: 20px;
+                    position: relative;
+                    a{
+                        display: inline-block;
+                        color: #812990;
+                        position: relative;
+                        padding:0 15px;
+                        
+                        &:after{
+                            position: absolute;
+                            right: 0;
+                            content: " ";
+                            width: 6px;
+                            height: 7px;
+                            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAHCAYAAAArkDztAAAAb0lEQVQImTXOIQ6CYACA0cdvs2jxCm5mbsFmYR6A4sYJmNUmjUZxcx4Aqs0TcAHOYNFicxCQr77yReddVaLAF3s8IeCEK5ZoEc8wIEeDFR7YBlM/ZHhjg/sMC9ywxgtZQIQaB3yQoA+44Pi/StHBCCfOFEiN7Jx7AAAAAElFTkSuQmCC);
+                            top:50%;
+                            transform: translateY( -50% );
+                        }
+                    }
+                }
+                
+            }
+            
+        }    
+    }
+    
+}
+
+
+.tab-content{
+    width:100%;
+    padding-bottom:10%;
+    
+    display: none;
+
+    &.current{
+        display: block;;
+    }
+    &.visit{
+        background:url("../img/service/o2o/service_01_bg.jpg") no-repeat;
+        background-size: 100%;;
+    }
+    &.pickup{
+        background:url("../img/service/o2o/service_02_bg.jpg") no-repeat;
+        background-size: 100%;;
+    }
+    &.store{
+        background:url("../img/service/o2o/service_03_bg.jpg") no-repeat;
+        background-size: 100%;;
+        height: auto;
+    }
+}
+.proInfoView{
+    width:100%;
+    margin:0 auto;
+    // padding:100px 0 0px;
+    padding:0 5%;
+    text-align:center;
+    overflow: hidden;
+    h3{
+        margin-top:10%;
+        text-align: left;
+        img{
+            max-width: 70%;
+        }
+    }
+    .infoStep{
+        margin:10% 0 10%;
+    }
+    .visual-box{
+        margin-top:50px;
+        img{ max-width: 100%; }
+    }
+    .video{
+        margin-top:10%;
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%;
+        iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left:0;
+            top:0;
+        }
+    }
+    .serMapInfo{
+        // margin-top: 30px;;
+    }
+}

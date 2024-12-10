@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+
+ <!-- 타일즈 미적용 -->
+  <definition name="noTemp" template="/WEB-INF/view/empty.jsp">
+  	<put-attribute name="empty" value=""/>
+  </definition>
+
+  <!-- 타일즈 적용 -->
+  <definition name="base" template="/WEB-INF/view/base.jsp">
+  <put-attribute name="header" value="/WEB-INF/view/header.jsp"/>
+  <put-attribute name="footer" value="/WEB-INF/view/footer.jsp"/>
+  </definition>
+
+  <!-- 타일즈 미적용 -->
+  <definition name="/login/*" extends="base">
+  <put-attribute name="body" value="/WEB-INF/view/login/{1}.jsp"/>
+  </definition>
+  <!-- <definition name="/order/*" extends="noTemp">
+  <put-attribute name="empty" value="/WEB-INF/view/order/{1}.jsp"/>
+  </definition> -->
+  
+  <definition name="/ib/*" extends="noTemp">
+  <put-attribute name="empty" value="/WEB-INF/view/ib/{1}.jsp"/>
+  </definition>
+  
+<!--   <definition name="/main/*" extends="noTemp">
+  <put-attribute name="empty" value="/WEB-INF/view/main/{1}.jsp"/>
+  </definition> -->
+  <definition name="/main/*" extends="base">
+  <put-attribute name="body" value="/WEB-INF/view/main/{1}.jsp"/>
+  </definition>
+
+
+ <!-- <definition name="/product/prdDetail" extends="noTemp">
+  <put-attribute name="empty" value="/WEB-INF/view/product/prdDetail.jsp"/>
+  </definition> -->
+
+  <!-- 렌탈 가격 비교 사이트 -->
+  <definition name="/mypage/rentalPriceSimulation" extends="noTemp">
+  	<put-attribute name="empty" value="/WEB-INF/view/mypage/rentalPriceSimulation.jsp"/>
+  </definition>
+  
+  
+  <!-- 타일즈 적용 -->
+  <definition name="*" extends="base">
+   <put-attribute name="body" value="/WEB-INF/view/{1}.jsp"/>
+  </definition>
+  <definition name="*/*" extends="base">
+   <put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp"/>
+  </definition>
+  <definition name="*/*/*" extends="base">
+   <put-attribute name="body" value="/WEB-INF/view/{1}/{2}/{3}.jsp"/>
+  </definition>
+
+  
+ 
+</tiles-definitions>

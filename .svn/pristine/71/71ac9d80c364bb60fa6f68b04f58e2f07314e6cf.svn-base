@@ -1,0 +1,179 @@
+#bgFullImg {
+  position: relative;
+  padding-bottom: 50%;
+  border: none;
+}
+#bgFullImg .member-bg.service-o2o {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('../img/service/o2o/key_visual.jpg') no-repeat center top;
+  background-size: cover;
+}
+.subContentsWrap .o2o .page-header {
+  padding: 3.5rem 1.5rem;
+}
+.subContentsWrap .o2o .page-header img {
+  max-width: 60%;
+}
+.o2oserviceintroWrap {
+  overflow: hidden;
+}
+.service-seciton-01 {
+  background: #F3f3f3;
+  padding: 5% 5% 0 5%;
+  margin-top: 0;
+}
+.service-seciton-01 h3 {
+  font-size: 16pt;
+  color: #231f20;
+  font-weight: normal;
+}
+.service-seciton-01 p {
+  font-size: 13pt;
+  color: #231f20;
+  line-height: 1.385;
+  text-align: left;
+}
+.service-seciton-01 img {
+  margin: 7% 0;
+}
+.service-seciton-02 {
+  margin: 40px 5% 0 5%;
+}
+.service-seciton-02 h3 {
+  font-size: 14pt;
+  color: #231f20;
+  margin-top: 40px;
+  font-weight: normal;
+}
+.service-seciton-02 .slick-slider .slick-slide {
+  margin: 0 10px;
+}
+ul.benefit-caroucel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: no-wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5%;
+}
+ul.benefit-caroucel li {
+  width: 230px;
+  position: relative;
+  height: 100%;
+  margin: 0;
+}
+ul.benefit-caroucel li .benefit-item {
+  background-color: #FFF;
+  padding: 0.7em 20px;
+  overflow: hidden;
+  letter-spacing: -0.2px;
+  height: 100%;
+}
+ul.benefit-caroucel li .benefit-item .ico {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  margin: 5% auto 4% auto;
+  max-width: 50%;
+}
+ul.benefit-caroucel li .benefit-item .subject {
+  font-size: 20px;
+  color: #231f20;
+  text-align: center;
+  margin-bottom: 15px;
+}
+ul.benefit-caroucel li .benefit-item .desc {
+  font-size: 13px;
+  color: #231f20;
+  line-height: 1.467;
+  text-align: center;
+  margin-bottom: 25px;
+}
+ul.benefit-caroucel li .benefit-item .desc small {
+  font-size: 0.9em;
+  color: #231f20;
+}
+ul.benefit-caroucel li .benefit-item .desc small.block {
+  display: inline-block;
+  text-align: left;
+}
+ul.benefit-caroucel li .benefit-item .desc .link-box {
+  margin-top: 20px;
+  position: relative;
+}
+ul.benefit-caroucel li .benefit-item .desc .link-box a {
+  display: inline-block;
+  color: #812990;
+  position: relative;
+  padding: 0 15px;
+}
+ul.benefit-caroucel li .benefit-item .desc .link-box a:after {
+  position: absolute;
+  right: 0;
+  content: " ";
+  width: 6px;
+  height: 7px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAHCAYAAAArkDztAAAAb0lEQVQImTXOIQ6CYACA0cdvs2jxCm5mbsFmYR6A4sYJmNUmjUZxcx4Aqs0TcAHOYNFicxCQr77yReddVaLAF3s8IeCEK5ZoEc8wIEeDFR7YBlM/ZHhjg/sMC9ywxgtZQIQaB3yQoA+44Pi/StHBCCfOFEiN7Jx7AAAAAElFTkSuQmCC);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.tab-content {
+  width: 100%;
+  padding-bottom: 10%;
+  display: none;
+}
+.tab-content.current {
+  display: block;
+}
+.tab-content.visit {
+  background: url("../img/service/o2o/service_01_bg.jpg") no-repeat;
+  background-size: 100%;
+}
+.tab-content.pickup {
+  background: url("../img/service/o2o/service_02_bg.jpg") no-repeat;
+  background-size: 100%;
+}
+.tab-content.store {
+  background: url("../img/service/o2o/service_03_bg.jpg") no-repeat;
+  background-size: 100%;
+  height: auto;
+}
+.proInfoView {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 5%;
+  text-align: center;
+  overflow: hidden;
+}
+.proInfoView h3 {
+  margin-top: 10%;
+  text-align: left;
+}
+.proInfoView h3 img {
+  max-width: 70%;
+}
+.proInfoView .infoStep {
+  margin: 10% 0 10%;
+}
+.proInfoView .visual-box {
+  margin-top: 50px;
+}
+.proInfoView .visual-box img {
+  max-width: 100%;
+}
+.proInfoView .video {
+  margin-top: 10%;
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+.proInfoView .video iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}

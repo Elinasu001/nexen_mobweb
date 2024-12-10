@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.nexwrms</groupId>
+  <artifactId>nexwrms-mobweb</artifactId>
+  <version>2.0</version>
+  <packaging>war</packaging>
+
+  <properties>
+	<spring.maven.artifact.version>4.0.9.RELEASE</spring.maven.artifact.version>
+	<egovframework.rte.version>3.5.0</egovframework.rte.version>
+	  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <repositories>
+		<repository>
+			<id>mvn2</id>
+			<url>http://repo1.maven.org/maven2/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>egovframe</id>
+			<url>http://www.egovframe.go.kr/maven/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>oracle</id>
+			<name>ORACLE JDBC Repository</name>
+			<url>http://maven.jahia.org/maven2</url>
+		</repository>
+	</repositories>
+
+  <dependencies>
+  	<!-- 표준프레임워크 실행환경 -->
+	<dependency>
+		<groupId>egovframework.rte</groupId>
+		<artifactId>egovframework.rte.ptl.mvc</artifactId>
+		<version>${egovframework.rte.version}</version>
+		<exclusions>
+			<exclusion>
+				<artifactId>commons-logging</artifactId>
+				<groupId>commons-logging</groupId>
+			</exclusion>
+			<exclusion>
+				<artifactId>log4j-core</artifactId>
+				<groupId>org.apache.logging.log4j</groupId>
+
+			</exclusion>
+			<exclusion>
+				<artifactId>log4j-api</artifactId>
+				<groupId>org.apache.logging.log4j</groupId>
+
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<dependency>
+		<groupId>egovframework.rte</groupId>
+		<artifactId>egovframework.rte.psl.dataaccess</artifactId>
+		<version>${egovframework.rte.version}</version>
+		<exclusions>
+			<exclusion>
+				<artifactId>log4j-core</artifactId>
+				<groupId>org.apache.logging.log4j</groupId>
+
+			</exclusion>
+			<exclusion>
+				<artifactId>log4j-api</artifactId>
+				<groupId>org.apache.logging.log4j</groupId>
+
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<dependency>
+		<groupId>egovframework.rte</groupId>
+		<artifactId>egovframework.rte.fdl.idgnr</artifactId>
+		<version>${egovframework.rte.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>egovframework.rte</groupId>
+		<artifactId>egovframework.rte.fdl.property</artifactId>
+		<version>${egovframework.rte.version}</version>
+	</dependency>
+	<!-- 표준프레임워크 실행환경 끝 -->
+
+	<!-- 코어 프로젝트 --> 
+	<dependency>
+		<groupId>com.nexwrms</groupId>
+		<artifactId>nexwrms-core</artifactId>
+		<version>1.0</version> 
+		<scope>system</scope>
+		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/nexwrms-core-1.0.jar</systemPath>
+	</dependency>
+
+	<!-- 공통 프로젝트 -->
+	<dependency>
+		<groupId>com.nexwrms</groupId>
+		<artifactId>nexwrms-cfo</artifactId>
+		<version>1.0</version>
+	</dependency>
+
+ 
+
+	<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>servlet-api</artifactId>
+	    <version>2.5</version>
+	    <scope>provided</scope>
+	</dependency>
+
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.8.5</version>
+	</dependency>
+
+	<!-- cache -->
+	<dependency>
+		<groupId>net.sf.ehcache</groupId>
+		<artifactId>ehcache</artifactId>
+		<version>2.10.3</version>
+	</dependency>
+
+	<!-- oracle jdbc -->
+	<dependency>
+		<groupId>com.oracle</groupId>
+		<artifactId>ojdbc7</artifactId>
+		<version>12.1.0.2</version>
+		<scope>system</scope>
+    	<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ojdbc7-12.1.0.2.jar</systemPath>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.logging.log4j</groupId>
+		<artifactId>log4j-core</artifactId>
+		<version>2.7</version>
+	</dependency>
+
+	<!-- log for jdbc  -->
+	<dependency>
+		<groupId>org.bgee.log4jdbc-log4j2</groupId>
+		<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+		<version>1.16</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+	<dependency>
+	    <groupId>org.apache.httpcomponents</groupId>
+	    <artifactId>httpclient</artifactId>
+	    <version>4.5</version>
+	</dependency>
+
+	<dependency>
+		<groupId>commons-io</groupId>
+		<artifactId>commons-io</artifactId>
+		<version>2.5</version>
+	</dependency>
+
+	<dependency>
+		<groupId>commons-dbcp</groupId>
+		<artifactId>commons-dbcp</artifactId>
+		<version>1.4</version>
+	</dependency>
+
+	<dependency>
+		<groupId>commons-fileupload</groupId>
+		<artifactId>commons-fileupload</artifactId>
+		<version>1.3.2</version>
+	</dependency>
+<!--
+	<dependency>
+		<groupId>org.apache.logging.log4j</groupId>
+		<artifactId>log4j-core</artifactId>
+		<version>2.7</version>
+	</dependency> -->
+
+
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi</artifactId>
+	    <version>3.10-FINAL</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-ooxml</artifactId>
+	    <version>3.10-FINAL</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-ooxml-schemas</artifactId>
+	    <version>3.10-FINAL</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-scratchpad</artifactId>
+	    <version>3.10-FINAL</version>
+	</dependency>
+
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+	</dependency>
+
+
+
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+
+	
+	<dependency>
+		<groupId>com.kcp</groupId>
+		<artifactId>jPpcliE</artifactId>
+		<version>1.0</version>
+		<scope>system</scope>
+		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/jPpcliE.jar
+		</systemPath>
+	</dependency>
+	
+	<dependency>
+		<groupId>ConnectionKCP</groupId>
+		<artifactId>ConnectionKCP</artifactId>
+		<version>1.0</version>
+		<scope>system</scope>
+		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ConnectionKCP.jar
+		</systemPath>
+	</dependency>
+
+   	<dependency>
+		<groupId>NiceID</groupId>
+		<artifactId>NiceID</artifactId>
+		<version>1.0</version>
+		<scope>system</scope>
+		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/NiceID.jar
+		</systemPath>
+	</dependency>
+	
+	<dependency>
+		<groupId>IPINClient</groupId>
+		<artifactId>IPINClient</artifactId>
+		<version>1.0</version>
+		<scope>system</scope>
+		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/IPINClient.jar
+		</systemPath>
+	</dependency>
+    
+    <!-- Tiles Core -->
+	<!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-core -->
+	<dependency>
+	    <groupId>org.apache.tiles</groupId>
+	    <artifactId>tiles-core</artifactId>
+	    <version>3.0.5</version>
+	</dependency>
+	 
+	<!-- Tiles Servlet -->
+	<!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-servlet -->
+	<dependency>
+	    <groupId>org.apache.tiles</groupId>
+	    <artifactId>tiles-servlet</artifactId>
+	    <version>3.0.5</version>
+	</dependency>
+	 
+	<!-- Tiles JSP -->
+	<!-- http://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp -->
+	<dependency>
+	    <groupId>org.apache.tiles</groupId>
+	    <artifactId>tiles-jsp</artifactId>
+	    <version>3.0.5</version>
+	</dependency>
+	
+	<!-- NEXEN SAP -->     
+	<dependency>
+		<groupId>com</groupId>
+		<artifactId>sap</artifactId>
+		<scope>system</scope>
+		<systemPath>${project.basedir}/src/main/resources/lib/sapjco3.jar</systemPath>
+		<version>1</version>
+	</dependency>
+	    
+	<dependency>
+		<groupId>com.miracom</groupId>
+		<artifactId>transceiverx-j</artifactId> 
+		<version>7.0.1a</version>
+		<scope>system</scope>
+		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/transceiverx-j-7.0.1a.jar</systemPath>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.json/json -->
+	<dependency>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>20190722</version>
+	</dependency>
+	
+	<!-- NICE평가정보  -->
+	<dependency> 
+		<groupId>CheckPlus.kisinfo</groupId>
+		<artifactId>SCheckPlus</artifactId> 
+		<version>1.0</version>
+		<scope>system</scope>
+		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/SCheckPlus.jar</systemPath>
+	</dependency>
+	
+	<dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-oauth2</artifactId>
+      <version>v1-rev155-1.25.0</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+  	<defaultGoal>install</defaultGoal>
+	<directory>${project.basedir}/target</directory>
+	<finalName>${artifactId}-${version}</finalName>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.7.0</version>
+          	<configuration>
+            	<source>1.8</source>
+                <target>1.8</target>
+                <encoding>UTF-8</encoding>
+          	</configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
