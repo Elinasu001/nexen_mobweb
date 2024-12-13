@@ -1,0 +1,152 @@
+
+    <div id="headerWrap">
+
+        <!-- allMenu -->
+        <!-- //topArea -->
+        <div class="topAreaWrap">
+            <div class="topArea bg-white"><!--[20241213 퍼블] white 클래스 추가, [D] 공통x 해당 페이지에서만 하얀색으로 변경-->
+                <div class="topArea-outer">
+                    <h1 class="topArea-pageTitle">렌탈 전문점 찾기</h1>
+                    <button class="topArea-back">뒤로가기</button>
+                    <div class="rTopBtn topArea-rightMenu">
+                        <a href="#" class="allMenu">전체메뉴</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- topArea //-->
+
+        <!-- //allMenuWrap -->
+        <div class="allMenuWrap">
+            <div class="allMenuBox">
+                <header>
+                    <div class="menu-logo">
+                        <a href="/main" class="logo" title="Next Level">Next Level</a>
+                    </div>
+                    <div class="topArea">
+                        <ul class="topMenu">
+                            <li><i class="ico02"></i><a href="/member/join">회원가입</a></li>
+                            <li><i class="ico03"></i><a href="/cart/cartView">장바구니</a></li>
+                            <li id="loginArea"><i class="ico04" id="loginLi"></i><a href="#" onclick="javascript:goTologin();">로그인</a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="allMenuClose"></a>
+                </header>
+
+                <form id="logoutFrm" name="logoutFrm" method="post" action="/login/logout">
+                    <input type="hidden" id="usrId" name="usrId" value="null">
+                </form>
+
+                <!-- allMenu content-->
+                <div class="content">
+                    <div class="siteMapWrap">
+                        <!--sMenuBox-->
+                        <div class="sMenuBox">
+                            <!--sMenu-->
+                            <div class="sMenu">
+                                <h3 class="type03">마이넥센</h3>
+                                <ul>
+                                    <li><a href="/mypage/orderList">나의 주문내역</a></li>
+                                    <li><a href="/mypage/myRentalList">나의 렌탈 관리</a></li>
+                                    <li><a href="/mypage/couponList">나의 쿠폰</a></li>
+                                    <li><a href="/mypage/myRecommend">나의 추천인 코드</a></li>
+                                    <li><a href="/mypage/questionList">1:1 문의</a></li>
+                                    <li><a href="/mypage/memberModifyPassword">회원정보 관리</a></li>
+                                    <li><a href="javascript:fn_safeKeyView();">인증번호 발급</a></li>
+                                </ul>
+                            </div>
+                            <!--sMenu-->
+
+                            <!--sMenu-->
+                            <div class="sMenu">
+                                <h3 class="type03">주문하기</h3>
+                                <ul>
+                                    <!-- <li><a href="/product/prdList?viewGbn=H">타이어</a></li> -->
+                                    <li><a onclick="openSizeFinder( 'num' );">차량번호로 찾기</a></li>
+                                    <li><a onclick="openSizeFinder( 'car' );">차종으로 찾기</a></li>
+                                    <li><a onclick="openSizeFinder( 'size' );">사이즈로 찾기</a></li>
+                                </ul>
+                            </div>
+                            <!--sMenu-->
+                            <!--sMenu-->
+                            <div class="sMenu">
+                                <h3 class="type03">혜택/서비스</h3>
+                                <ul>
+                                    <li><a href="/contents/o2oServiceIntro">O2O 서비스</a></li>
+                                    <li><a href="/contents/rentalServiceIntro">렌탈 서비스</a></li>
+                                    <li><a href="/contents/guaranteeSystem">보증제도 안내</a></li>
+                                </ul>
+                            </div>
+                            <!--sMenu-->
+                            <!--sMenu-->
+                            <div class="sMenu">
+                                <h3 class="type03">뉴스/<br>이벤트</h3>
+                                <ul>
+                                    <li><a href="/news/tireTipList">NEWS&amp;TIP</a></li>
+                                    <li><a href="/evt/evtList">이벤트</a></li>
+                                </ul>
+                            </div>
+                            <!--sMenu-->
+
+                            <!--sMenu-->
+                            <div class="sMenu">
+                                <h3 class="type03">고객지원</h3>
+                                <ul>
+                                    <li><a href="/bbs/noticeList">공지사항</a></li>
+                                    <li><a href="/bbs/qnaList">자주묻는 질문</a></li>
+                                    <li><a href="/bbs/counselRegister">상담하기</a></li>
+                                    <li><a href="/bbs/specialDealerSearchList">렌탈 전문점 찾기 </a></li>
+                                    <li><a href="/bbs/o2oSearchList">넥센 직영점 찾기 </a></li>
+                                </ul>
+                            </div>
+                            <!--sMenu-->
+                        </div>
+                        <!--sMenuBox-->
+                    </div>
+                </div>
+                <!-- allMenu content-->
+
+                <!-- customer -->
+                <div class="customer">
+                    <ul>
+                        <li class="fn ls01">고객센터 <span>1855-0100</span></li>
+                        <li>평일 09:00 ~ 18:00 / 토요일, 공휴일 휴무</li>
+                    </ul>
+                </div>
+                <!-- customer -->
+            </div>
+        </div>
+        <!-- allMenuWrap //-->
+        <!-- allMenu -->
+
+    </div>
+
+    <script>
+        $(document).ready(function(){
+
+            function AllMenu() {
+                let popupContentsH = $(window).outerHeight();
+                let popupContentsW = $(window).outerWidth();
+
+                $(".allMenu").click(function() {
+                    // console.log('메뉴열림');
+                    $('body').attr('data-position', 'true');
+                    $(".allMenuWrap").animate({ "right": 0 }, "fast" ).show();
+                    $(".allMenuWrap").css({
+                        'height': popupContentsH,
+                        'overflow-y': 'hidden'
+                    });
+                    $(".allMenuBox").css({
+                        'height': '100%',
+                        'overflow': 'auto'
+                    })
+                });
+
+                $(".allMenuClose").click(function() {
+                    $(".allMenuWrap").animate({ "right": '-' + popupContentsW }, "fast");
+                    $('body').removeAttr('data-position');
+                });
+            }AllMenu();
+        });
+    </script>
+
