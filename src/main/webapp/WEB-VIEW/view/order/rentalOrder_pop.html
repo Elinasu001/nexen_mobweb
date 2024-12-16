@@ -1,0 +1,301 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta name="format-detection" content="telephone=no, address=no, email=no">
+
+    <link rel="shortcut icon" href="../../img/common/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="../../css/jquery-ui.css">
+    <link type="text/css" rel="stylesheet" href="../../css/slick.css">
+    <link type="text/css" rel="stylesheet" href="../../css/slick-theme.css">
+    <link type="text/css" rel="stylesheet" href="../../css/css.css">
+    <link type="text/css" rel="stylesheet" href="../../css/new_layout.css">
+
+    <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-5T4LZPV"></script>
+    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-NZDR68JW"></script>
+    <script async="" src="//st2.exelbid.com/js/cts2.js"></script>
+    <script async="" defer="" src="https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js"></script>
+
+    <script type="text/javascript" src="../../js/lib/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../../js/util.js"></script>
+    <script type="text/javascript" src="../../js/lib/slick.min.js"></script>
+    <script type="text/javascript" src="../../js/lib/jquery.sticky.js"></script>
+    <script type="text/javascript" src="../../js/common_ui.js"></script>
+    <title>주문서 - 렌탈 전문점 찾기 | NEXT LEVEL</title>
+</head>
+
+<body>
+    <!-- //allWrap -->
+    <div class="allWrap" id="allWrap">
+        <!-- allWrap -->
+
+        <!-- //header 퍼블 예시-->
+        <div id="headerWrap">
+            <script>
+                $(document).ready(function () {
+                    $("#headerWrap").load("../header.html");
+                });
+            </script>
+        </div>
+        <!-- header 퍼블 예시-// -->
+
+        <!--subContentsWrap-->
+        <div class="subContentsWrap">
+            <main>
+
+            </main>
+        </div>
+        <!--subContentsWrap-->
+
+        <!--//주문서 - 전문점 찾기 팝업-->
+        <div class="fullPopup md-modal-3 shop-popup md-effect-1 md-close md-show" id="modal-Shop">
+            <div class="popContents popup-dark shop-search bg-white bg"><!--[20241213 퍼블] .bg-white, .bg 클래스 추가-->
+                <a href="#;" class="layPopClose md-close" onclick="fn_mapClose()"></a>
+                <header>
+                    <h2>전문점 찾기</h2>
+                </header>
+                <!--contents-->
+
+                <!-- LIST -->
+                <div id="shop-list" class="popup-contents-nobottom topCh">
+                    <div class="mapInfoBox custom-position">
+                        <div class="mapInfoTop type02"><!--[20241213 퍼블] 클래스 .type02 추가-->
+                            <!-- 찾기 검색 -->
+                            <div class="search-area-wrap inset-m bg"><!--[20241213 퍼블] 클래스 .bg 추가-->
+                                <div class="layout-c">
+                                    <!-- <div class="layout-c" style="display:none;"> -->
+                                    <div class="layout-r inline-m border-gray-bottom"><!--[20241213 퍼블] 클래스 .border-gray-bottom 추가-->
+                                        <select class="inline border-none" title="시/도 선택" onchange="selectSiGunGu();"
+                                            id="sido">
+                                            <option value="0">시/도 선택</option>
+
+                                            <option value="강원">강원</option>
+
+                                            <option value="경기">경기</option>
+
+                                            <option value="경남">경남</option>
+
+                                            <option value="경북">경북</option>
+
+                                            <option value="광주">광주</option>
+
+                                            <option value="대구">대구</option>
+
+                                            <option value="대전">대전</option>
+
+                                            <option value="부산">부산</option>
+
+                                            <option value="서울">서울</option>
+
+                                            <option value="세종">세종</option>
+
+                                            <option value="울산">울산</option>
+
+                                            <option value="인천">인천</option>
+
+                                            <option value="전남">전남</option>
+
+                                            <option value="전북">전북</option>
+
+                                            <option value="제주">제주</option>
+
+                                            <option value="충남">충남</option>
+
+                                            <option value="충북">충북</option>
+
+                                        </select>
+                                        <select class="inline border-none" title="시/군/구 선택" id="sigungu">
+                                            <option value="">시/군/구 선택</option>
+                                        </select>
+                                    </div>
+                                    <div class="layout-r"><!--[20241213 퍼블] 태그 추가-->
+                                        <input type="text" name="meajang" class="pl-0 trans-bg border-gray-bottom" id="meajang" title="매장명 입력란" placeholder="매장명을 입력해보세요"><!--[20241213 퍼블] 클래스 .border-gray-bottom 추가-->
+                                        <input type="hidden" id="meajangCd" value="">
+                                        <button type="button" class="btn btn-search img">검색하기</button><!--[20241213 퍼블] 검색 버튼 추가-->
+                                    </div>
+
+                                </div>
+                                <!-- <button type="button" class="go-view full-width inset-s">O2O 서비스 장착 전문점 한눈에 보기</button> [20241213 퍼블] 삭제 -->
+                                
+                                <!--//[20241213 퍼블] 추가-->
+                                <div class="btn-wrap">
+                                    <button type="button" class="btn btn-view" onclick="selectStoreAll('1');">한 눈에 보기</button>
+                                    <button type="button" class="btn btn-search" onclick="selectStore('1'); return false;">검색하기</button>
+                                </div>
+                                <!--[20241213 퍼블] 추가//-->
+
+                            </div>
+                            <!-- <button type="button" class="search-shop"><span></span>전문점 찾기</button> [20241213 퍼블] 삭제 -->
+                            
+                            <!-- 찾기 검색 -->
+                            <div class="count-box utility layout-r pl-m pr-m">
+                                <div class="utility-result-total pt-s pb-s">
+                                    <span>렌탈 전문점 검색결과</span><!--[20241213 퍼블] 텍스트 수정-->
+                                    <span class="totalCnt"><span id="storeListCnt">332</span>지점</span><!--[20241213 퍼블] 텍스트 수정-->
+                                </div>
+                                <div class="utility-result-map pt-s pb-s">
+                                    <button type="button" class="change-map pr-0"><span></span>지도</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+                        <div class="shop-search-result type02"><!--[20241213 퍼블] 클래스 .type02 추가-->
+                            <ul id="storeList">
+                                <li>
+                                    <div class="shop-search-single">
+                                        <div class="layout-c"><!--[20241213 퍼블] 클래스 .layout-c 변경-->
+                                            <div class="shop-content-box layout-c">
+                                                <ul><!--[20241213 퍼블] 클래스 .mb-m 삭제-->
+                                                    <li class="icoArea ic-recom">추천 렌탈 전문점</li><!--[20241213 퍼블] 추가-->
+
+                                                    <!--//[20241213 퍼블] 수정-->
+                                                    <li  id="nmClick" class="tit">
+                                                        <b>넥센타이어테크 은평점</b>
+                                                        <span class="num"><img src="../../img/product/map_star.png">4.5</span>
+                                                        <span class="num all-num">총 12건</span>
+                                                    </li>
+                                                    <!--[20241213 퍼블] 수정//-->
+
+                                                    <li class="txt">서울특별시 강남구 도곡로 143</li><!--[20241213 퍼블] 클래스 .txt 추가-->
+
+                                                </ul>
+                                                <div class="layout-r">
+                                                    <div class="shop-state-icon layout-r inline inline-s">
+                                                        <div class="state inline">
+                                                            <img src="../../img/common/state_ico02.png" alt="타이어">
+                                                            <span>타이어</span>
+                                                        </div>
+                                                        <div class="state inline">
+                                                            <img src="../../img/common/state_ico05.png" alt="세차">
+                                                            <span>세차</span>
+                                                        </div>
+                                                        <div class="state inline">
+                                                            <img src="../../img/common/state_ico03.png" alt="경정비">
+                                                            <span>경정비</span>
+                                                        </div>
+                                                        <div class="state inline">
+                                                            <img src="../../img/common/state_ico04.png" alt="겨울용">
+                                                            <span>겨울용</span>
+                                                        </div>
+                                                        <div class="state inline">
+                                                            <img src="../../img/common/state_ico06.png" alt="1급정비"><!--[20241213 퍼블] 1급정비 이미지 변경-->
+                                                            <span>1급정비</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--//[20241213 퍼블] 변경-->
+                                            <div class="shop-btn-box"><!--[20241213 퍼블]  inline text-right align-bottom layout-c 클래스 삭제-->
+                                                <div class="btn-box">
+                                                    <button type="button">이동하기</button>
+                                                    <button type="button">상세보기</button>
+                                                </div>
+                                                <button type="button" class="btn-select">선택하기</button>
+                                            </div>
+                                            <!--[20241213 퍼블] 변경//-->
+
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="shop-search-single">
+                                        <div class="layout-c"><!--[20241213 퍼블] 클래스 .layout-c 변경-->
+                                            <div class="shop-content-box layout-c">
+                                                <ul><!--[20241213 퍼블] 클래스 .mb-m 삭제-->
+                                                    <li class="icoArea ic-recom">추천 렌탈 전문점</li><!--[20241213 퍼블] 추가-->
+
+                                                    <!--//[20241213 퍼블] 수정-->
+                                                    <li  id="nmClick" class="tit">
+                                                        <b>넥센타이어테크 은평점</b>
+                                                        <span class="num"><img src="../../img/product/map_star.png">4.5</span>
+                                                        <span class="num all-num">총 12건</span>
+                                                    </li>
+                                                    <!--[20241213 퍼블] 수정//-->
+
+                                                    <li class="txt">서울특별시 강남구 도곡로 143</li><!--[20241213 퍼블] 클래스 .txt 추가-->
+
+                                                </ul>
+                                                <div class="layout-r">
+                                                    <div class="shop-state-icon layout-r inline inline-s">
+                                                        <div class="state inline">
+                                                            <img src="../../img/common/state_ico02.png" alt="타이어">
+                                                            <span>타이어</span>
+                                                        </div>
+                                                        <div class="state inline">
+                                                            <img src="../../img/common/state_ico05.png" alt="세차">
+                                                            <span>세차</span>
+                                                        </div>
+                                                        <div class="state inline">
+                                                            <img src="../../img/common/state_ico03.png" alt="경정비">
+                                                            <span>경정비</span>
+                                                        </div>
+                                                        <div class="state inline">
+                                                            <img src="../../img/common/state_ico04.png" alt="겨울용">
+                                                            <span>겨울용</span>
+                                                        </div>
+                                                        <div class="state inline">
+                                                            <img src="../../img/common/state_ico06.png" alt="1급정비"><!--[20241213 퍼블] 1급정비 이미지 변경-->
+                                                            <span>1급정비</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--//[20241213 퍼블] 변경-->
+                                            <div class="shop-btn-box"><!--[20241213 퍼블]  inline text-right align-bottom layout-c 클래스 삭제-->
+                                                <div class="btn-box">
+                                                    <button type="button">이동하기</button>
+                                                    <button type="button">상세보기</button>
+                                                </div>
+                                                <button type="button" class="btn-select">선택하기</button>
+                                            </div>
+                                            <!--[20241213 퍼블] 변경//-->
+
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="pagingFooter">
+                            <div class="paging" id="pagingMap">
+                                <button type="button" name="" class="product-list-more full-width inset-m">
+                                    <span>더보기</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- LIST -->
+            </div>
+        </div>
+        <!--주문서 - 전문점 찾기 팝업//-->
+
+        <!-- //footer 퍼블 예시-->
+        <div id="footerWrap">
+            <script>
+                $(document).ready(function () {
+                    $("#footerWrap").load("../footer.html");
+                });
+            </script>
+        </div>
+        <!-- footer 퍼블 예시-// -->
+
+        <div class="allBgWrap over-wrap">
+            <div id="bgFullImg">
+                <div class="customer-bg store"></div>
+            </div>
+        </div>
+
+    </div>
+    <!-- allWrap //-->
+</body>
+
+</html>
