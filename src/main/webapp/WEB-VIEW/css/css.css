@@ -2736,11 +2736,11 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 /** 팝업 - 공통**/
 /* bg 화이트로 들어갈 경우 */
-.popup-dark.bg-white header ,
-.popup-dark.bg-white header h2 { position: relative; height:56px; line-height: 56px; }
-.popup-dark.bg-white header { background: var(--sub-color); border-bottom:1px solid #DEDEDE; }
-.popup-dark.bg-white header h2 { font-size: 1.125rem; color:var(--pop-tit-color); }
-.popup-dark.bg-white .layPopClose { top:0px; right:0px; width:56px; height:56px; background: var(--ic-dark-close) no-repeat 50%/30px auto; }
+.popContents.bg-white header ,
+.popContents.bg-white header h2 { position: relative; height:56px; line-height: 56px; }
+.popContents.bg-white header { background: var(--sub-color); border-bottom:1px solid #DEDEDE; }
+.popContents.bg-white header h2 { font-size: 1.125rem; color:var(--pop-tit-color); }
+.popContents.bg-white .layPopClose { top:0px; right:0px; width:56px; height:56px; background: var(--ic-dark-close) no-repeat 50%/30px auto; }
 
 .fullPopup .popup-contents-nobottom.topCh { top:57px; }
 
@@ -2767,9 +2767,10 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .mapInfoTop.type02 .utility .utility-result-total > span.totalCnt > span { margin:0 8px; }
 
 /* 결과 리스트 */
-.icoArea.ic-recom { position: relative; display:inline-block; padding:6px 6px 6px 28px; font-size:14px; font-weight: 500; background: var(--m-color); color:var(--sub-color); }
+.icoArea.ic-recom { position: relative; display:inline-block; padding:6px 6px 6px 28px; font-size:14px; font-style: initial; font-weight: 500; background: var(--m-color); color:var(--sub-color); }
 .icoArea.ic-recom::before{ position: absolute; content: ""; width:20px; height:18px; left:6px; background:var(--ic-recommend) no-repeat 100%/20px auto; }
 .shop-search-result.type02 .shop-search-single li.icoArea.ic-recom { font-size: .75rem; }
+.popup-contents-nobottom .icoArea { margin-bottom:20px; }
 
 .shop-search-result.type02 { margin:initial; }
 .shop-search-result.type02 > ul > li { margin-top:15px; }
@@ -2792,8 +2793,8 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .shop-search-result.type02 .shop-search-single ul > li.txt { margin-top:5px; line-height: 1.4; font-size:0.875rem; color:var(--sub-4-color); }
 
 .shop-search-result.type02 .shop-search-single .shop-state-icon { margin-top:10px; }
-.shop-search-result.type02 .shop-search-single .shop-state-icon .state.inline { margin-right:initial; }
-.shop-search-result.type02 .shop-search-single .shop-state-icon .state img {  width:50px; }
+.shop-state-icon.type02 .state.inline { margin-right:initial; }
+.shop-state-icon.type02 .state img {  width:50px; }
 
 .shop-search-result.type02 .shop-btn-box { -webkit-box-flex: 0; display: -ms-flexbox; -ms-flex:initial; flex:initial; display: flex; gap:8px; margin-top:10px;}
 .shop-search-result.type02 .shop-btn-box button {display: -webkit-box;display: -ms-flexbox; display: flex; justify-content: center; width: 100%; margin-top: .25rem; padding: .75rem 0; height:40px; line-height: 1; border-radius: 3px; border: 1px solid #DEC3DE; background-color: #F3E9F3; font-size: .875rem; color:#832082; transition: background 0.1s ease, color 0.1s ease; }
@@ -2807,3 +2808,16 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .shop-search-result.type02 .shop-btn-box .btn-box { display: flex; width:100%; gap:8px; }
 
 
+
+/** 전문점 상세보기 **/
+/* 전문점 사진 */
+.map-detail-gallery {display:flex; flex-direction: column; }
+.map-detail-gallery > .thumb-detail { width:auto; height:271px;}
+.map-detail-gallery > .thumbs { display:flex; gap:12px; margin-top:11px; }
+.map-detail-gallery > .thumbs > a.thumb-img { max-width:80px; height:80px; }
+.map-detail-gallery > .thumb-detail > img,
+.map-detail-gallery > .thumbs > a.thumb-img > img { width:100%; height:100%;}
+.map-detail-gallery > .thumbs > a.thumb-img { opacity: 0.8; }
+.map-detail-gallery > .thumbs > a.thumb-img.on { opacity: 1; border: 2px solid var(--m-color); }
+
+.map-detail-container .map-detail-item { margin-top:20px; }

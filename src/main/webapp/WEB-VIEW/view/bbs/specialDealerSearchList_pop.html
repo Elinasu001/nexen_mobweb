@@ -1,0 +1,334 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta name="format-detection" content="telephone=no, address=no, email=no">
+
+    <link rel="shortcut icon" href="../../img/common/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="../../css/jquery-ui.css">
+    <link type="text/css" rel="stylesheet" href="../../css/slick.css">
+    <link type="text/css" rel="stylesheet" href="../../css/slick-theme.css">
+    <link type="text/css" rel="stylesheet" href="../../css/css.css">
+    <link type="text/css" rel="stylesheet" href="../../css/new_layout.css">
+
+    <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-5T4LZPV"></script>
+    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-NZDR68JW"></script>
+    <script async="" src="//st2.exelbid.com/js/cts2.js"></script>
+    <script async="" defer="" src="https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js"></script>
+
+    <script type="text/javascript" src="../../js/lib/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../../js/util.js"></script>
+    <script type="text/javascript" src="../../js/lib/slick.min.js"></script>
+    <script type="text/javascript" src="../../js/lib/jquery.sticky.js"></script>
+    <script type="text/javascript" src="../../js/common_ui.js"></script>
+    <title>공통 | NEXT LEVEL</title>
+</head>
+
+<body>
+    <!-- //allWrap -->
+    <div class="allWrap" id="allWrap">
+        <!-- allWrap -->
+
+        <!-- //header 퍼블 예시-->
+        <div id="headerWrap">
+            <script>
+                $(document).ready(function () {
+                    $("#headerWrap").load("../header.html");
+                });
+            </script>
+        </div>
+        <!-- header 퍼블 예시-// -->
+
+        <!--subContentsWrap-->
+        <div class="subContentsWrap">
+            <main>
+
+            </main>
+        </div>
+        <!--subContentsWrap-->
+
+        <div class="fullPopup md-modal-3 md-effect-1 md-show" id="modalAgencyDetl">
+            <div class="popContents order-basket">
+                <a href="#" onclick="javascript:fn_popupClose();" class="layPopClose md-close"></a>
+
+                <header class="title" id="agencyHeader">
+                    <h2 class="f_ell">넥센타이어 양평동직영점</h2>
+                    <!-- [20241213 퍼블] 삭제 <div class="state">
+                        <img src="../img/common/state_big_ico01.png" alt="추천">
+                        <img src="../img/common/state_big_ico02.png" alt="타이어">
+                    </div> -->
+                </header>
+
+                <!--contents-->
+                <div class="popup-contents-nobottom">
+                    <div class="inset-ml">
+                        <p class="icoArea ic-recom">추천 렌탈 전문점</p><!--[20241213 퍼블] 기존 이미지 삭제 후 추가-->
+
+                        <div class="map-detail-container"> <!--[20241213 퍼블] 태그 추가-->
+                            <!--//[20241213 퍼블] 추가-->
+                            <div class="map-detail-gallery mapDetailImg"><!--[D] .mapDetailImg 클래스로 스크립트 적용 중-->
+                                <div class="thumb-detail">
+                                    <img src="../../img/mypage/sample/front.png" alt="">
+                                </div>
+                                <div class="thumbs">
+                                    <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/front.png" alt=""></a>
+                                    <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/panel.png" alt=""></a>
+                                    <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/tire.png" alt=""></a>
+                                    <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/tire.png" alt=""></a><!--[D] 이미지가 없을 경우 선택 안됨 처리-->
+                                </div>
+                            </div>
+                            <!--[20241213 퍼블] 추가//-->
+
+                            <div class="map-detail-item"><!--[20241213 퍼블] 태그 추가-->
+                                <div class="submit layout-c mb-m border-bottom">
+                                    <p class="black">주소</p>
+                                    <p class="pt-s addressView" id="agencyAddr"><span>서울특별시 영등포구 선유로 255</span><button type="button" class="road"><b>길찾기</b><span></span></button>
+                                    </p>
+                                </div>
+
+                                <div class="submit layout-c mb-m border-bottom">
+                                    <p class="black">전화번호</p>
+                                    <p class="pt-s pb-s" id="agencyTel">02-588-9811</p>
+                                </div>
+
+                                <div class="submit layout-c mb-m border-bottom">
+                                    <p class="black">영업시간</p>
+                                    <p class="pt-s pb-s" id="agencyBizTime"></p>
+                                </div>
+
+                                <div class="submit layout-c border-bottom">
+                                    <p class="black">취급품목</p>
+                                    <p class="pt-s pb-s">
+                                        <!-- 상태아이콘 -->
+                                    </p>
+                                    <div class="pb-s">
+                                        <div class="shop-state-icon layout-r inline inline-s type02" id="agencyWkTp"><!--[20241213 퍼블] 클래스 .type02 추가-->
+                                            <div class="state inline">
+                                                <img src="../../img/common/state_ico02.png" alt="타이어">
+                                                <!-- <span>타이어</span> 삭제-->
+                                            </div>
+                                            <div class="state inline">
+                                                <img src="../../img/common/state_ico05.png" alt="세차">
+                                                <!-- <span>세차</span> 삭제-->
+                                            </div>
+                                            <div class="state inline">
+                                                <img src="../../img/common/state_ico03.png" alt="경비">
+                                                <!-- <span>경비</span> 삭제-->
+                                            </div>
+                                            <div class="state inline">
+                                                <img src="../../img/common/state_ico04.png" alt="겨울용">
+                                                <!-- <span>겨울용</span> 삭제-->
+                                            </div>
+                                            <div class="state inline">
+                                                <img src="../../img/common/state_ico06.png" alt="1급 정비">
+                                                <!-- <span>1급 정비</span> 삭제-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 상태아이콘 -->
+                                    <p></p>
+                                </div>
+
+                                <div class="submit layout-c border-bottom">
+                                    <p class="black">탈착기</p>
+                                    <p class="pt-s pb-s pInfo" id="agencyOpt1"><span>20인치 (수입차) (런플랫)</span></p>
+                                </div>
+
+                                <div class="submit layout-c border-bottom">
+                                    <p class="black">얼라인먼트</p>
+                                    <p class="pt-s pb-s pInfo" id="agencyOpt2"><span>일반 얼라인먼트(수입차 가능)</span></p>
+                                </div>
+
+                                <div class="submit layout-c border-bottom">
+                                    <p class="black">밸런스</p>
+                                    <p class="pt-s pb-s" id="agencyOpt3"><span>진동 밸런스</span></p>
+                                </div>
+
+                                <p class="desc small font-gray po_m10">
+                                    ※ 수입차 및 대형 차량의 경우 고급형 장비가 있는 곳에서 교체하시기 바랍니다.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="mapView">
+
+                        </div>
+
+                        <!--[20241213 퍼블] slider 삭제-->
+                    </div>
+                </div>
+                <!--contents-->
+            </div>
+        </div>
+
+        <!-- //footer 퍼블 예시-->
+        <div id="footerWrap">
+            <script>
+                $(document).ready(function () {
+                    $("#footerWrap").load("../footer.html");
+                });
+            </script>
+        </div>
+        <!-- footer 퍼블 예시-// -->
+
+        <div class="allBgWrap over-wrap">
+            <div id="bgFullImg">
+                <div class="customer-bg store"></div>
+            </div>
+        </div>
+
+    </div>
+    <!-- allWrap //-->
+</body>
+
+<script>
+    $(document).ready(function () {
+        /**
+         * 전문점 찾기 팝업 - 상세 이미지
+         *
+         */
+        function detailGalleryHandlers() {
+            // 갤러리
+            $(".mapDetailImg").each(function () {
+                var $gallery = $(this);
+                var $mainImage = $gallery.find(".thumb-detail img");
+                var $thumbnailLinks = $gallery.find(".thumbs .thumb-img");
+
+                // 첫 번째 썸네일 이미지 초기화
+                var firstThumbnailLink = $thumbnailLinks.find("img[src]").first();
+                var firstThumbnailSrc = firstThumbnailLink.attr("src");
+
+                if (firstThumbnailSrc) {
+                    $mainImage.attr("src", firstThumbnailSrc);
+                    firstThumbnailLink.closest(".thumb-img").addClass("on").attr("title", "선택됨");
+                }
+
+                // 썸네일 링크 이미지가 없는 경우
+                $thumbnailLinks.each(function () {
+                    var $img = $(this).find("img");
+                    var imgSrc = $img.attr("src");
+
+                    if (!imgSrc) {
+                        $(this).attr("tabindex", "-1").removeClass("on").removeAttr("title");
+                    } else {
+                        $(this).attr("tabindex", "0");
+                    }
+                });
+
+                // 클릭 및 키보드 이벤트
+                $thumbnailLinks.on("click keydown", function (e) {
+                    var $img = $(this).find("img");
+                    var imgSrc = $img.attr("src");
+
+                    if (!imgSrc) {
+                        e.preventDefault();
+                        return;
+                    }
+
+                    if (e.type === "click" || (e.type === "keydown" && (e.key === "Enter" || e.keyCode === 13))) {
+                        e.preventDefault();
+
+                        $mainImage.attr("src", imgSrc);
+
+                        $thumbnailLinks.removeClass("on").removeAttr("title");
+                        $(this).addClass("on").attr("title", "선택됨");
+                    }
+                });
+            });
+        }
+        detailGalleryHandlers();
+
+
+        /**
+         * 여러 요소 on 클래스 추가 && title 속성 설정
+         */
+        function selectBtnHandlers() {
+            $(".onClass").each(function () {
+                var $container = $(this);
+                var $btns = $container.find("button, a");
+
+                $btns.on('click', function () {
+                    var $clickedBtn = $(this);
+                    $btns.removeClass('on').removeAttr('title');
+                    $clickedBtn.addClass('on').attr('title', '선택됨');
+                });
+            });
+        }
+        selectBtnHandlers();
+
+        /**
+         * 더보기 버튼 [20241206 퍼블] :: 더보기 버튼 변경
+         */
+        function expandableTextHandlers() {
+            $(".btnExpandTxt").each(function () {
+                var $container = $(this);
+                var $btn = $container.find(".btn-plus");
+                var $text = $container.find("span");
+
+                // 컨텐츠의 실제 높이와 제한 높이를 비교
+                var originalHeight = $text[0].scrollHeight;
+                var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
+
+                if (originalHeight > maxHeight) {
+                    $btn.show();
+                    $container.addClass("collapsed");
+                } else {
+                    $btn.hide();
+                }
+
+                $btn.on("click", function () {
+                    $container.toggleClass("expanded");
+                    $container.toggleClass("collapsed");
+                    $btn.text($container.hasClass("expanded") ? "" : "더보기");
+                });
+            });
+        }
+        expandableTextHandlers();
+
+        $("#btnDetail").on("click", function(){
+            $("body").addClass("bgFix");
+            $(".popupWrap").addClass("md-show");
+        });
+
+        $("#btnReview").on("click", function(){
+            $("body").addClass("bgFix");
+            $(".popupWrap").addClass("md-show");
+        });
+
+        function fn_popupClose(){
+            $("body").removeClass("bgFix");
+            $(".popupWrap").removeClass("md-show");
+        }
+
+        /**
+         * 상세보기 이용후기 포커스
+        */
+        function popUpFocus() {
+            var btnDetail = document.querySelector("#btnDetail");
+            var btnReview = document.querySelector("#btnReview");
+
+            var focusWrap = document.querySelector(".scrollBox");
+            var reviewFocus = document.querySelector("#reviewFocus");
+
+            btnReview.addEventListener("click", function() {
+                var reviewOffset = reviewFocus.getBoundingClientRect().top + focusWrap.scrollTop - 140;
+                focusWrap.scrollTop = reviewOffset;
+            });
+
+            btnDetail.addEventListener("click", function() {
+                focusWrap.scrollTop = 0;
+            });
+        }
+
+        popUpFocus();
+
+    });
+
+
+</script>
+
+</html>
