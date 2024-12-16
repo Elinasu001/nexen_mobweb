@@ -760,7 +760,7 @@ span.alert {font-size:.65rem; color:blue; font-weight:bold; text-decoration: und
 .utility .utility-sort select {width: 70px; border: none; background-color: transparent; background-image: url('../img/product/ico_select_arrow.svg'); background-repeat: no-repeat; background-position: right 0 top 50%; font-size: .875rem;}
 .utility .utility-result {-webkit-box-pack: end;-ms-flex-pack: end;justify-content: flex-end;}
 .utility .utility-result-total {padding-right: .5rem; -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1;}
-.utility .utility-result-total span {font-family: 'Spoqa Han Sans Bold', sans-serif; font-weight: bold;}
+.utility .utility-result-total span {/*font-family: 'Spoqa Han Sans Bold', sans-serif; */font-weight: bold;}
 .utility .utility-result-total span:first-child {color: #999;}
 .utility .utility-result-total span:last-child {margin-left: 5px; color: #333;}
 .utility .utility-filter {-webkit-box-flex: 1;-ms-flex-positive: 1;flex-grow: 1;}
@@ -2714,6 +2714,9 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 	--sub-2-color: #222222;
 	--sub-3-color: #333333;
 	--sub-4-color: #444444;
+	--sub-6-color: #666666;
+
+	--bg-color: #F3F3F3;
 }
 
 /** 헤더 - 공통 **/
@@ -2733,6 +2736,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 /** 전문점 찾기 **/
 .layout-r { position: relative; }
+.mapInfoTop.type02 .search-area-wrap-rental { padding:1rem 1rem 0.625rem 1rem; }
 .mapInfoTop.type02 .search-area-wrap-rental > .tit { margin-top: 14px; font-size :.875rem; color:var(--sub-3-color); }
 .mapInfoTop.type02 .search-area-wrap-rental > h3 {  margin: 8px 0; font-size:1.25rem; }
 
@@ -2743,11 +2747,16 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .mapInfoTop.type02 .btn.btn-search { background-color:var(--sub-4-color); color:var(--sub-color); }
 .mapInfoTop.type02 .btn.btn-search.img { position: absolute; right:10px; bottom:0; transform: translateY(-50%); width:23px; height:23px; background-image: var(--ic-search); background-repeat: no-repeat; background-size: 23px; }
 
-/* 결과 리스트 */
-.icoArea.ic-recom { position: relative; display:inline-block; padding:6px 6px 6px 32px; font-size:14px; font-weight: 500; background: var(--m-color); color:var(--sub-color); }
-.icoArea.ic-recom::before{ position: absolute; content: ""; width:22px; height:20px; left:6px; background:var(--ic-recommend) no-repeat 100%/22px auto; }
-.shop-search-result.type02 .shop-search-single li.icoArea.ic-recom { font-size: .75rem; }
+.mapInfoTop.type02 .utility { height:40px; line-height: 40px; font-size:0.875rem; border-top:1px solid var(--bg-color); }
+.mapInfoTop.type02 .utility .utility-result-total > span { color:var(--sub-6-color); font-weight: 500; }
+.mapInfoTop.type02 .utility .utility-result-total > span.totalCnt { position:relative; margin-left:8px; color:var(--sub-3-color); font-weight: 500; }
+.mapInfoTop.type02 .utility .utility-result-total > span.totalCnt::before { content: ""; position:absolute; left:0; top:52%; transform: translateY(-50%); width:1px; height: 16px; background: var(--sub-6-color); }
+.mapInfoTop.type02 .utility .utility-result-total > span.totalCnt > span { margin:0 8px; }
 
+/* 결과 리스트 */
+.icoArea.ic-recom { position: relative; display:inline-block; padding:6px 6px 6px 28px; font-size:14px; font-weight: 500; background: var(--m-color); color:var(--sub-color); }
+.icoArea.ic-recom::before{ position: absolute; content: ""; width:20px; height:18px; left:6px; background:var(--ic-recommend) no-repeat 100%/20px auto; }
+.shop-search-result.type02 .shop-search-single li.icoArea.ic-recom { font-size: .75rem; }
 
 .shop-search-result.type02 { margin:initial; }
 .shop-search-result.type02 > ul > li { margin-top:15px; }
@@ -2764,11 +2773,12 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 .shop-search-result.type02 .shop-search-single ul > li.tit { margin-top:10px; }
 .shop-search-result.type02 .shop-search-single ul > li.tit > b { font-size: 1.125rem; }
-.shop-search-result.type02 .shop-search-single ul > li.tit > .num { padding-left:15px; font-size: 13px; font-weight: 600; color:var(--txt-color);} 
+.shop-search-result.type02 .shop-search-single ul > li.tit > .num { padding-left:15px; font-size: 13px; font-weight: 600; color:var(--sub-2-color);} 
 .shop-search-result.type02 .shop-search-single ul > li.tit > .num > img { padding-right:3px; }
 .shop-search-result.type02 .shop-search-single ul > li.tit > .num.all-num { padding-left:10px; font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }
-.shop-search-result.type02 .shop-search-single ul > li.txt { margin-top:5px; line-height: 1.4; }
+.shop-search-result.type02 .shop-search-single ul > li.txt { margin-top:5px; line-height: 1.4; font-size:0.875rem; color:var(--sub-4-color); }
 
+.shop-search-result.type02 .shop-search-single .shop-state-icon { margin-top:10px; }
 .shop-search-result.type02 .shop-search-single .shop-state-icon .state.inline { margin-right:initial; }
 .shop-search-result.type02 .shop-search-single .shop-state-icon .state img {  width:50px; }
 
@@ -2777,5 +2787,12 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .shop-search-result.type02 .shop-btn-box button:hover { background: #832082; border:1px solid #832082; color:#FFFFFF;}
 .shop-search-result.type02 .shop-btn-box button:last-child,
 .shop-search-result.type02 .shop-btn-box.accordion.on::after button:first-child { margin: initial;}
+
+/* 버튼 3개일 경우 - 전문점 찾기 : 주문서*/
+.shop-search-result.type02 .shop-btn-box:has(.btn-select) { flex-direction: column; }
+.shop-search-result.type02 .shop-btn-box .btn-box { display: flex; width:100%; gap:8px; }
+
+
+
 
 
