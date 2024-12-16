@@ -51,7 +51,7 @@
         <!--subContentsWrap-->
 
         <div class="fullPopup md-modal-3 md-effect-1 md-show" id="modalAgencyDetl">
-            <div class="popContents order-basket">
+            <div class="popContents order-basket bg-white bg02"><!--[20241213 퍼블] 클래스 .bg-white, .bg02 추가-->
                 <a href="#" onclick="javascript:fn_popupClose();" class="layPopClose md-close"></a>
 
                 <header class="title" id="agencyHeader">
@@ -64,7 +64,7 @@
 
                 <!--contents-->
                 <div class="popup-contents-nobottom">
-                    <div class="inset-ml">
+                    <div class="inset-m"><!--[20241213 퍼블] 클래스 .inset-m 로 변경-->
                         <p class="icoArea ic-recom">추천 렌탈 전문점</p><!--[20241213 퍼블] 기존 이미지 삭제 후 추가-->
 
                         <div class="map-detail-container"> <!--[20241213 퍼블] 태그 추가-->
@@ -85,7 +85,12 @@
                             <div class="map-detail-item"><!--[20241213 퍼블] 태그 추가-->
                                 <div class="submit layout-c mb-m border-bottom">
                                     <p class="black">주소</p>
-                                    <p class="pt-s addressView" id="agencyAddr"><span>서울특별시 영등포구 선유로 255</span><button type="button" class="road"><b>길찾기</b><span></span></button>
+                                    <p class="pt-s pb-s addressView" id="agencyAddr"><!--[20241213 퍼블]  클래스 .pb-s  추가-->
+                                        서울특별시 영등포구 선유로 255
+                                        <!-- <button type="button" class="road"><b>길찾기</b>
+                                            <span></span>
+                                        </button> 삭제 -->
+                                        <button type="button" class="type18">길찾기</button><!--[20241213 퍼블] 수정-->
                                     </p>
                                 </div>
 
@@ -96,7 +101,10 @@
 
                                 <div class="submit layout-c mb-m border-bottom">
                                     <p class="black">영업시간</p>
-                                    <p class="pt-s pb-s" id="agencyBizTime"></p>
+                                    <p class="pt-s pb-s" id="agencyBizTime">
+                                        (월~금) 09:00-18:00  |  (토) 09:00-17:00<br/>
+                                        (일) 휴일  |  (공휴일) 휴일
+                                    </p>
                                 </div>
 
                                 <div class="submit layout-c border-bottom">
@@ -146,15 +154,221 @@
                                     <p class="black">밸런스</p>
                                     <p class="pt-s pb-s" id="agencyOpt3"><span>진동 밸런스</span></p>
                                 </div>
-
-                                <p class="desc small font-gray po_m10">
-                                    ※ 수입차 및 대형 차량의 경우 고급형 장비가 있는 곳에서 교체하시기 바랍니다.
-                                </p>
+                                <p class="desc small font-gray po_m10">※ 엔진오일 및 브레이크 패드 교환 공임은 별도입니다.</p><!--[20241213 퍼블] 추가-->
+                                <p class="desc small font-gray po_m10">※ 수입차 및 대형 차량의 경우 고급형 장비가 있는 곳에서 교체하시기 바랍니다.</p>
 
                             </div>
                         </div>
 
-                        <div class="mapView">
+                        <!--//[20241213 퍼블] 추가-->
+                        <div id="reviewFocus" class="review-container">
+                            <h3>넥센타이어테크 역삼점 <span>솔직후기</span></h3>
+                            <div class="review-box">
+                                <div class="review-num">
+                                    <ul>
+                                        <li>
+                                            <span>사용자 총 평점</span>
+                                            <p class="num">4.5</p>
+                                            <div class="star-box"><span class="star" style="width:80%;"></span></div><!--[D] 평점 width로 컨트롤-->
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="review-satisfaction">
+                                    <ul>
+                                        <li><span><b>정착 응대</b> 만족도</span><p class="star-box"><span class="star" style="width:80%;"></span></p></li><!--[D] 평점 width로 컨트롤-->
+                                        <li><span><b>렌탈 혜택 설명</b> 만족도</span><p class="star-box"><span class="star" style="width:60%;"></span></p></li>
+                                        <li><span><b>친절</b> 만족도</span><p class="star-box"><span class="star" style="width:40%;"></span></p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="review-controls">
+                                <div class="review-header">
+                                    <div class="view-count">
+                                        <span>솔직 이용 후기</span><span><b class="num">1,203</b>건</span>
+                                    </div>
+                                    <div class="view-mode onClass">
+                                        <button type="button" class="on">최신순</button>
+                                        <button type="button">평점순</button>
+                                    </div>
+                                </div>
+                                <div class="review-item">
+                                    <ul>
+                                        <li>
+                                            
+                                            <div class="review-area">
+                                                <div class="review-info">
+                                                    <div class="user"><img src="../../img/common/ico_user.png" alt=""></div>
+                                                    <div class="user-info">
+                                                        <p class="name"><span><b>권*태</b> 고객님</span></p>
+                                                        <!--[D] 평점 width로 컨트롤-->
+                                                        <div class="star-item">
+                                                            <p class="star-box"><span class="star" style="width:100%;"></span></p><span class="num"><b>5.0</b> / 5.0</span>
+                                                            <span class="r-date">2024-10-10</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="review-cont">
+                                                    <p class="btnExpandTxt"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
+                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. </span>
+                                                        <button type="button" class="btn-plus" style="display: none;">더보기</button>
+                                                    </p>
+                                                    <ul class="review-txt">
+                                                        <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
+                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
+                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
+                                                    </ul>
+                                                </div>
+            
+                                                <!--[D]: 시그니처 Case -->
+                                                <div class="order-card signature">
+                                                    
+                                                    <img src="../../img/common/sample_tire01.png" alt="빈 이미지"><!--[D] 이미지 : DB 관리-->
+                                                    <div class="order-cont">
+                                                        <div class="card-info">
+                                                            <p class="card-label">
+                                                                <em class="tit"><img src="../../img/common/ft-style-signature.png" alt="signature"></em>
+                                                                <em>승용차용</em>
+                                                                <em>사계절용</em>
+                                                            </p>
+                                                            <p class="img"><!--[D] 이미지 : DB 관리  [20241230 퍼블]- 태그 추가 및 DB "이미지" 들어가는 Case-->
+                                                                <img src="../../img/common/sample_supreme.png" alt="빈 이미지">
+                                                            </p>
+                                                            <span>205/65R16</span>
+                                                        </div>
+                                                        <a href="javascript:void(0);" class="btn-order">렌탈 주문하기</a>
+                                                    </div>
+
+                                                </div>
+            
+                                            </div>
+                                        </li>
+            
+                                        <li>
+            
+                                            
+                                            <div class="review-area">
+                                                <div class="review-info">
+                                                    <div class="user"><img src="../../img/common/ico_user.png" alt=""></div>
+                                                    <div class="user-info">
+                                                        <p class="name"><span><b>권*태</b> 고객님</span></p>
+                                                        <!--[D] 평점 width로 컨트롤-->
+                                                        <div class="star-item">
+                                                            <p class="star-box"><span class="star" style="width:100%;"></span></p><span class="num"><b>5.0</b> / 5.0</span>
+                                                            <span class="r-date">2024-10-10</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="review-cont">
+                                                    <p class="btnExpandTxt collapsed"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
+                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
+                                                        <button type="button" class="btn-plus">더보기</button>
+                                                    </p>
+                                                    <ul class="review-txt">
+                                                        <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
+                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
+                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
+                                                    </ul>
+                                                </div>
+                                                <!--[D]: 프리미엄 Case -->
+                                                <div class="order-card premium">
+                                                    
+                                                    <img src="../../img/common/sample_tire02.png" alt="빈 이미지"><!--[D] 이미지 : DB 관리-->
+                                                    <div class="order-cont">
+                                                        <div class="card-info">
+                                                            <p class="card-label">
+                                                                <em class="tit"><img src="../../img/common/ft-style-premium.png" alt="premium"></em>
+                                                                <em>승용차용</em>
+                                                                <em>사계절용</em>
+                                                            </p>
+                                                            <p class="img"><!--[D] 텍스트 : DB 관리  [20241230 퍼블]- 태그 추가 및 DB "텍스트" 들어가는 Case-->
+                                                                NPRIZ_AHB
+                                                            </p>
+                                                            <span>205/65R16</span>
+                                                        </div>
+                                                        <a href="javascript:void(0);" class="btn-order">렌탈 주문하기</a>
+                                                    </div>
+                                                </div>
+            
+                                            </div>
+                                        </li>
+            
+                                        <li>
+
+                                            <div class="review-area">
+                                                <div class="review-info">
+                                                    <div class="user"><img src="../../img/common/ico_user.png" alt=""></div>
+                                                    <div class="user-info">
+                                                        <p class="name"><span><b>권*태</b> 고객님</span></p>
+                                                        <!--[D] 평점 width로 컨트롤-->
+                                                        <div class="star-item">
+                                                            <p class="star-box"><span class="star" style="width:100%;"></span></p><span class="num"><b>5.0</b> / 5.0</span>
+                                                            <span class="r-date">2024-10-10</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="review-cont">
+                                                    <p class="btnExpandTxt collapsed"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
+                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
+                                                        <button type="button" class="btn-plus">더보기</button>
+                                                    </p>
+                                                    <ul class="review-txt">
+                                                        <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
+                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
+                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
+                                                    </ul>
+                                                </div>
+                                                <!--[D]: 일반 Case -->
+                                                <div class="order-card origin">
+                                                    <img src="../../img/common/sample_tire02.png" alt="빈 이미지"><!--[D] 이미지 : DB 관리-->
+                                                    <div class="order-cont">
+                                                        <div class="card-info">
+                                                            <p class="card-label">
+                                                                <em>승용차용</em>
+                                                                <em>사계절용</em>
+                                                            </p>
+                                                            <p class="img"><!--[D] 이미지 : DB 관리-->
+                                                                <img src="../../img/common/sample_ah8.png" alt="빈 이미지">
+                                                            </p>
+                                                            <span>205/65R16</span>
+                                                        </div>
+                                                        <a href="javascript:void(0);" class="btn-order">렌탈 주문하기</a>
+                                                    </div>
+                                                </div>
+            
+                                            </div>
+                                        </li>
+            
+                                    </ul>
+                                </div>
+                                <div class="btn-wrap">
+                                    <button type="button" class="btn-view"><b>+ 솔직이용후기</b><span>더보기</span></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--[20241213 퍼블] 추가//-->
+                        <div class="map-container">
+                            <div class="map-box">
+                                <p>위치 확인하기</p>
+                                <div class="mapView"></div>
+                            </div>
+                            <div class="map-info">
+                                <img src="../../img/common/ft-style-map-tit.png" alt="">
+                                <h3>넥센타이어테크 역삼점</h3>
+                                <ul class="cont">
+                                    <li class="icon ico-loacation">서울 강남구 도곡로 143 1층</li>
+                                    <li class="icon ico-date">(월~금) 09:00-18:00  |  (토) 09:00-17:00
+                                        (일) 휴일  |  (공휴일) 휴일</li>
+                                    <li class="icon ico-phone">02-1234-5678</li>
+                                    <li class="icon ico-intro"><!--[20241212 퍼블] 텍스트 변경-->
+                                        안녕하세요. <span>OOO</span>점 입니다.
+                                        타이어 교체 시 어려움을 느끼셨다고요?
+                                        저희 매장에 방문해 주시면 최고의 타이어 교체 서비스를 제공해드리기 위해 열심히 노력하겠습니다.
+                                        감사합니다.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
 
                         </div>
 
