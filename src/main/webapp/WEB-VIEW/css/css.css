@@ -2773,6 +2773,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 /** 전문점 찾기 **/
 .layout-r { position: relative; overflow: hidden; }
 /* .mapInfoTop.type02 .border-gray-bottom { border-bottom: 1px solid var(--sub-9-color); } */
+.mapInfoTop.type02 .search-area-wrap { background:initial; }
 .mapInfoTop.type02 .search-area-wrap-rental { padding:1rem 1rem 0.625rem 1rem; }
 .mapInfoTop.type02 .search-area-wrap-rental > .tit { margin-top: 14px; font-size :.875rem; color:var(--sub-3-color); }
 .mapInfoTop.type02 .search-area-wrap-rental > h3 {  margin: 8px 0; font-size:1.25rem; }
@@ -2794,7 +2795,8 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .icoArea.ic-recom { position: relative; display:inline-block; padding:6px 6px 6px 28px; font-size:14px; font-style: initial; font-weight: 500; background: var(--m-color); color:var(--sub-color); }
 .icoArea.ic-recom::before{ position: absolute; content: ""; width:20px; height:18px; left:6px; background:var(--ic-recommend) no-repeat 100%/20px auto; }
 .shop-search-result.type02 .shop-search-single li.icoArea.ic-recom { font-size: .75rem; }
-.popup-contents-nobottom .icoArea { margin-bottom:20px; }
+/* .popup-contents-nobottom .icoArea { margin-bottom:20px; } */
+.fullPopup .inset-m .icoArea { margin-bottom:20px; }
 
 .shop-search-result.type02 { margin:initial; }
 .shop-search-result.type02 > ul > li { margin-top:15px; }
