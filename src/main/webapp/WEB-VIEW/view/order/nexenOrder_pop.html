@@ -59,6 +59,17 @@
                 </header>
                 <!--contents-->
 
+                <!-- //지도 영역-->
+                <div id="shop-map" class="popup-map popup-contents-nobottom" style="display: none;"><!--[20241213 퍼블] popup-contents-nobottom 추가-->
+                    <div id="storeInfo" class="shop-search-single" style="display: none; height: 32px;"></div>
+                    <div class="popup-map-ui">
+                        <button type="button" class="btn-position">현재위치</button>
+                        <button type="button" class="btn-map-list change-list"><span></span><b>목록</b></button>
+                    </div>
+                    <div id="mapDiv"></div>
+                </div>
+                <!-- 지도 영역//-->
+
                 <!-- LIST -->
                 <div id="shop-list" class="popup-contents-nobottom topCh">
                     <div class="mapInfoBox custom-position">
@@ -274,6 +285,9 @@
                     </div>
                 </div>
                 <!-- LIST -->
+
+                
+
             </div>
         </div>
         <!--주문서 - 전문점 찾기 팝업//-->
