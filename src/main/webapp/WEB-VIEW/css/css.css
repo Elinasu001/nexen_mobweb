@@ -1091,8 +1091,8 @@ span.alert {font-size:.65rem; color:blue; font-weight:bold; text-decoration: und
 .popup-map {position: relative;}
 .popup-map .shop-search-single {position: fixed; z-index: 4200; bottom: 0; padding: 1rem;}
 .popup-map-ui .btn-position {position: absolute; z-index: 4200; top: 1rem; left: 1rem; display: block; width: 40px; height: 40px; padding: .5rem; text-indent: -9999px; border-radius: 100px; background: url('../img/common/ico_now_position.png') no-repeat center center/20px; background-color: #fff; -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, .31); box-shadow: 0 5px 5px rgba(0, 0, 0, .31);}
-.popup-map-ui .btn-map-list {position: absolute; z-index: 4100; top: 1rem; right: 1rem; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; padding: .5rem 1rem; color: #fff; border-radius: 100px; background-color: #801494; -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, .31); box-shadow: 0 5px 5px rgba(0, 0, 0, .31);}
-.popup-map-ui .btn-map-list b {margin-left: .5rem; font-family: 'Spoqa Han Sans Bold', sans-serif; line-height: 1; -ms-flex-item-align: center; align-self: center;}
+.popup-map-ui .btn-map-list {position: absolute; z-index: 4100; top: 1rem; right: 1rem; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-direction: row; flex-direction: row; padding: .5rem 1rem; color: #fff; border-radius: 100px; background-color: #832082; -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, .31); box-shadow: 0 5px 5px rgba(0, 0, 0, .31);}
+.popup-map-ui .btn-map-list b {margin-left: .5rem; font-family: 'Spoqa Han Sans', sans-serif; font-weight:400; line-height: 1; -ms-flex-item-align: center; align-self: center;}
 .popup-map-ui .btn-map-list span {display: inline-block; overflow: hidden; -webkit-box-flex: 0; -ms-flex: 0 0 20px; flex: 0 0 20px; width: 20px; height: 20px; background: url('../img/common/ico_list.png') no-repeat center center/16px; -ms-flex-item-align: center; align-self: center;}
 
 .ico-kakaopay {display: inline-block; overflow: hidden; width: 53px; height: 23px; text-indent: -9999px; background: url('../img/order/kakaopay.png') no-repeat 0 center/90%;}
@@ -2878,7 +2878,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .map-detail-container .map-detail-item .serviceState > ul { display:flex; gap:10px;  flex-wrap: wrap;}
 .map-detail-container .map-detail-item .serviceState > ul > li { display:flex; justify-content: center; padding :6px 18px; background: var(--bg-2-color); color:var(--sub-6-color); border-radius: 20px; }
 .map-detail-container .map-detail-item .serviceState > ul > li.on { position:relative; padding:6px 41px 6px 18px; background: var(--m-color); color:#FFFFFF;  }
-.map-detail-container .map-detail-item .serviceState > ul > li.on::after {  content:""; position:absolute; right:18px; top:50%; transform:translateY(-40%); }
+.map-detail-container .map-detail-item .serviceState > ul > li.on::after {  content:""; position:absolute; right:15px; top:50%; transform:translateY(-50%); }
 .map-detail-container .map-detail-item .serviceState > ul > li.on::after { width:18px; height:18px; background: var(--ic-service-chk) no-repeat 50%/18px auto; }
 
 
