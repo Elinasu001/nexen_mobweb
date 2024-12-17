@@ -2712,6 +2712,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 	--ic-search: url(../img/common/btn_search.png);
 	--ic-recommend: url(../img/common/ico_recommend.png);
     --ic-map-pointer-gray: url(../img/common/ico_map_gray.png);
+	--ic-service-chk: url(../img/common/ico_service_chk.png);
 
 	--m-color: #832082;
 	--review-msub-color: #191478;
@@ -2837,9 +2838,10 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 
 /* 전문점 찾기 팝업 - 핀 클릭 했을 경우 */
-.fixed .shop-search-result.type02 .shop-search-single { box-shadow: 2px 2px 2px 10px rgba(0, 0, 0, 0.01); }
+.fixed .shop-search-result.type02 .shop-search-single { box-shadow: 2px 2px 2px 10px rgba(0, 0, 0, 0.01); border-radius: 10px 10px 0 0; }
 .fixed .shop-search-result.type02 .shop-search-single ul > li.tit b{ padding-left:initial; }
 .fixed .shop-search-result.type02 .shop-search-single ul > li.tit b::before { content:none; }
+.fixed .shop-search-result.type02  .shop-btn-box { margin:20px -20px 0; padding:20px 20px 0 20px; border-top:1px solid #DEDEDE; }
 
 /** 전문점 찾기 - 주문하기 **/
 /* 버튼 3개일 경우 - 전문점 찾기 : 주문서*/
@@ -2863,18 +2865,26 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 .map-detail-container .map-detail-item { margin-top:20px; }
 .map-detail-container .map-detail-item #agencyAddr  { position: relative; }
-.map-detail-container .map-detail-item #agencyAddr button.type18 { position:absolute; right:0; top:50%; transform:translateY(-50%); padding:0 6px 0 17px; width:auto; height:20px; line-height: 20px; border-radius: 100px; font-size: 0.625rem; font-weight: 500; text-align:right; background:var(--bg-2-color); color:var(--sub-6-color); }
-.map-detail-container .map-detail-item #agencyAddr button.type18::before { content:""; position:absolute; left:6px; top:50%; transform:translateY(-50%); }
-.map-detail-container .map-detail-item #agencyAddr button.type18::before { width:8px; height:11px; background: var(--ic-map-pointer-gray) no-repeat 50%/8px auto; }
+.map-detail-container .map-detail-item #agencyAddr button.type18 { position:absolute; right:0; top:40%; transform:translateY(-50%); padding:0 12px 0 22px; width:auto; height:27px; line-height: 1.5; border-radius: 100px; font-size:0.875rem; font-weight: 500; text-align:right; background:var(--bg-2-color); color:var(--sub-6-color); border:1px solid #D5D5D5; }
+.map-detail-container .map-detail-item #agencyAddr button.type18::before { content:""; position:absolute; left:10px; top:50%; transform:translateY(-50%); }
+.map-detail-container .map-detail-item #agencyAddr button.type18::before { width:9px; height:13px; background: var(--ic-map-pointer-gray) no-repeat 50%/8px auto; }
 .map-detail-container .map-detail-item .submit p { font-size:0.875rem; color:var(--sub-6-color); }
 .map-detail-container .map-detail-item .submit p.black { color:var(--sub-2-color); }
 
 .map-detail-item .border-bottom { border-bottom:1px solid var(--sub-9-color); }
 
 
+.map-detail-container .map-detail-item .serviceState { margin-top:10px; }
+.map-detail-container .map-detail-item .serviceState > ul { display:flex; gap:10px;  flex-wrap: wrap;}
+.map-detail-container .map-detail-item .serviceState > ul > li { display:flex; justify-content: center; padding :6px 18px; background: var(--bg-2-color); color:var(--sub-6-color); border-radius: 20px; }
+.map-detail-container .map-detail-item .serviceState > ul > li.on { position:relative; padding:6px 41px 6px 18px; background: var(--m-color); color:#FFFFFF;  }
+.map-detail-container .map-detail-item .serviceState > ul > li.on::after {  content:""; position:absolute; right:18px; top:50%; transform:translateY(-40%); }
+.map-detail-container .map-detail-item .serviceState > ul > li.on::after { width:18px; height:18px; background: var(--ic-service-chk) no-repeat 50%/18px auto; }
+
+
 /* 이용후기 */
 /* 이용후기 박스 */
-.review-container { margin-top:60px; border-top:1px solid var(--border-color); margin:0 -1rem; }
+.review-container { margin-top:60px; /*border-top:1px solid var(--border-color);*/ margin:0 -1rem; margin-top:20px; }
 .review-container h3 { position: relative; margin:initial !important; padding:1rem; color:var(--sub-0-color); font-size:1rem; font-weight:600;  background: var(--sub-color);  }
 .review-container h3::before { content:""; position: absolute; top:57px; transform: translateY(-50%); left:0; width:26px; height:25px; background: var(--ic-star1)no-repeat 100%/26px auto;}
 .review-container h3 > span { font-weight: 500; }
