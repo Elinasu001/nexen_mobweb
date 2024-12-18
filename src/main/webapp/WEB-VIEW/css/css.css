@@ -2184,12 +2184,12 @@ input[type='checkbox']:checked.type01 + label span {background: url('../img/comm
 .pl-m {padding-left: 1rem;}
 .pt-sm {padding-top: .875rem;}
 .pr-sm {padding-right: .875rem;}
-.pb-sm {padding-bottom: .875rem;}
-.pl-sm {padding-left: .875rem;}
-.pt-s {padding-top: .5rem;}
-.pr-s {padding-right: .5rem;}
-.pb-s {padding-bottom: .5rem;}
-.pl-s {padding-left: .5rem;}
+.pb-sm {padding-bottom: .875rem !important;}
+.pl-sm {padding-left: .875rem !important;}
+.pt-s {padding-top: .5rem !important;}
+.pr-s {padding-right: .5rem !important;}
+.pb-s {padding-bottom: .5rem !important;}
+.pl-s {padding-left: .5rem !important;}
 .pt-xs {padding-top: .25rem;}
 .pr-xs {padding-right: .25rem;}
 .pb-xs {padding-bottom: .25rem;}
@@ -2753,7 +2753,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .sizeAdjust h2 { margin:initial; padding:initial; line-height: initial; }
 .sizeAdjust h3 { margin:initial; padding:initial; line-height: initial; }
 .sizeAdjust ul { margin:initial; padding:initial; line-height: initial; }
-
+.sizeAdjust button { color:initial; }
 /** 헤더 - 공통 **/
 
 /* bg 화이트로 들어갈 경우 */
@@ -2856,8 +2856,6 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 
 
-
-
 /** 전문점 상세보기 **/
 /* 전문점 사진 */
 .map-detail-gallery {display:flex; flex-direction: column; }
@@ -2899,7 +2897,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .review-container .review-box .review-num > ul { display:flex; gap:60px;}
 .review-container .review-box .review-num > ul > li { max-width:80px; max-height:67px; line-height: 1; text-align: center; }
 .review-container .review-box .review-num > ul > li > span { font-size: .75rem; color:var(--sub-0-color); }
-.review-container .review-box .review-num > ul > li > .num { margin:4px 0; font-size:40px; font-weight:600; color:var(--sub-0-color); }
+.review-container .review-box .review-num > ul > li > .num { margin:4px 0; line-height: 1; font-size:40px; font-weight:600; color:var(--sub-0-color); }
 .review-container .review-box .review-num > ul > li > span.txt { line-height: 20px; font-size:14px; }
 .review-container .review-box .review-num > ul > li > span.txt b { font-size:16px; color:var(--m-color); }
 
@@ -2984,7 +2982,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > .img { margin-top:6px; width:150px; height:15px; font-size: .75rem; font-weight: 600; letter-spacing: 1px; color:var(--tit-color);  }
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > .img > img { width:150px; height:auto; }
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > span { margin-top:6px; font-size: .75rem; }
-.review-controls .review-item > ul > li > .review-area > .order-card .btn-order { display:flex; align-items: center; justify-content:center; height:30px; line-height: 30px; padding:0 .75rem; font-size: .75rem; text-align: center; background: #FFFFFF; border:1px solid #888888; border-radius: 100px; transition: background 0.1s ease, color 0.1s ease; }
+.review-controls .review-item > ul > li > .review-area > .order-card .btn-order { display:flex; align-items: center; justify-content:center; height:30px; line-height: 30px; padding:0 .75rem; font-size: .75rem; text-align: center; background: #FFFFFF; border:1px solid #888888; border-radius: 100px; transition: background 0.1s ease, color 0.1s ease; color:var(--sub-4-color); }
 .review-controls .review-item > ul > li > .review-area > .order-card .btn-order:hover { background: var(--m-color); color:var(--sub-color); border:1px solid var(--m-color); }
 
 .review-controls .btn-wrap { margin-top:40px; display:flex; align-items: center; justify-content:center;}
