@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../../js/lib/slick.min.js"></script>
     <script type="text/javascript" src="../../js/lib/jquery.sticky.js"></script>
     <script type="text/javascript" src="../../js/common_ui.js"></script>
-    <title>렌탈 상세보기/이용후기 | NEXT LEVEL</title>
+    <title>주문서 넥센 - 상세보기/이용후기 | NEXT LEVEL</title>
 </head>
 
 <body>
@@ -56,7 +56,7 @@
                 <a href="#" onclick="javascript:fn_popupClose();" class="layPopClose md-close"></a>
 
                 <header class="title" id="agencyHeader">
-                    <p class="icoArea ic-recom">추천 렌탈 전문점</p><!--[20241215 퍼블] 추가--><!--[D] :: icoArea 클래스가 들어갈 경우 .popContents위치에 .icoAdd 클래스 추가되는 스크립트 추가-->
+                    <p class="icoArea ic-recom">추천 넥센 전문점</p><!--[20241215 퍼블] 추가--><!--[D] :: icoArea 클래스가 들어갈 경우 .popContents위치에 .icoAdd 클래스 추가되는 스크립트 추가-->
                     <h2 class="f_ell">넥센타이어 양평동직영점</h2>
                     <!-- [20241215 퍼블] 삭제 <div class="state">
                         <img src="../img/common/state_big_ico01.png" alt="추천">
@@ -156,19 +156,23 @@
                                     <p class="pt-s pb-s" id="agencyOpt3"><span>진동 밸런스</span></p>
                                 </div>
 
-                                <div class="serviceState">
+                                <div class="serviceState"><!--[20241215 퍼블] 추가-->
                                     <ul><!--[D] .on 클래스 - 스타일 적용 (스크립트 x) -->
-                                        <li class="on">엔진 오일 무료 점검</li>
-                                        <li class="on">브레이크 패드 무료 점검</li>
-                                        <li>워셔액 무료 지급</li>
+                                        <li class="on">항균 탈취 무료 서비스</li>
+                                        <li class="on">워셔액 무료 지급</li>
+                                        <li>브레이크패드 무료 점검</li>
                                     </ul>
                                 </div>
-
-                                <!--//[20241215 퍼블] 변경 - 추가 , 클래스 small font-gray po_m10 삭제 -->
-                                <p class="desc">※ 엔진오일 및 브레이크 패드 교환 공임은 별도입니다.</p>
-                                <p class="desc">※ 수입차 및 대형 차량의 경우 고급형 장비가 있는 곳에서 교체하시기 바랍니다.</p>
-                                <!--[20241215 퍼블] 변경//-->
                                 
+                                <!--//[20241215 퍼블] 변경 - 추가 , 클래스 small font-gray po_m10 삭제 -->
+                                <p class="desc">※ 브레이크 패드 교환 공임은 별도입니다.</p>
+                                <p class="desc">※ 수입차 및 대형 차량의 경우 고급형 장비가 있는 곳에서 교체하시기 바랍니다.</p>
+                                
+                                <div class="btn-box">
+                                    <button type="button" class="btn-select">매장 선택</button>
+                                </div>
+                                <!--[20241215 퍼블] 변경//-->
+
                             </div>
                         </div>
 
@@ -187,9 +191,9 @@
                                 </div>
                                 <div class="review-satisfaction">
                                     <ul>
-                                        <li><span><b>정착 응대</b> 만족도</span><p class="star-box"><span class="star" style="width:80%;"></span></p></li><!--[D] 평점 width로 컨트롤-->
-                                        <li><span><b>렌탈 혜택 설명</b> 만족도</span><p class="star-box"><span class="star" style="width:60%;"></span></p></li>
-                                        <li><span><b>친절</b> 만족도</span><p class="star-box"><span class="star" style="width:40%;"></span></p></li>
+                                        <li><span><b>서비스</b> 만족도</span><p class="star-box"><span class="star" style="width:80%;"></span></p></li><!--[D] 평점 width로 컨트롤-->
+                                        <li><span><b>친절</b> 만족도</span><p class="star-box"><span class="star" style="width:60%;"></span></p></li>
+                                        <li><span><b>상품</b> 만족도</span><p class="star-box"><span class="star" style="width:40%;"></span></p></li>
                                     </ul>
                                 </div>
                             </div>
@@ -237,7 +241,7 @@
                                                             </p>
                                                             <span>205/65R16</span>
                                                         </div>
-                                                        <a href="javascript:void(0);" class="btn-order">렌탈 주문하기</a>
+                                                        <a href="javascript:void(0);" class="btn-order">구매하기</a>
                                                     </div>
 
                                                 </div>
@@ -248,10 +252,16 @@
                                                         <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. </span>
                                                         <button type="button" class="btn-plus" style="display: none;">더보기</button>
                                                     </p>
+                                                    <div class="thumbs onClass">
+                                                        <!--[D] 넥센 전문점 찾기에만 적용--><!--[D] .onClass 클래스로 스크립트 적용 중-->
+                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/front.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/panel.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/tire.png" alt=""></a>
+                                                    </div>
                                                     <ul class="review-txt">
                                                         <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
-                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
-                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
+                                                        <li class="ico-friendly">장착기사님이 매우 친절해요</li>
+                                                        <li class="ico-satisfied">상품 성능이 만족스러워요</li>
                                                     </ul>
                                                 </div>
             
@@ -292,7 +302,7 @@
                                                             </p>
                                                             <span>205/65R16</span>
                                                         </div>
-                                                        <a href="javascript:void(0);" class="btn-order">렌탈 주문하기</a>
+                                                        <a href="javascript:void(0);" class="btn-order">구매하기</a>
                                                     </div>
                                                 </div>
                                                 <!--[20241215 퍼블] 위치 이동//-->
@@ -302,10 +312,16 @@
                                                         <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
                                                         <button type="button" class="btn-plus">더보기</button>
                                                     </p>
+                                                    <div class="thumbs onClass">
+                                                        <!--[D] 넥센 전문점 찾기에만 적용--><!--[D] .onClass 클래스로 스크립트 적용 중-->
+                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/front.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/panel.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/tire.png" alt=""></a>
+                                                    </div>
                                                     <ul class="review-txt">
                                                         <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
-                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
-                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
+                                                        <li class="ico-friendly">장착기사님이 매우 친절해요</li>
+                                                        <li class="ico-satisfied">상품 성능이 만족스러워요</li>
                                                     </ul>
                                                 </div>
                                                 
@@ -343,7 +359,7 @@
                                                             </p>
                                                             <span>205/65R16</span>
                                                         </div>
-                                                        <a href="javascript:void(0);" class="btn-order">렌탈 주문하기</a>
+                                                        <a href="javascript:void(0);" class="btn-order">구매하기</a>
                                                     </div>
                                                 </div>
                                                 <!--[20241215 퍼블] 위치 이동//-->
@@ -353,10 +369,16 @@
                                                         <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
                                                         <button type="button" class="btn-plus">더보기</button>
                                                     </p>
+                                                    <div class="thumbs onClass">
+                                                        <!--[D] 넥센 전문점 찾기에만 적용--><!--[D] .onClass 클래스로 스크립트 적용 중-->
+                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/front.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/panel.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/tire.png" alt=""></a>
+                                                    </div>
                                                     <ul class="review-txt">
                                                         <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
-                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
-                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
+                                                        <li class="ico-friendly">장착기사님이 매우 친절해요</li>
+                                                        <li class="ico-satisfied">상품 성능이 만족스러워요</li>
                                                     </ul>
                                                 </div>
             
@@ -396,7 +418,7 @@
                         </div>
 
                         <!--[20241215 퍼블] slider 삭제-->
-                        
+
                     </div>
                 </div>
                 <!--contents-->
@@ -442,6 +464,7 @@
                     
                 });
             }icoAreahandlers();
+
 
             /**
              * 전문점 찾기 팝업 - 상세 이미지
@@ -545,21 +568,6 @@
             }
             expandableTextHandlers();
     
-            $("#btnDetail").on("click", function(){
-                $("body").addClass("bgFix");
-                $(".popupWrap").addClass("md-show");
-            });
-    
-            $("#btnReview").on("click", function(){
-                $("body").addClass("bgFix");
-                $(".popupWrap").addClass("md-show");
-            });
-    
-            function fn_popupClose(){
-                $("body").removeClass("bgFix");
-                $(".popupWrap").removeClass("md-show");
-            }
-    
             /**
              * 상세보기 이용후기 포커스 [개발 스크립트]
             */
@@ -574,7 +582,6 @@
                 } else {
                     focusWrap.scrollTop = 0;
                 }
-
             }popUpFocus();
     
             

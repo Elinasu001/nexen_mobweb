@@ -164,11 +164,11 @@
                                     </ul>
                                 </div>
 
-                                <p class="desc">※ 브레이크 패드 교환 공임은 별도입니다.</p><!--[20241215 퍼블] 추가 , 클래스 small font-gray po_m10 삭제-->
+                                <!--//[20241215 퍼블] 변경 - 추가 , 클래스 small font-gray po_m10 삭제 -->
+                                <p class="desc">※ 브레이크 패드 교환 공임은 별도입니다.</p>
                                 <p class="desc">※ 수입차 및 대형 차량의 경우 고급형 장비가 있는 곳에서 교체하시기 바랍니다.</p>
+                                <!--[20241215 퍼블] 변경//-->
                                 
-                                
-
                             </div>
                         </div>
 
@@ -389,6 +389,7 @@
                             </div>
                         </div>
                         <!--[20241215 퍼블] 추가//-->
+                        
                         <div class="map-container">
                             <div class="map-box">
                                 <p>위치 확인하기</p>
@@ -411,10 +412,9 @@
                                 </ul>
                             </div>
                         </div>
-                        
-                        </div>
 
                         <!--[20241215 퍼블] slider 삭제-->
+
                     </div>
                 </div>
                 <!--contents-->
@@ -450,11 +450,17 @@
              */
             function icoAreahandlers(){
                 $(".popContents header").each(function () {
+                    $(this).closest(".popContents").removeClass("icoAdd");
+
                     if ($(this).find(".icoArea").length > 0) {
                         $(this).closest(".popContents").addClass("icoAdd");
+                    }else {
+                        $(this).closest(".popContents").removeClass("icoAdd");
                     }
+                    
                 });
             }icoAreahandlers();
+
 
             /**
              * 전문점 찾기 팝업 - 상세 이미지
