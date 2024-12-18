@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../../js/lib/slick.min.js"></script>
     <script type="text/javascript" src="../../js/lib/jquery.sticky.js"></script>
     <script type="text/javascript" src="../../js/common_ui.js"></script>
-    <title>공통 | NEXT LEVEL</title>
+    <title>렌탈 상세보기/이용후기 | NEXT LEVEL</title>
 </head>
 
 <body>
@@ -51,11 +51,12 @@
         </div>
         <!--subContentsWrap-->
 
-        <div class="fullPopup md-modal-3 md-effect-1 md-show" id="modalAgencyDetl">
-            <div class="popContents order-basket bg-white bg02"><!--[20241213 퍼블] 클래스 .bg-white, .bg02 추가-->
+        <div class="fullPopup md-modal-3 md-effect-1 md-show sizeAdjust" id="modalAgencyDetl"><!--[20241214 퍼블] .sizeAdjust 클래스 추가-->
+            <div class="popContents order-basket bg-white bg02"><!--[20241213 퍼블] 클래스 .bg-white, .bg02 추가 -->
                 <a href="#" onclick="javascript:fn_popupClose();" class="layPopClose md-close"></a>
 
                 <header class="title" id="agencyHeader">
+                    <p class="icoArea ic-recom">추천 렌탈 전문점</p><!--[20241213 퍼블] 추가--><!--[D] :: icoArea 클래스가 들어갈 경우 .popContents위치에 .icoAdd 클래스 추가되는 스크립트 추가-->
                     <h2 class="f_ell">넥센타이어 양평동직영점</h2>
                     <!-- [20241213 퍼블] 삭제 <div class="state">
                         <img src="../img/common/state_big_ico01.png" alt="추천">
@@ -66,7 +67,6 @@
                 <!--contents-->
                 <div class="popup-contents-nobottom">
                     <div class="inset-m"><!--[20241213 퍼블] 클래스 .inset-m 로 변경-->
-                        <p class="icoArea ic-recom">추천 렌탈 전문점</p><!--[20241213 퍼블] 기존 이미지 삭제 후 추가-->
 
                         <div class="map-detail-container"> <!--[20241213 퍼블] 태그 추가-->
                             <!--//[20241213 퍼블] 추가-->
@@ -155,9 +155,7 @@
                                     <p class="black">밸런스</p>
                                     <p class="pt-s pb-s" id="agencyOpt3"><span>진동 밸런스</span></p>
                                 </div>
-                                <p class="desc small font-gray po_m10">※ 엔진오일 및 브레이크 패드 교환 공임은 별도입니다.</p><!--[20241213 퍼블] 추가-->
-                                <p class="desc small font-gray po_m10">※ 수입차 및 대형 차량의 경우 고급형 장비가 있는 곳에서 교체하시기 바랍니다.</p>
-                                
+
                                 <div class="serviceState">
                                     <ul><!--[D] .on 클래스 - 스타일 적용 (스크립트 x) -->
                                         <li class="on">엔진 오일 무료 점검</li>
@@ -165,6 +163,11 @@
                                         <li>워셔액 무료 지급</li>
                                     </ul>
                                 </div>
+
+                                <p class="desc">※ 엔진오일 및 브레이크 패드 교환 공임은 별도입니다.</p><!--[20241213 퍼블] 추가 , 클래스 small font-gray po_m10 삭제-->
+                                <p class="desc">※ 수입차 및 대형 차량의 경우 고급형 장비가 있는 곳에서 교체하시기 바랍니다.</p>
+                                
+                                
 
                             </div>
                         </div>
@@ -216,18 +219,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="review-cont">
-                                                    <p class="btnExpandTxt"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
-                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. </span>
-                                                        <button type="button" class="btn-plus" style="display: none;">더보기</button>
-                                                    </p>
-                                                    <ul class="review-txt">
-                                                        <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
-                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
-                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
-                                                    </ul>
-                                                </div>
-            
+
+                                                <!--//[20241215 퍼블] 위치 이동-->
                                                 <!--[D]: 시그니처 Case -->
                                                 <div class="order-card signature">
                                                     
@@ -248,6 +241,20 @@
                                                     </div>
 
                                                 </div>
+                                                <!--[20241215 퍼블] 위치 이동//-->
+
+                                                <div class="review-cont">
+                                                    <p class="btnExpandTxt"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
+                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. </span>
+                                                        <button type="button" class="btn-plus" style="display: none;">더보기</button>
+                                                    </p>
+                                                    <ul class="review-txt">
+                                                        <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
+                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
+                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
+                                                    </ul>
+                                                </div>
+            
             
                                             </div>
                                         </li>
@@ -267,17 +274,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="review-cont">
-                                                    <p class="btnExpandTxt collapsed"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
-                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
-                                                        <button type="button" class="btn-plus">더보기</button>
-                                                    </p>
-                                                    <ul class="review-txt">
-                                                        <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
-                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
-                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
-                                                    </ul>
-                                                </div>
+
+                                                <!--//[20241215 퍼블] 위치 이동-->
                                                 <!--[D]: 프리미엄 Case -->
                                                 <div class="order-card premium">
                                                     
@@ -297,6 +295,20 @@
                                                         <a href="javascript:void(0);" class="btn-order">렌탈 주문하기</a>
                                                     </div>
                                                 </div>
+                                                <!--[20241215 퍼블] 위치 이동//-->
+
+                                                <div class="review-cont">
+                                                    <p class="btnExpandTxt collapsed"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
+                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
+                                                        <button type="button" class="btn-plus">더보기</button>
+                                                    </p>
+                                                    <ul class="review-txt">
+                                                        <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
+                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
+                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
+                                                    </ul>
+                                                </div>
+                                                
             
                                             </div>
                                         </li>
@@ -315,17 +327,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="review-cont">
-                                                    <p class="btnExpandTxt collapsed"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
-                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
-                                                        <button type="button" class="btn-plus">더보기</button>
-                                                    </p>
-                                                    <ul class="review-txt">
-                                                        <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
-                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
-                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
-                                                    </ul>
-                                                </div>
+
+                                                <!--//[20241215 퍼블] 위치 이동-->
                                                 <!--[D]: 일반 Case -->
                                                 <div class="order-card origin">
                                                     <img src="../../img/common/sample_tire02.png" alt="빈 이미지"><!--[D] 이미지 : DB 관리-->
@@ -342,6 +345,19 @@
                                                         </div>
                                                         <a href="javascript:void(0);" class="btn-order">렌탈 주문하기</a>
                                                     </div>
+                                                </div>
+                                                <!--[20241215 퍼블] 위치 이동//-->
+
+                                                <div class="review-cont">
+                                                    <p class="btnExpandTxt collapsed"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
+                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
+                                                        <button type="button" class="btn-plus">더보기</button>
+                                                    </p>
+                                                    <ul class="review-txt">
+                                                        <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
+                                                        <li class="ico-message">렌탈 상품 혜택 설명이 전문적이에요</li>
+                                                        <li class="ico-friendly">매장이 매우 친절해요</li>
+                                                    </ul>
                                                 </div>
             
                                             </div>
@@ -378,7 +394,6 @@
                             </div>
                         </div>
                         
-
                         </div>
 
                         <!--[20241213 퍼블] slider 삭제-->
@@ -405,153 +420,165 @@
         </div>
 
     </div>
+        
     <!-- allWrap //-->
+
+    <script>
+        $(document).ready(function () {
+
+            /**
+             * icoArea 여부 스타일 변경
+             *
+             */
+            function icoAreahandlers(){
+                $(".popContents header").each(function () {
+                    if ($(this).find(".icoArea").length > 0) {
+                        $(this).closest(".popContents").addClass("icoAdd");
+                    }
+                });
+            }icoAreahandlers();
+
+            /**
+             * 전문점 찾기 팝업 - 상세 이미지
+             *
+             */
+            function detailGalleryHandlers() {
+                // 갤러리
+                $(".mapDetailImg").each(function () {
+                    var $gallery = $(this);
+                    var $mainImage = $gallery.find(".thumb-detail img");
+                    var $thumbnailLinks = $gallery.find(".thumbs .thumb-img");
+    
+                    // 첫 번째 썸네일 이미지 초기화
+                    var firstThumbnailLink = $thumbnailLinks.find("img[src]").first();
+                    var firstThumbnailSrc = firstThumbnailLink.attr("src");
+    
+                    if (firstThumbnailSrc) {
+                        $mainImage.attr("src", firstThumbnailSrc);
+                        firstThumbnailLink.closest(".thumb-img").addClass("on").attr("title", "선택됨");
+                    }
+    
+                    // 썸네일 링크 이미지가 없는 경우
+                    $thumbnailLinks.each(function () {
+                        var $img = $(this).find("img");
+                        var imgSrc = $img.attr("src");
+    
+                        if (!imgSrc) {
+                            $(this).attr("tabindex", "-1").removeClass("on").removeAttr("title");
+                        } else {
+                            $(this).attr("tabindex", "0");
+                        }
+                    });
+    
+                    // 클릭 및 키보드 이벤트
+                    $thumbnailLinks.on("click keydown", function (e) {
+                        var $img = $(this).find("img");
+                        var imgSrc = $img.attr("src");
+    
+                        if (!imgSrc) {
+                            e.preventDefault();
+                            return;
+                        }
+    
+                        if (e.type === "click" || (e.type === "keydown" && (e.key === "Enter" || e.keyCode === 13))) {
+                            e.preventDefault();
+    
+                            $mainImage.attr("src", imgSrc);
+    
+                            $thumbnailLinks.removeClass("on").removeAttr("title");
+                            $(this).addClass("on").attr("title", "선택됨");
+                        }
+                    });
+                });
+            }
+            detailGalleryHandlers();
+    
+    
+            /**
+             * 여러 요소 on 클래스 추가 && title 속성 설정
+             */
+            function selectBtnHandlers() {
+                $(".onClass").each(function () {
+                    var $container = $(this);
+                    var $btns = $container.find("button, a");
+    
+                    $btns.on('click', function () {
+                        var $clickedBtn = $(this);
+                        $btns.removeClass('on').removeAttr('title');
+                        $clickedBtn.addClass('on').attr('title', '선택됨');
+                    });
+                });
+            }
+            selectBtnHandlers();
+    
+            /**
+             * 더보기 버튼 [20241206 퍼블] :: 더보기 버튼 변경
+             */
+            function expandableTextHandlers() {
+                $(".btnExpandTxt").each(function () {
+                    var $container = $(this);
+                    var $btn = $container.find(".btn-plus");
+                    var $text = $container.find("span");
+    
+                    // 컨텐츠의 실제 높이와 제한 높이를 비교
+                    var originalHeight = $text[0].scrollHeight;
+                    var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
+    
+                    if (originalHeight > maxHeight) {
+                        $btn.show();
+                        $container.addClass("collapsed");
+                    } else {
+                        $btn.hide();
+                    }
+    
+                    $btn.on("click", function () {
+                        $container.toggleClass("expanded");
+                        $container.toggleClass("collapsed");
+                        $btn.text($container.hasClass("expanded") ? "" : "더보기");
+                    });
+                });
+            }
+            expandableTextHandlers();
+    
+            $("#btnDetail").on("click", function(){
+                $("body").addClass("bgFix");
+                $(".popupWrap").addClass("md-show");
+            });
+    
+            $("#btnReview").on("click", function(){
+                $("body").addClass("bgFix");
+                $(".popupWrap").addClass("md-show");
+            });
+    
+            function fn_popupClose(){
+                $("body").removeClass("bgFix");
+                $(".popupWrap").removeClass("md-show");
+            }
+    
+            /**
+             * 상세보기 이용후기 포커스 [개발 스크립트]
+            */
+            function popUpFocus() {
+
+                var focusWrap = document.querySelector(".scrollBox");//스크롤 영역
+                var reviewFocus = document.querySelector("#reviewFocus");//팝업 이용후기 영역
+
+                if(popGbn == "REV"){
+                    var reviewOffset = reviewFocus.getBoundingClientRect().top + focusWrap.scrollTop - 147;
+                    focusWrap.scrollTop = reviewOffset;
+                } else {
+                    focusWrap.scrollTop = 0;
+                }
+
+            }popUpFocus();
+    
+            
+    
+        });
+    
+    </script>
+
 </body>
 
-<script>
-    $(document).ready(function () {
-        /**
-         * 전문점 찾기 팝업 - 상세 이미지
-         *
-         */
-        function detailGalleryHandlers() {
-            // 갤러리
-            $(".mapDetailImg").each(function () {
-                var $gallery = $(this);
-                var $mainImage = $gallery.find(".thumb-detail img");
-                var $thumbnailLinks = $gallery.find(".thumbs .thumb-img");
-
-                // 첫 번째 썸네일 이미지 초기화
-                var firstThumbnailLink = $thumbnailLinks.find("img[src]").first();
-                var firstThumbnailSrc = firstThumbnailLink.attr("src");
-
-                if (firstThumbnailSrc) {
-                    $mainImage.attr("src", firstThumbnailSrc);
-                    firstThumbnailLink.closest(".thumb-img").addClass("on").attr("title", "선택됨");
-                }
-
-                // 썸네일 링크 이미지가 없는 경우
-                $thumbnailLinks.each(function () {
-                    var $img = $(this).find("img");
-                    var imgSrc = $img.attr("src");
-
-                    if (!imgSrc) {
-                        $(this).attr("tabindex", "-1").removeClass("on").removeAttr("title");
-                    } else {
-                        $(this).attr("tabindex", "0");
-                    }
-                });
-
-                // 클릭 및 키보드 이벤트
-                $thumbnailLinks.on("click keydown", function (e) {
-                    var $img = $(this).find("img");
-                    var imgSrc = $img.attr("src");
-
-                    if (!imgSrc) {
-                        e.preventDefault();
-                        return;
-                    }
-
-                    if (e.type === "click" || (e.type === "keydown" && (e.key === "Enter" || e.keyCode === 13))) {
-                        e.preventDefault();
-
-                        $mainImage.attr("src", imgSrc);
-
-                        $thumbnailLinks.removeClass("on").removeAttr("title");
-                        $(this).addClass("on").attr("title", "선택됨");
-                    }
-                });
-            });
-        }
-        detailGalleryHandlers();
-
-
-        /**
-         * 여러 요소 on 클래스 추가 && title 속성 설정
-         */
-        function selectBtnHandlers() {
-            $(".onClass").each(function () {
-                var $container = $(this);
-                var $btns = $container.find("button, a");
-
-                $btns.on('click', function () {
-                    var $clickedBtn = $(this);
-                    $btns.removeClass('on').removeAttr('title');
-                    $clickedBtn.addClass('on').attr('title', '선택됨');
-                });
-            });
-        }
-        selectBtnHandlers();
-
-        /**
-         * 더보기 버튼 [20241206 퍼블] :: 더보기 버튼 변경
-         */
-        function expandableTextHandlers() {
-            $(".btnExpandTxt").each(function () {
-                var $container = $(this);
-                var $btn = $container.find(".btn-plus");
-                var $text = $container.find("span");
-
-                // 컨텐츠의 실제 높이와 제한 높이를 비교
-                var originalHeight = $text[0].scrollHeight;
-                var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
-
-                if (originalHeight > maxHeight) {
-                    $btn.show();
-                    $container.addClass("collapsed");
-                } else {
-                    $btn.hide();
-                }
-
-                $btn.on("click", function () {
-                    $container.toggleClass("expanded");
-                    $container.toggleClass("collapsed");
-                    $btn.text($container.hasClass("expanded") ? "" : "더보기");
-                });
-            });
-        }
-        expandableTextHandlers();
-
-        $("#btnDetail").on("click", function(){
-            $("body").addClass("bgFix");
-            $(".popupWrap").addClass("md-show");
-        });
-
-        $("#btnReview").on("click", function(){
-            $("body").addClass("bgFix");
-            $(".popupWrap").addClass("md-show");
-        });
-
-        function fn_popupClose(){
-            $("body").removeClass("bgFix");
-            $(".popupWrap").removeClass("md-show");
-        }
-
-        /**
-         * 상세보기 이용후기 포커스
-        */
-        function popUpFocus() {
-            var btnDetail = document.querySelector("#btnDetail");
-            var btnReview = document.querySelector("#btnReview");
-
-            var focusWrap = document.querySelector(".scrollBox");
-            var reviewFocus = document.querySelector("#reviewFocus");
-
-            btnReview.addEventListener("click", function() {
-                var reviewOffset = reviewFocus.getBoundingClientRect().top + focusWrap.scrollTop - 140;
-                focusWrap.scrollTop = reviewOffset;
-            });
-
-            btnDetail.addEventListener("click", function() {
-                focusWrap.scrollTop = 0;
-            });
-        }
-
-        popUpFocus();
-
-    });
-
-
-</script>
 
 </html>
