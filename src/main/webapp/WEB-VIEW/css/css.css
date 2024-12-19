@@ -2713,9 +2713,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 	--ic-recommend: url(../img/common/ico_recommend.png);
     --ic-map-pointer-gray: url(../img/common/ico_map_gray.png);
 	--ic-service-chk: url(../img/common/ico_service_chk.png);
-
-	--m-color: #832082;
-	--review-msub-color: #191478;
+	
 
 	--ic-convenient: url(../img/common/ico_convenient.png);
     --ic-friendly: url(../img/common/ico_friendly.png);
@@ -2723,6 +2721,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
     --ic-message: url(../img/common/ico_message.png);
     
 
+	--ic-star: url(../img/product/map_star.png);
 	--ic-star2: url(../img/common/ico_star02.png);
 
 	--ic-loacation: url(../img/common/ico_loacation.png);
@@ -2737,7 +2736,10 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 	--ic-bg-like:url(../img/product/ico_bg_like.png);
 
+	--ic-arrow: url(../img/common/ico_arrow.png);
+
 	--m-color: #832082;
+	--review-msub-color: #191478;
 	--pop-tit-color: #1F273D;
 	--sub-color: #FFFFFF;
 	--sub-0-color: #000000;
@@ -2870,8 +2872,8 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 /** 전문점 상세보기 **/
 /* 전문점 사진 */
-.map-detail-gallery {display:flex; flex-direction: column; }
-.map-detail-gallery > .thumb-detail { max-width:600px; width:auto; height:auto;}
+.map-detail-gallery {display:flex; flex-direction: column; margin:0 auto; }
+.map-detail-gallery > .thumb-detail { /* max-width:600px;*/ width:auto; height:auto;}
 .map-detail-gallery > .thumbs { display:flex; gap:8px; margin-top:11px; }
 .map-detail-gallery > .thumbs > a.thumb-img { width:80px; height: 80px; }
 .map-detail-gallery > .thumb-detail > img,
@@ -2892,7 +2894,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 .map-detail-container .map-detail-item .serviceState { margin:10px 0 20px 0; }
 .map-detail-container .map-detail-item .serviceState > ul { display:flex; gap:10px;  flex-wrap: wrap;}
-.map-detail-container .map-detail-item .serviceState > ul > li { display:flex; justify-content: center; padding :6px 18px; line-height: 1.2; background: var(--bg-2-color); color:var(--sub-6-color); border-radius: 20px; }
+.map-detail-container .map-detail-item .serviceState > ul > li { display:flex; justify-content: center; padding :6px 18px; line-height: 1.5; font-size: .75rem; background: var(--bg-2-color); color:var(--sub-6-color); border-radius: 20px; }
 .map-detail-container .map-detail-item .serviceState > ul > li.on { position:relative; padding:6px 41px 6px 18px; background: var(--m-color); color:#FFFFFF;  }
 .map-detail-container .map-detail-item .serviceState > ul > li.on::after {  content:""; position:absolute; right:15px; top:50%; transform:translateY(-50%); }
 .map-detail-container .map-detail-item .serviceState > ul > li.on::after { width:18px; height:18px; background: var(--ic-service-chk) no-repeat 50%/18px auto; }
@@ -2952,7 +2954,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 /* .review-controls .review-item > ul > li > .review-area .review-info { width:620px; } */
 
-.review-controls .review-item > ul > li > .review-area > .review-info > .user-info > .name > span { line-height: 1.3; font-size:13px; color:var(--sub-6-color); }
+.review-controls .review-item > ul > li > .review-area > .review-info > .user-info > .name > span { line-height: 1.3; font-size:0.813rem; color:var(--sub-6-color); }
 .review-controls .review-item > ul > li > .review-area > .review-info > .user-info > .name > span > b { margin-right:5px;font-size:0.875rem; color:var(--sub-2-color); }
 
 .review-controls .review-item > ul > li > .review-area > .review-info > .user-info > .star-item { display:flex; align-items: center; margin-top:5px; }
@@ -2960,8 +2962,8 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .review-controls .review-item > ul > li > .review-area > .review-info > .user-info > .star-item > .num > b { margin-right:4px; font-size:1rem; color:var(--m-color);  }
 .review-controls .review-item > ul > li > .review-area > .review-info > .user-info > .star-item > .r-date { font-size: .75rem; color:var(--sub-8-color); }
 
-.review-controls .review-item > ul > li > .review-area > .review-cont > b { display:flex; margin-bottom:10px; line-height: 1; font-size:20px; color:var(--tit-color); }
-.review-controls .review-item > ul > li > .review-area > .review-cont > p > span { padding-right:50px; line-height: 1.5; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; /*word-break: break-word;  단어가 길 경우 줄바꿈 */ font-size:14px; color:var(--txt-color); }
+.review-controls .review-item > ul > li > .review-area > .review-cont > b { display:flex; margin-bottom:10px; line-height: 1; font-size: 1rem; color:var(--sub-2-color); }
+.review-controls .review-item > ul > li > .review-area > .review-cont > p > span { padding-right:50px; line-height: 1.5; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; /*word-break: break-word;  단어가 길 경우 줄바꿈 */ font-size:0.875rem; color:var(--sub-6-color); }
 .review-controls .review-item > ul > li > .review-area > .review-cont > p { position: relative; }
 .review-controls .review-item > ul > li > .review-area > .review-cont > p> button.btn-plus { position: absolute; right:0; bottom:0; font-size: .75rem; text-decoration: underline; text-underline-offset: 4px;  color:var(--m-color); background: var(--sub-color);}
 /* 더보기 기능 .btnExpandTxt */
@@ -2969,6 +2971,13 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .review-controls .review-item > ul > li > .review-area > .review-cont > p.btnExpandTxt.collapsed > span { -webkit-line-clamp: 2; /* 두 줄까지만 표시 */ overflow: hidden; text-overflow: ellipsis; }
 /* 확장 상태: 제한 해제 */
 .review-controls .review-item > ul > li > .review-area >.review-cont > p.btnExpandTxt.expanded > span { -webkit-line-clamp: unset; /* 줄 제한 해제 */ overflow: visible; text-overflow: initial; }
+
+/* 더보기 기능 .btnExpandTxt02 [접기 기능 있을 경우] */
+/* 초기 상태: 2줄로 제한 */
+.review-controls .review-item > ul > li > .review-area > .review-cont > p.btnExpandTxt02.collapsed > span { -webkit-line-clamp: 2; /* 두 줄까지만 표시 */ overflow: hidden; text-overflow: ellipsis; }
+/* 확장 상태: 제한 해제 */
+.review-controls .review-item > ul > li > .review-area >.review-cont > p.btnExpandTxt02.expanded > span { -webkit-line-clamp: unset; /* 줄 제한 해제 */ overflow: visible; text-overflow: initial; }
+
 
 .review-controls .review-item > ul > li > .review-area > .review-cont > .thumbs { display:flex; gap:10px; margin-top:10px; }
 .review-controls .review-item > ul > li > .review-area > .review-cont > .thumbs > a { display:block; width:70px; height:70px; }
@@ -3097,7 +3106,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .customer-bg.consulting { background: none; background:var(--sub-color); }
 
 .counselWrap { background: var(--sub-color); }
-.counselWrap .order-header-message { padding:3.75rem 1rem 0.25rem; background: var(--sub-color); background: var(--ic-bg-like) no-repeat right 30px top 33%/70px; }
+.counselWrap .order-header-message { padding:3.75rem 1rem 0.25rem; background: var(--sub-color); background: var(--ic-bg-like) no-repeat right 30px top 34px/70px; }
 .counselWrap .order-header-message p { line-height: 1; font-size: 1.25rem; font-weight:500; color:var(--sub-2-color); letter-spacing:initial; }
 .counselWrap .order-header-message .order-info-summary { display:flex; flex-direction: column; margin-top:15px !important; }
 .counselWrap .order-header-message .order-info-summary small { font-size:0.875rem; color:var(--sub-5-color); align-self: initial; }
@@ -3115,3 +3124,29 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .border-gray-box span.divi.type02 { top:4px; }
 .border-gray-box .same-size { gap:5px; }
 .border-gray-box select.st01 { background: url('../img/common/ico_select.png') no-repeat right .65rem top 50%/14px; }
+
+
+/* 이용후기 상세 */
+hr.line { display:inline-block; height:4px; background: #EDEDED; width:100%; padding:0rem 1rem; margin:1.25rem -1rem 0 -1rem; }
+.reviewDeatil .map-detail-gallery .thumb-detail { position:relative; }
+.reviewDeatil .map-detail-gallery .review-btns { position: absolute; width:100%; left:0; top:50%; transform: translateY(-50%); }
+.reviewDeatil .map-detail-gallery .review-btns button.btn-prev { float:left; }
+.reviewDeatil .map-detail-gallery .review-btns button.btn-next { float:right; }
+.reviewDeatil .map-detail-gallery .review-btns button { display:inline-block; width:40px; height:40px; overflow: hidden; color: transparent; cursor: pointer;}
+.reviewDeatil .map-detail-gallery .review-btns button.btn-prev { background: var(--ic-arrow) no-repeat rgba(225, 225, 225, 0.8) 100%/40px auto; }
+.reviewDeatil .map-detail-gallery .review-btns button.btn-next { background: var(--ic-arrow) no-repeat rgba(225, 225, 225, 0.8) 100%/40px auto; transform:rotate(180deg);}
+
+
+.reviewDeatil .review-container { margin-top:0; margin:initial; }
+.reviewDeatil .review-container .review-box { padding:1rem 0; }
+.reviewDeatil .review-container .review-box { align-items: flex-start; flex-direction: column; }
+
+.reviewDeatil .review-controls .review-item > ul > li { padding:1.25rem 0 1rem 0; border-bottom:0; }
+.reviewDeatil .review-container .review-box .review-satisfaction { flex:initial;/* width:50%;*/}
+.reviewDeatil .review-container .review-box .review-satisfaction > .tit { color:var(--sub-3-color); font-size: .75rem; font-weight: 600; }
+/* .reviewDeatil .review-container .review-box .review-satisfaction > ul  { display:flex; width:100%; gap:5px; } */
+.reviewDeatil .review-container .review-box .review-satisfaction > ul > li { margin-top:0; color:var(--sub-6-color); }
+.reviewDeatil .review-container .review-box .review-satisfaction > ul > li span { position: relative;  margin-right:14px;}
+/* .reviewDeatil .review-container .review-box .review-satisfaction > ul > li b { padding-right:20px; font-weight: 500;  font-family: 'Spoqa Han Sans', sans-serif; } */
+/* .reviewDeatil .review-container .review-box .review-satisfaction > ul > li b::after { content: ""; position: absolute; width:14px; height:14px; transform: translateY(-50%); top:50%; right:10px; background: var(--ic-star) no-repeat 100%/14px auto; } */
+.reviewDeatil .review-container .review-box .review-satisfaction > ul > li b { font-family: 'Spoqa Han Sans', sans-serif; }

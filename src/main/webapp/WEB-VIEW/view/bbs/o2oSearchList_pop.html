@@ -13,6 +13,7 @@
     <link type="text/css" rel="stylesheet" href="../../css/css.css">
     <link type="text/css" rel="stylesheet" href="../../css/new_layout.css">
     <link type="text/css" rel="stylesheet" href="../../css/nice-select.css">
+    <link type="text/css" rel="stylesheet" href="../../css/product_detail_new.css">
 
     <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
     <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-5T4LZPV"></script>
@@ -51,12 +52,14 @@
         </div>
         <!--subContentsWrap-->
 
-        <div class="fullPopup md-modal-3 md-effect-1 md-show sizeAdjust" id="modalAgencyDetl"><!--[20241215 퍼블] .sizeAdjust 클래스 추가-->
+        <div class="fullPopup md-modal-3 md-effect-1 md-show sizeAdjust" id="modalAgencyDetl">
+            <!--[20241215 퍼블] .sizeAdjust 클래스 추가-->
             <div class="popContents order-basket bg-white bg02"><!--[20241215 퍼블] 클래스 .bg-white, .bg02 추가 -->
                 <a href="#" onclick="javascript:fn_popupClose();" class="layPopClose md-close"></a>
 
                 <header class="title" id="agencyHeader">
-                    <p class="icoArea ic-recom">추천 넥센 전문점</p><!--[20241215 퍼블] 추가--><!--[D] :: icoArea 클래스가 들어갈 경우 .popContents위치에 .icoAdd 클래스 추가되는 스크립트 추가-->
+                    <p class="icoArea ic-recom">추천 넥센 전문점</p>
+                    <!--[20241215 퍼블] 추가--><!--[D] :: icoArea 클래스가 들어갈 경우 .popContents위치에 .icoAdd 클래스 추가되는 스크립트 추가-->
                     <h2 class="f_ell">넥센타이어 양평동직영점</h2>
                     <!-- [20241215 퍼블] 삭제 <div class="state">
                         <img src="../img/common/state_big_ico01.png" alt="추천">
@@ -75,10 +78,15 @@
                                     <img src="../../img/mypage/sample/front.png" alt="">
                                 </div>
                                 <div class="thumbs">
-                                    <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/front.png" alt=""></a>
-                                    <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/panel.png" alt=""></a>
-                                    <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/tire.png" alt=""></a>
-                                    <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/tire.png" alt=""></a><!--[D] 이미지가 없을 경우 선택 안됨 처리-->
+                                    <a href="javascript:void(0);" class="thumb-img"><img
+                                            src="../../img/mypage/sample/front.png" alt=""></a>
+                                    <a href="javascript:void(0);" class="thumb-img"><img
+                                            src="../../img/mypage/sample/panel.png" alt=""></a>
+                                    <a href="javascript:void(0);" class="thumb-img"><img
+                                            src="../../img/mypage/sample/tire.png" alt=""></a>
+                                    <a href="javascript:void(0);" class="thumb-img"><img
+                                            src="../../img/mypage/sample/tire.png"
+                                            alt=""></a><!--[D] 이미지가 없을 경우 선택 안됨 처리-->
                                 </div>
                             </div>
                             <!--[20241215 퍼블] 추가//-->
@@ -103,8 +111,8 @@
                                 <div class="submit layout-c mb-m border-bottom">
                                     <p class="black">영업시간</p>
                                     <p class="pt-s pb-s" id="agencyBizTime">
-                                        (월~금) 09:00-18:00  |  (토) 09:00-17:00<br/>
-                                        (일) 휴일  |  (공휴일) 휴일
+                                        (월~금) 09:00-18:00 | (토) 09:00-17:00<br />
+                                        (일) 휴일 | (공휴일) 휴일
                                     </p>
                                 </div>
 
@@ -114,7 +122,8 @@
                                         <!-- 상태아이콘 -->
                                     </p>
                                     <div class="pb-s">
-                                        <div class="shop-state-icon layout-r inline inline-s type02" id="agencyWkTp"><!--[20241215 퍼블] 클래스 .type02 추가-->
+                                        <div class="shop-state-icon layout-r inline inline-s type02" id="agencyWkTp">
+                                            <!--[20241215 퍼블] 클래스 .type02 추가-->
                                             <div class="state inline">
                                                 <img src="../../img/common/state_ico02.png" alt="타이어">
                                                 <span>타이어</span>
@@ -168,7 +177,7 @@
                                 <p class="desc">※ 브레이크 패드 교환 공임은 별도입니다.</p>
                                 <p class="desc">※ 수입차 및 대형 차량의 경우 고급형 장비가 있는 곳에서 교체하시기 바랍니다.</p>
                                 <!--[20241215 퍼블] 변경//-->
-                                
+
                             </div>
                         </div>
 
@@ -181,15 +190,22 @@
                                         <li>
                                             <span>사용자 총 평점</span>
                                             <p class="num">4.5</p>
-                                            <div class="star-box"><span class="star" style="width:80%;"></span></div><!--[D] 평점 width로 컨트롤-->
+                                            <div class="star-box"><span class="star" style="width:80%;"></span></div>
+                                            <!--[D] 평점 width로 컨트롤-->
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="review-satisfaction">
                                     <ul>
-                                        <li><span><b>서비스</b> 만족도</span><p class="star-box"><span class="star" style="width:80%;"></span></p></li><!--[D] 평점 width로 컨트롤-->
-                                        <li><span><b>친절</b> 만족도</span><p class="star-box"><span class="star" style="width:60%;"></span></p></li>
-                                        <li><span><b>상품</b> 만족도</span><p class="star-box"><span class="star" style="width:40%;"></span></p></li>
+                                        <li><span><b>서비스</b> 만족도</span>
+                                            <p class="star-box"><span class="star" style="width:80%;"></span></p>
+                                        </li><!--[D] 평점 width로 컨트롤-->
+                                        <li><span><b>친절</b> 만족도</span>
+                                            <p class="star-box"><span class="star" style="width:60%;"></span></p>
+                                        </li>
+                                        <li><span><b>상품</b> 만족도</span>
+                                            <p class="star-box"><span class="star" style="width:40%;"></span></p>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -206,15 +222,18 @@
                                 <div class="review-item">
                                     <ul>
                                         <li>
-                                            
+
                                             <div class="review-area">
                                                 <div class="review-info">
-                                                    <div class="user"><img src="../../img/common/ico_user.png" alt=""></div>
+                                                    <div class="user"><img src="../../img/common/ico_user.png" alt="">
+                                                    </div>
                                                     <div class="user-info">
                                                         <p class="name"><span><b>권*태</b> 고객님</span></p>
                                                         <!--[D] 평점 width로 컨트롤-->
                                                         <div class="star-item">
-                                                            <p class="star-box"><span class="star" style="width:100%;"></span></p><span class="num"><b>5.0</b> / 5.0</span>
+                                                            <p class="star-box"><span class="star"
+                                                                    style="width:100%;"></span></p><span
+                                                                class="num"><b>5.0</b> / 5.0</span>
                                                             <span class="r-date">2024-10-10</span>
                                                         </div>
                                                     </div>
@@ -223,17 +242,22 @@
                                                 <!--//[20241215 퍼블] 위치 이동-->
                                                 <!--[D]: 시그니처 Case -->
                                                 <div class="order-card signature">
-                                                    
-                                                    <img src="../../img/common/sample_tire01.png" alt="빈 이미지"><!--[D] 이미지 : DB 관리-->
+
+                                                    <img src="../../img/common/sample_tire01.png"
+                                                        alt="빈 이미지"><!--[D] 이미지 : DB 관리-->
                                                     <div class="order-cont">
                                                         <div class="card-info">
                                                             <p class="card-label">
-                                                                <em class="tit"><img src="../../img/common/ft-style-signature.png" alt="signature"></em>
+                                                                <em class="tit"><img
+                                                                        src="../../img/common/ft-style-signature.png"
+                                                                        alt="signature"></em>
                                                                 <em>승용차용</em>
                                                                 <em>사계절용</em>
                                                             </p>
-                                                            <p class="img"><!--[D] 이미지 : DB 관리  [20241230 퍼블]- 태그 추가 및 DB "이미지" 들어가는 Case-->
-                                                                <img src="../../img/common/sample_supreme.png" alt="빈 이미지">
+                                                            <p class="img">
+                                                                <!--[D] 이미지 : DB 관리  [20241230 퍼블]- 태그 추가 및 DB "이미지" 들어가는 Case-->
+                                                                <img src="../../img/common/sample_supreme.png"
+                                                                    alt="빈 이미지">
                                                             </p>
                                                             <span>205/65R16</span>
                                                         </div>
@@ -244,15 +268,20 @@
                                                 <!--[20241215 퍼블] 위치 이동//-->
 
                                                 <div class="review-cont">
+                                                    <b>"이로써 단골이 되어버렸습니다."</b><!--[20241216 퍼블] 추가-->
                                                     <p class="btnExpandTxt"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
                                                         <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. </span>
-                                                        <button type="button" class="btn-plus" style="display: none;">더보기</button>
+                                                        <button type="button" class="btn-plus"
+                                                            style="display: none;">더보기</button>
                                                     </p>
                                                     <div class="thumbs onClass">
                                                         <!--[D] 넥센 전문점 찾기에만 적용--><!--[D] .onClass 클래스로 스크립트 적용 중-->
-                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/front.png" alt=""></a>
-                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/panel.png" alt=""></a>
-                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/tire.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img
+                                                                src="../../img/mypage/sample/front.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img
+                                                                src="../../img/mypage/sample/panel.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img
+                                                                src="../../img/mypage/sample/tire.png" alt=""></a>
                                                     </div>
                                                     <ul class="review-txt">
                                                         <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
@@ -260,22 +289,25 @@
                                                         <li class="ico-satisfied">상품 성능이 만족스러워요</li>
                                                     </ul>
                                                 </div>
-            
-            
+
+
                                             </div>
                                         </li>
-            
+
                                         <li>
-            
-                                            
+
+
                                             <div class="review-area">
                                                 <div class="review-info">
-                                                    <div class="user"><img src="../../img/common/ico_user.png" alt=""></div>
+                                                    <div class="user"><img src="../../img/common/ico_user.png" alt="">
+                                                    </div>
                                                     <div class="user-info">
                                                         <p class="name"><span><b>권*태</b> 고객님</span></p>
                                                         <!--[D] 평점 width로 컨트롤-->
                                                         <div class="star-item">
-                                                            <p class="star-box"><span class="star" style="width:100%;"></span></p><span class="num"><b>5.0</b> / 5.0</span>
+                                                            <p class="star-box"><span class="star"
+                                                                    style="width:100%;"></span></p><span
+                                                                class="num"><b>5.0</b> / 5.0</span>
                                                             <span class="r-date">2024-10-10</span>
                                                         </div>
                                                     </div>
@@ -284,16 +316,20 @@
                                                 <!--//[20241215 퍼블] 위치 이동-->
                                                 <!--[D]: 프리미엄 Case -->
                                                 <div class="order-card premium">
-                                                    
-                                                    <img src="../../img/common/sample_tire02.png" alt="빈 이미지"><!--[D] 이미지 : DB 관리-->
+
+                                                    <img src="../../img/common/sample_tire02.png"
+                                                        alt="빈 이미지"><!--[D] 이미지 : DB 관리-->
                                                     <div class="order-cont">
                                                         <div class="card-info">
                                                             <p class="card-label">
-                                                                <em class="tit"><img src="../../img/common/ft-style-premium.png" alt="premium"></em>
+                                                                <em class="tit"><img
+                                                                        src="../../img/common/ft-style-premium.png"
+                                                                        alt="premium"></em>
                                                                 <em>승용차용</em>
                                                                 <em>사계절용</em>
                                                             </p>
-                                                            <p class="img"><!--[D] 텍스트 : DB 관리  [20241230 퍼블]- 태그 추가 및 DB "텍스트" 들어가는 Case-->
+                                                            <p class="img">
+                                                                <!--[D] 텍스트 : DB 관리  [20241230 퍼블]- 태그 추가 및 DB "텍스트" 들어가는 Case-->
                                                                 NPRIZ_AHB
                                                             </p>
                                                             <span>205/65R16</span>
@@ -304,15 +340,23 @@
                                                 <!--[20241215 퍼블] 위치 이동//-->
 
                                                 <div class="review-cont">
-                                                    <p class="btnExpandTxt collapsed"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
-                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
+                                                    <b>"이로써 단골이 되어버렸습니다."</b><!--[20241216 퍼블] 추가-->
+                                                    <p class="btnExpandTxt collapsed">
+                                                        <!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
+                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지
+                                                            싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질,
+                                                            가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도
+                                                            만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
                                                         <button type="button" class="btn-plus">더보기</button>
                                                     </p>
                                                     <div class="thumbs onClass">
                                                         <!--[D] 넥센 전문점 찾기에만 적용--><!--[D] .onClass 클래스로 스크립트 적용 중-->
-                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/front.png" alt=""></a>
-                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/panel.png" alt=""></a>
-                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/tire.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img
+                                                                src="../../img/mypage/sample/front.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img
+                                                                src="../../img/mypage/sample/panel.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img
+                                                                src="../../img/mypage/sample/tire.png" alt=""></a>
                                                     </div>
                                                     <ul class="review-txt">
                                                         <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
@@ -320,21 +364,24 @@
                                                         <li class="ico-satisfied">상품 성능이 만족스러워요</li>
                                                     </ul>
                                                 </div>
-                                                
-            
+
+
                                             </div>
                                         </li>
-            
+
                                         <li>
 
                                             <div class="review-area">
                                                 <div class="review-info">
-                                                    <div class="user"><img src="../../img/common/ico_user.png" alt=""></div>
+                                                    <div class="user"><img src="../../img/common/ico_user.png" alt="">
+                                                    </div>
                                                     <div class="user-info">
                                                         <p class="name"><span><b>권*태</b> 고객님</span></p>
                                                         <!--[D] 평점 width로 컨트롤-->
                                                         <div class="star-item">
-                                                            <p class="star-box"><span class="star" style="width:100%;"></span></p><span class="num"><b>5.0</b> / 5.0</span>
+                                                            <p class="star-box"><span class="star"
+                                                                    style="width:100%;"></span></p><span
+                                                                class="num"><b>5.0</b> / 5.0</span>
                                                             <span class="r-date">2024-10-10</span>
                                                         </div>
                                                     </div>
@@ -343,7 +390,8 @@
                                                 <!--//[20241215 퍼블] 위치 이동-->
                                                 <!--[D]: 일반 Case -->
                                                 <div class="order-card origin">
-                                                    <img src="../../img/common/sample_tire02.png" alt="빈 이미지"><!--[D] 이미지 : DB 관리-->
+                                                    <img src="../../img/common/sample_tire02.png"
+                                                        alt="빈 이미지"><!--[D] 이미지 : DB 관리-->
                                                     <div class="order-cont">
                                                         <div class="card-info">
                                                             <p class="card-label">
@@ -361,15 +409,23 @@
                                                 <!--[20241215 퍼블] 위치 이동//-->
 
                                                 <div class="review-cont">
-                                                    <p class="btnExpandTxt collapsed"><!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
-                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
+                                                    <b>"이로써 단골이 되어버렸습니다."</b><!--[20241216 퍼블] 추가-->
+                                                    <p class="btnExpandTxt collapsed">
+                                                        <!--[D] .btnExpandTxt 클래스로 스크립트 적용 중-->
+                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지
+                                                            싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질,
+                                                            가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도
+                                                            만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
                                                         <button type="button" class="btn-plus">더보기</button>
                                                     </p>
                                                     <div class="thumbs onClass">
                                                         <!--[D] 넥센 전문점 찾기에만 적용--><!--[D] .onClass 클래스로 스크립트 적용 중-->
-                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/front.png" alt=""></a>
-                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/panel.png" alt=""></a>
-                                                        <a href="javascript:void(0);"><img src="../../img/mypage/sample/tire.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img
+                                                                src="../../img/mypage/sample/front.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img
+                                                                src="../../img/mypage/sample/panel.png" alt=""></a>
+                                                        <a href="javascript:void(0);"><img
+                                                                src="../../img/mypage/sample/tire.png" alt=""></a>
                                                     </div>
                                                     <ul class="review-txt">
                                                         <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
@@ -377,10 +433,10 @@
                                                         <li class="ico-satisfied">상품 성능이 만족스러워요</li>
                                                     </ul>
                                                 </div>
-            
+
                                             </div>
                                         </li>
-            
+
                                     </ul>
                                 </div>
                                 <div class="btn-wrap">
@@ -389,7 +445,7 @@
                             </div>
                         </div>
                         <!--[20241215 퍼블] 추가//-->
-                        
+
                         <div class="map-container">
                             <div class="map-box">
                                 <p>위치 확인하기</p>
@@ -400,8 +456,8 @@
                                 <h3>넥센타이어테크 역삼점</h3>
                                 <ul class="cont">
                                     <li class="icon ico-loacation">서울 강남구 도곡로 143 1층</li>
-                                    <li class="icon ico-date">(월~금) 09:00-18:00  |  (토) 09:00-17:00
-                                        (일) 휴일  |  (공휴일) 휴일</li>
+                                    <li class="icon ico-date">(월~금) 09:00-18:00 | (토) 09:00-17:00
+                                        (일) 휴일 | (공휴일) 휴일</li>
                                     <li class="icon ico-phone">02-1234-5678</li>
                                     <li class="icon ico-intro"><!--[20241215 퍼블] 텍스트 변경-->
                                         안녕하세요. <span>OOO</span>점 입니다.
@@ -414,6 +470,124 @@
                         </div>
 
                         <!--[20241215 퍼블] slider 삭제-->
+
+                    </div>
+                </div>
+                <!--contents-->
+            </div>
+        </div>
+
+
+        <div class="fullPopup md-modal-3 md-effect-1 md-show sizeAdjust" id="modalAgencyDetl02"><!--[20241215 퍼블] .sizeAdjust 클래스 추가-->
+            
+            <div class="popContents order-basket bg-white reviewDeatil"><!--[20241215 퍼블] 클래스 .bg-white ,.reviewDeatil 추가 -->
+                <a href="#" onclick="javascript:fn_popupClose();" class="layPopClose md-close"></a>
+
+                <header class="title" id="agencyHeader">
+                    <!--[D] :: icoArea 클래스가 들어갈 경우 .popContents위치에 .icoAdd 클래스 추가되는 스크립트 추가-->
+                    <h2 class="f_ell">넥센타이어테크 역삼점 후기</h2>
+                </header>
+
+                <!--contents-->
+                <div id="reviewScrollTop" class="popup-contents-nobottom">
+                    <div class="inset-m">
+
+                        <div class="map-detail-container">
+                            <div class="map-detail-gallery mapDetailImg"><!--[D] .mapDetailImg 클래스로 스크립트 적용 중-->
+
+                                <div class="thumb-detail">
+                                    <div class="review-btns" id="pageReview">
+                                        <button class="btn-prev" id="preClick" value="13" data-len="">이전 리뷰 보기</button>
+                                        <button class="btn-next" id="postClick" value="15" data-len="2089">다음 리뷰 보기</button>
+                                    </div>
+                                    <img src="../../img/mypage/sample/front.png" alt="">
+                                </div>
+                                <div class="thumbs">
+                                    <a href="javascript:void(0);" class="thumb-img"><img
+                                            src="../../img/mypage/sample/front.png" alt=""></a>
+                                    <a href="javascript:void(0);" class="thumb-img"><img
+                                            src="../../img/mypage/sample/panel.png" alt=""></a>
+                                    <a href="javascript:void(0);" class="thumb-img"><img
+                                            src="../../img/mypage/sample/tire.png" alt=""></a>
+                                    <a href="javascript:void(0);" class="thumb-img"><img
+                                            src="../../img/mypage/sample/tire.png"
+                                            alt=""></a><!--[D] 이미지가 없을 경우 선택 안됨 처리-->
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr class="line">
+
+                        <!--//[20241215 퍼블] 추가-->
+                        <div id="reviewFocus" class="review-container">
+                            <div class="review-controls">
+                                
+                                <div class="review-item">
+                                    <ul>
+
+                                        <li>
+                                            <div class="review-area">
+                                                <div class="review-info">
+                                                    <div class="user"><img src="../../img/common/ico_user.png" alt="">
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <p class="name"><span><b>권*태</b> 고객님</span></p>
+                                                        <!--[D] 평점 width로 컨트롤-->
+                                                        <div class="star-item">
+                                                            <p class="star-box"><span class="star"
+                                                                    style="width:100%;"></span></p><span
+                                                                class="num"><b>5.0</b> / 5.0</span>
+                                                            <span class="r-date">2024-10-10</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="review-cont">
+                                                    <b>"이로써 단골이 되어버렸습니다.22"</b>
+                                                    <p class="btnExpandTxt02 collapsed">
+                                                        <!--[D] .btnExpandTxt02 클래스로 스크립트 적용 중-->
+                                                        <span>시간, 서비스, 품질, 가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지
+                                                            싶은 정도로 시운행에도 만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을 시간, 서비스, 품질,
+                                                            가격 기사님 안내까지 뭐하나 흠잡을게 없네요. 그동안 타이어를 왜 안갈았는 지 싶은 정도로 시운행에도
+                                                            만족입니다. 궁금한점을 20분간 물어도 너무 친절하게 답변을</span>
+                                                        <button type="button" class="btn-plus">더보기</button>
+                                                    </p>
+                                                    <!-- <ul class="review-txt">
+                                                        <li class="ico-convenient">예약과 교체 작업이 편리해요</li>
+                                                        <li class="ico-friendly">장착기사님이 매우 친절해요</li>
+                                                        <li class="ico-satisfied">상품 성능이 만족스러워요</li>
+                                                    </ul> -->
+                                                </div>
+
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="review-box">
+                                <div class="review-satisfaction">
+                                    <!-- <p class="tit">만족도</p> -->
+                                    <ul>
+                                        <li>
+                                            <span><b>서비스</b> 만족도</span>
+                                            <p class="star-box"><span class="star" style="width:80%;"></span></p>
+                                        </li><!--[D] 평점 width로 컨트롤-->
+                                        <li>
+                                            <span><b>친절</b> 만족도</span>
+                                            <p class="star-box"><span class="star" style="width:60%;"></span></p>
+                                        </li>
+                                        <li>
+                                            <span><b>상품</b> 만족도</span>
+                                            <p class="star-box"><span class="star" style="width:40%;"></span></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
 
                     </div>
                 </div>
@@ -438,28 +612,33 @@
         </div>
 
     </div>
-        
+
     <!-- allWrap //-->
 
     <script>
         $(document).ready(function () {
 
+            // 퍼블 보기용
+            $(".layPopClose").on("click", function(){
+                $("#modalAgencyDetl02").removeClass("md-show");
+            });
+
             /**
              * icoArea 여부 스타일 변경
              *
              */
-            function icoAreahandlers(){
+            function icoAreahandlers() {
                 $(".popContents header").each(function () {
                     $(this).closest(".popContents").removeClass("icoAdd");
 
                     if ($(this).find(".icoArea").length > 0) {
                         $(this).closest(".popContents").addClass("icoAdd");
-                    }else {
+                    } else {
                         $(this).closest(".popContents").removeClass("icoAdd");
                     }
-                    
+
                 });
-            }icoAreahandlers();
+            } icoAreahandlers();
 
 
             /**
@@ -472,43 +651,43 @@
                     var $gallery = $(this);
                     var $mainImage = $gallery.find(".thumb-detail img");
                     var $thumbnailLinks = $gallery.find(".thumbs .thumb-img");
-    
+
                     // 첫 번째 썸네일 이미지 초기화
                     var firstThumbnailLink = $thumbnailLinks.find("img[src]").first();
                     var firstThumbnailSrc = firstThumbnailLink.attr("src");
-    
+
                     if (firstThumbnailSrc) {
                         $mainImage.attr("src", firstThumbnailSrc);
                         firstThumbnailLink.closest(".thumb-img").addClass("on").attr("title", "선택됨");
                     }
-    
+
                     // 썸네일 링크 이미지가 없는 경우
                     $thumbnailLinks.each(function () {
                         var $img = $(this).find("img");
                         var imgSrc = $img.attr("src");
-    
+
                         if (!imgSrc) {
                             $(this).attr("tabindex", "-1").removeClass("on").removeAttr("title");
                         } else {
                             $(this).attr("tabindex", "0");
                         }
                     });
-    
+
                     // 클릭 및 키보드 이벤트
                     $thumbnailLinks.on("click keydown", function (e) {
                         var $img = $(this).find("img");
                         var imgSrc = $img.attr("src");
-    
+
                         if (!imgSrc) {
                             e.preventDefault();
                             return;
                         }
-    
+
                         if (e.type === "click" || (e.type === "keydown" && (e.key === "Enter" || e.keyCode === 13))) {
                             e.preventDefault();
-    
+
                             $mainImage.attr("src", imgSrc);
-    
+
                             $thumbnailLinks.removeClass("on").removeAttr("title");
                             $(this).addClass("on").attr("title", "선택됨");
                         }
@@ -516,8 +695,7 @@
                 });
             }
             detailGalleryHandlers();
-    
-    
+
             /**
              * 여러 요소 on 클래스 추가 && title 속성 설정
              */
@@ -525,7 +703,7 @@
                 $(".onClass").each(function () {
                     var $container = $(this);
                     var $btns = $container.find("button, a");
-    
+
                     $btns.on('click', function () {
                         var $clickedBtn = $(this);
                         $btns.removeClass('on').removeAttr('title');
@@ -534,9 +712,9 @@
                 });
             }
             selectBtnHandlers();
-    
+
             /**
-             * 더보기 버튼 [20241206 퍼블] :: 더보기 버튼 변경
+             * 더보기 버튼 :: 더보기 버튼
              */
             function expandableTextHandlers() {
 
@@ -576,8 +754,69 @@
                 });
             }
             expandableTextHandlers();
-    
+
+            /**
+             * 더보기 버튼 [20241216 퍼블] :: 더보기 버튼 접기 있을 경우 추가
+             */
+            function twoExpandableTextHandlers() {
+
+                function towUpdateExpandableText() {
+                    
+                    $(".btnExpandTxt02").each(function () {
+                        var $container = $(this);
+                        var $btn = $container.find(".btn-plus");
+                        var $text = $container.find("span");
+
+                        // 컨텐츠의 실제 높이와 제한 높이를 비교
+                        var originalHeight = $text[0].scrollHeight;
+                        var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
+
+
+                        if (originalHeight > maxHeight) {
+                            $btn.show();
+                            if (!$container.hasClass("expanded")) {
+                                $container.addClass("collapsed");
+                            }
+                        } else {
+                            $btn.hide();
+                            $container.removeClass("collapsed expanded");
+                            
+                        }
+
+                    });
+                }
+
+
+                towUpdateExpandableText();
+
+                $(".btnExpandTxt02 .btn-plus").on("click", function () {
+                    var $container = $(this).closest(".btnExpandTxt02");
+                    $container.toggleClass("expanded");
+                    $container.toggleClass("collapsed");
+                    $(this).text($container.hasClass("expanded") ? "접기" : "더보기");
+
+                    //스크롤
+                    if ($container.hasClass("expanded")) {
+                        var $popupContents = $("#reviewScrollTop");
+
+                        $popupContents.animate({
+                            scrollTop: $popupContents[0].scrollHeight
+                        }, 300);
+                    }
+
+                });
+
+                $(window).on("resize", function () {
+                    towUpdateExpandableText();
+                });
+            }
+            twoExpandableTextHandlers();
+
+
             
+
+
+
             /**
              * 상세보기 이용후기 포커스 [개발 스크립트]
             */
@@ -586,18 +825,23 @@
                 var focusWrap = document.querySelector(".scrollBox");//스크롤 영역
                 var reviewFocus = document.querySelector("#reviewFocus");//팝업 이용후기 영역
 
-                if(popGbn == "REV"){
+                if (popGbn == "REV") {
                     var reviewOffset = reviewFocus.getBoundingClientRect().top + focusWrap.scrollTop - 147;
                     focusWrap.scrollTop = reviewOffset;
                 } else {
                     focusWrap.scrollTop = 0;
                 }
-            }popUpFocus();
-    
+            } popUpFocus();
+
+
+
+            /**
+             * 이용후기 - 상세
+            */
             
-    
+
         });
-    
+
     </script>
 
 </body>
