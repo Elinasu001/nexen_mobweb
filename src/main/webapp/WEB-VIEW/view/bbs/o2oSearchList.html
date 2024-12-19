@@ -46,7 +46,8 @@
         <!--subContentsWrap-->
         <div class="subContentsWrap sizeAdjust"><!--[20241214 퍼블] .sizeAdjust 클래스 추가-->
             <main>
-                <div class="store-wrap shop-search bg02"><!--[20241213 퍼블] 클래스 .bg02 변경-->
+                <!--//LIST [20241214 퍼블] 아이디 shop-list 추가-->
+                <div id="shop-list" class="store-wrap shop-search bg02"><!--[20241213 퍼블] 클래스 .bg02 변경-->
                     <div class="mapInfoBox custom-position">
                         <div class="mapInfoTop type02"><!--[20241213 퍼블] 클래스 .type02 추가-->
 
@@ -270,18 +271,84 @@
                         <!--더보기-->
                     </div>
                 </div>
+                <!--LIST//-->
+
+                <!--//MAP [20241214 퍼블] 아이디 shop-map 추가 -->
+                <div id="shop-map" class="popup-map" style="display:none;">
+
+                    <!--//[D] : 목록 > 핀 눌렀을 때 나오는 영역-->
+                    <div class="shop-search-result type02" id="storeInfo" ><!--[20241214 퍼블] shop-search-result type02 클래스로 변경-->
+                        <div class="shop-search-single">
+                            <div class="layout-c"><!--[20241214 퍼블] 클래스 .layout-c  변경-->
+                                <div class="shop-content-box layout-c">
+                                    <ul><!--[20241214 퍼블] 클래스 .mb-m 삭제-->
+                                        <li class="icoArea ic-recom">추천 렌탈 전문점</li><!--[20241214 퍼블] 추가 -->
+                                        <li class="tit"><b>넥스트레벨 역삼점</b></li><!--[20241214 퍼블] 클래스 .tit 추가 -->
+                                        <li class="txt">서울특별시 강남구 도곡로 143</li><!--[20241214 퍼블] 클래스 .txt 추가 -->
+                                        <!-- <li><b>[드라이브스루 가능]</b></li> -->
+                                    </ul>
+                                    <div class="layout-r">
+                                        <div class="shop-state-icon layout-r inline inline-s type02"><!--[20241214 퍼블] 클래스 .type02 클래스 추가-->
+                                            <div class="state inline">
+                                                <img src="../../img/common/state_ico02.png" alt="타이어">
+                                                <span>타이어</span>
+                                            </div>
+                                            <div class="state inline">
+                                                <img src="../../img/common/state_ico05.png" alt="세차">
+                                                <span>세차</span>
+                                            </div>
+                                            <div class="state inline">
+                                                <img src="../../img/common/state_ico03.png" alt="경정비">
+                                                <span>경정비</span>
+                                            </div>
+                                            <div class="state inline">
+                                                <img src="../../img/common/state_ico04.png" alt="겨울용">
+                                                <span>겨울용</span>
+                                            </div>
+                                            <div class="state inline">
+                                                <img src="../../img/common/state_ico06.png" alt="1급정비"><!--[20241214 퍼블] 1급정비 이미지 변경-->
+                                                <span>1급정비</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="shop-btn-box"><!--[20241214 퍼블] 클래스  inline text-right align-bottom layout-c  삭제-->
+                                    <button type="button" class="md-close"><!--[20241214 퍼블 ] 버튼 > b태그 span 태그 삭제-->
+                                        상세보기
+                                    </button>
+                                    <button type="button" class="md-close">
+                                        선택하기
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--[D] : 목록 > 핀 눌렀을 때 나오는 영역//-->
+
+                    <div class="popup-map-ui">
+                        <button type="button" class="btn-position">현재위치</button>
+                        <button type="button" class="btn-map-list change-list"><span></span><b>목록</b></button>
+                    </div>
+                    
+                    <div id="mapDiv" style="width:100%; height: 100%;"></div> <!--//[D] : 지도 영역 -->
+                    
+                </div>
+                <!--MAP//-->
+
             </main>
         </div>
         <!--subContentsWrap-->
 
         <!-- //footer 퍼블 예시-->
-        <div id="footerWrap">
+        <!-- <div id="footerWrap">
             <script>
                 $(document).ready(function(){
                     $("#footerWrap").load("../footer.html");
                 });
             </script>
-        </div>
+        </div> -->
         <!-- footer 퍼블 예시-// -->
 
         <div class="allBgWrap over-wrap">

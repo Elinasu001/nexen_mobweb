@@ -1,0 +1,175 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta name="format-detection" content="telephone=no, address=no, email=no">
+
+    <link rel="shortcut icon" href="../../img/common/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="../../css/jquery-ui.css">
+    <link type="text/css" rel="stylesheet" href="../../css/slick.css">
+    <link type="text/css" rel="stylesheet" href="../../css/slick-theme.css">
+    <link type="text/css" rel="stylesheet" href="../../css/css.css">
+    <link type="text/css" rel="stylesheet" href="../../css/new_layout.css">
+
+    <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-5T4LZPV"></script>
+    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-NZDR68JW"></script>
+    <script async="" src="//st2.exelbid.com/js/cts2.js"></script>
+    <script async="" defer="" src="https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js"></script>
+
+    <script type="text/javascript" src="../../js/lib/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../../js/util.js"></script>
+    <script type="text/javascript" src="../../js/lib/slick.min.js"></script>
+    <script type="text/javascript" src="../../js/lib/jquery.sticky.js"></script>
+    <script type="text/javascript" src="../../js/common_ui.js"></script>
+    <title>상담하기 | NEXT LEVEL</title>
+</head>
+
+<body>
+    <!-- //allWrap -->
+    <div class="allWrap" id="allWrap">
+        <!-- allWrap -->
+
+        <!-- //header 퍼블 예시-->
+        <div id="headerWrap">
+            <script>
+                $(document).ready(function(){
+                    $("#headerWrap").load("../header.html");
+                });
+            </script>
+        </div>
+        <!-- header 퍼블 예시-// -->
+
+        <!--subContentsWrap-->
+        <div class="subContentsWrap">
+            <main>
+                <!--[20241215 퍼블] 기존 tap 레이아웃 삭제 -->
+                <div class="order-header-message"><!--[20241215 퍼블] order-header-message 태그 부터 시작-->
+                    
+                </div>
+                
+                <div class="inset-ml">
+                    <div class="submit layout-c mb-m border-gray-bottom">
+                        <label for="name"><span class="essen black">이름</span></label>
+                        <input type="text" name="" class="type03 trans-bg" id="name" title="이름 입력란" placeholder="이름을 입력하세요" maxlength="20"> 
+                    </div>
+                    
+                    <div class="submit layout-c border-gray-bottom mb-m">
+                        <label for="phone01"><span class="essen black">휴대전화</span></label>
+                        <div class="layout-r inline-m same-size">
+                        <select class="inline st01 w33per" id="phone11" title="휴대전화 앞자리 선택">
+                            <option>010</option>
+                            <option>011</option>
+                            <option>016</option>
+                            <option>017</option>
+                            <option>018</option>
+                            <option>019</option>      
+                        </select>
+
+                        <span class="divi type02 align-middle"></span>
+                        <input type="text" name="" maxlength="4" class="type03 inline w33per trans-bg" id="phone12" title="휴대폰 중간번호 입력란" onkeyup="return validNumberCheck.keyUp(event);">
+                        <span class="divi type02 align-middle"></span>
+                        <input type="text" name="" maxlength="4" class="type03 inline w33per trans-bg" id="phone13" title="휴대폰 끝번호 입력란" onkeyup="return validNumberCheck.keyUp(event);">
+                        </div>
+                    </div>
+                    
+                    <p id="popZipCode" style="display:none;"></p>
+                    
+                    <div class="submit layout-c mb-m"> <!--border-gray-bottom-->
+                        <label for="info02"><span class="essen black">주소</span></label>
+
+                        <div class="conWrap layout-r border-bottom  mb-s">
+                        <div class="inline full-width">
+                            <input type="text" name="" class="pl-0 pr-l trans-bg" id="info03" title="주소 입력란" placeholder="주소를 검색해 주세요" onclick="javascript:selectJusoPop();" readonly="readonly">
+                        </div>
+                        <button type="button" class="align-middle btn-address-search inline md-trigger" data-modal="modal-1" onclick="javascript:selectJusoPop();">검색</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!--subContentsWrap-->
+
+        <!--[D] 기존 fullPopup 불러오는 스크립트와 동일-->
+
+        <!--//[20241215 퍼블] 팝업 추가-->
+        <div class="fullPopup md-show bottomPopup sizeAdjust" id="modal"><!--[20241215 퍼블] 클래스 .bottomPopup .sizeAdjust 클래스 추가-->
+            <div class="popContents popup-dark shop-search bg-white "><!--[20241215 퍼블] .bg-white, .bg 클래스 추가-->
+                <a href="#;" class="layPopClose md-close" onclick="fn_mapClose()"></a>
+                <header>
+                    <h2>전문점 찾기</h2>
+                </header>
+
+                <!--//contents-->
+                <div class="popup-contents-nobottom">
+
+                    <div class="agree-wrap">
+                        <div class="check">
+                            <input type="checkbox" id="allAgree" name="" value="0" class="type01" onchange="javascript:checkAgree()" checked="">
+                            <label for="allAgree"><p>NEXT LEVEL 렌탈 가입 및 구매 상담을 위한 개인정보 수집 및 이용에 동의합니다.</p></label><!--[20241215 퍼블] span태그 삭제 b>p 태그 변경 -->
+                        </div>
+
+                        <div class="info">
+                            <dl>
+                            <dt>이용목적</dt>
+                            <dd>타이어 렌탈 가입 상담 및 계약 체결</dd>
+                            </dl>
+
+                            <dl>
+                            <dt>항목</dt>
+                            <dd>이름, 주소, 연락처(핸드폰), 차종</dd>
+                            </dl>
+
+                            <dl>
+                            <dt>보유기간</dt>
+                            <dd>상담 종료일로부터 90일 이내</dd>
+                            </dl>
+                        </div>
+
+                        <div class="btn-box"><!--[20241215 퍼블] 버튼 추가 -->
+                            <button type="button" class="btn-select primary">동의</button><!--[D] 동의 안 할 경우 disabled 추가-->
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--contents//-->
+
+            </div>
+        </div>
+        <!--[20241215 퍼블] 팝업 추가//-->
+
+
+
+        <!-- //footer 퍼블 예시-->
+        <div id="footerWrap">
+            <script>
+                $(document).ready(function(){
+                    $("#footerWrap").load("../footer.html");
+                });
+            </script>
+        </div>
+        <!-- footer 퍼블 예시-// -->
+
+        <div class="allBgWrap over-wrap">
+            <div id="bgFullImg"><div class="customer-bg store"></div></div>
+        </div>
+
+    </div>
+     <!-- allWrap //-->
+</body>
+<script>
+    $(document).ready(function(){
+
+        // 퍼블 보기용
+        $(".layPopClose ").on("click", function(){
+            $(".bottomPopup").removeClass("md-show");
+        });
+
+    });
+</script>
+
+</html>
