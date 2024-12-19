@@ -2892,7 +2892,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 .map-detail-container .map-detail-item .serviceState { margin:10px 0 20px 0; }
 .map-detail-container .map-detail-item .serviceState > ul { display:flex; gap:10px;  flex-wrap: wrap;}
-.map-detail-container .map-detail-item .serviceState > ul > li { display:flex; justify-content: center; padding :6px 18px; background: var(--bg-2-color); color:var(--sub-6-color); border-radius: 20px; }
+.map-detail-container .map-detail-item .serviceState > ul > li { display:flex; justify-content: center; padding :6px 18px; line-height: 1.2; background: var(--bg-2-color); color:var(--sub-6-color); border-radius: 20px; }
 .map-detail-container .map-detail-item .serviceState > ul > li.on { position:relative; padding:6px 41px 6px 18px; background: var(--m-color); color:#FFFFFF;  }
 .map-detail-container .map-detail-item .serviceState > ul > li.on::after {  content:""; position:absolute; right:15px; top:50%; transform:translateY(-50%); }
 .map-detail-container .map-detail-item .serviceState > ul > li.on::after { width:18px; height:18px; background: var(--ic-service-chk) no-repeat 50%/18px auto; }
