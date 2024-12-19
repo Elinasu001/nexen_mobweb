@@ -526,45 +526,45 @@
              * 더보기 버튼 [20241206 퍼블] :: 더보기 버튼 변경
              */
             function expandableTextHandlers() {
-                $(".btnExpandTxt").each(function () {
-                    var $container = $(this);
-                    var $btn = $container.find(".btn-plus");
-                    var $text = $container.find("span");
-    
-                    // 컨텐츠의 실제 높이와 제한 높이를 비교
-                    var originalHeight = $text[0].scrollHeight;
-                    var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
-    
-                    if (originalHeight > maxHeight) {
-                        $btn.show();
-                        $container.addClass("collapsed");
-                    } else {
-                        $btn.hide();
-                    }
-    
-                    $btn.on("click", function () {
-                        $container.toggleClass("expanded");
-                        $container.toggleClass("collapsed");
-                        $btn.text($container.hasClass("expanded") ? "" : "더보기");
+                
+                function updateExpandableText() {
+                    $(".btnExpandTxt").each(function () {
+                        var $container = $(this);
+                        var $btn = $container.find(".btn-plus");
+                        var $text = $container.find("span");
+
+                        // 컨텐츠의 실제 높이와 제한 높이를 비교
+                        var originalHeight = $text[0].scrollHeight;
+                        var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
+
+                        if (originalHeight > maxHeight) {
+                            $btn.show();
+                            if (!$container.hasClass("expanded")) {
+                                $container.addClass("collapsed");
+                            }
+                        } else {
+                            $btn.hide();
+                            $container.removeClass("collapsed expanded");
+                        }
                     });
+                }
+
+                updateExpandableText();
+
+                $(".btnExpandTxt .btn-plus").on("click", function () {
+                    var $container = $(this).closest(".btnExpandTxt");
+                    $container.toggleClass("expanded");
+                    $container.toggleClass("collapsed");
+                    $(this).text($container.hasClass("expanded") ? "" : "더보기");
+                });
+
+                $(window).on("resize", function () {
+                    updateExpandableText();
                 });
             }
             expandableTextHandlers();
+            
     
-            $("#btnDetail").on("click", function(){
-                $("body").addClass("bgFix");
-                $(".popupWrap").addClass("md-show");
-            });
-    
-            $("#btnReview").on("click", function(){
-                $("body").addClass("bgFix");
-                $(".popupWrap").addClass("md-show");
-            });
-    
-            function fn_popupClose(){
-                $("body").removeClass("bgFix");
-                $(".popupWrap").removeClass("md-show");
-            }
     
             /**
              * 상세보기 이용후기 포커스 [개발 스크립트]
