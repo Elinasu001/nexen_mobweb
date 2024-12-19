@@ -12,6 +12,7 @@
     <link type="text/css" rel="stylesheet" href="../../css/slick-theme.css">
     <link type="text/css" rel="stylesheet" href="../../css/css.css">
     <link type="text/css" rel="stylesheet" href="../../css/new_layout.css">
+    <link type="text/css" rel="stylesheet" href="../../css/nice-select.css">
 
     <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
     <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-5T4LZPV"></script>
@@ -45,69 +46,89 @@
         <!--subContentsWrap-->
         <div class="subContentsWrap">
             <main>
-                <!--[20241215 퍼블] 기존 tap 레이아웃 삭제 -->
-                <div class="order-header-message"><!--[20241215 퍼블] order-header-message 태그 부터 시작-->
-                    
-                </div>
-                
-                <div class="inset-ml">
-                    <div class="submit layout-c mb-m border-gray-bottom">
-                        <label for="name"><span class="essen black">이름</span></label>
-                        <input type="text" name="" class="type03 trans-bg" id="name" title="이름 입력란" placeholder="이름을 입력하세요" maxlength="20"> 
-                    </div>
-                    
-                    <div class="submit layout-c border-gray-bottom mb-m">
-                        <label for="phone01"><span class="essen black">휴대전화</span></label>
-                        <div class="layout-r inline-m same-size">
-                        <select class="inline st01 w33per" id="phone11" title="휴대전화 앞자리 선택">
-                            <option>010</option>
-                            <option>011</option>
-                            <option>016</option>
-                            <option>017</option>
-                            <option>018</option>
-                            <option>019</option>      
-                        </select>
+                <!--** [20241215 퍼블] page-header ~ tab-content :: 상단 이미지 및 탭 구조 삭제 ** -->
 
-                        <span class="divi type02 align-middle"></span>
-                        <input type="text" name="" maxlength="4" class="type03 inline w33per trans-bg" id="phone12" title="휴대폰 중간번호 입력란" onkeyup="return validNumberCheck.keyUp(event);">
-                        <span class="divi type02 align-middle"></span>
-                        <input type="text" name="" maxlength="4" class="type03 inline w33per trans-bg" id="phone13" title="휴대폰 끝번호 입력란" onkeyup="return validNumberCheck.keyUp(event);">
+                <div class="counselWrap sizeAdjust"><!--[20241215 퍼블] 태그 추가-->
+                    <h2 class="hide">상담 신청</h2><!--[20241215 퍼블] 추가-->
+
+                    <div class="order-header-message"><!--[D] order-header-message 태그 부터 기존 구조 시작-->
+                        <p>NEXT LEVEL<b>간편 상담 신청</b></p>
+                        <div class="order-info-summary">
+                            <small>고객님꼐 딱 맞는 타이어 교체 방법을<br/> 전문 상다사가 해피콜로 자세히 안내드립니다.</small>
+                            <a href="javascript:void(0);">[넥센 타이어 고객센터 1855-0100]</a>
+                        </div>
+                        <div class="btn-box">
+                            <button type="button" class="btn-select agree disabled">개인정보 수집 및 이용 동의</button><!--[D] .disbaled 클래스 : 활성화 시 disabled 삭제 (팝업으로 인해 클래스로 대체) -->
                         </div>
                     </div>
-                    
-                    <p id="popZipCode" style="display:none;"></p>
-                    
-                    <div class="submit layout-c mb-m"> <!--border-gray-bottom-->
-                        <label for="info02"><span class="essen black">주소</span></label>
-
-                        <div class="conWrap layout-r border-bottom  mb-s">
-                        <div class="inline full-width">
-                            <input type="text" name="" class="pl-0 pr-l trans-bg" id="info03" title="주소 입력란" placeholder="주소를 검색해 주세요" onclick="javascript:selectJusoPop();" readonly="readonly">
-                        </div>
-                        <button type="button" class="align-middle btn-address-search inline md-trigger" data-modal="modal-1" onclick="javascript:selectJusoPop();">검색</button>
+                    <div class="inset-m">
+                        <h3>상담 신청 정보</h3><!--[20241215 퍼블] 추가-->
+                        <div class="submit layout-c mb-m border-gray-box">
+                            <label for="name"><span class="black">이름</span></label><!--[20241215 퍼블] 클래스 .essen 삭제-->
+                            <input type="text" name="" class="type03 trans-bg" id="name" title="이름 입력란" placeholder="이름을 입력하세요" maxlength="20"> 
                         </div>
                         
+                        <div class="submit layout-c border-gray-box mb-m">
+                            <label for="phone01"><span class="black">휴대전화</span></label><!--[20241215 퍼블] 클래스 .essen 삭제-->
+                            <div class="layout-r inline-m same-size"><!--[20241215 퍼블] 클래스 .line 삭제-->
+                            <select class="st01 w33per" id="phone11" title="휴대전화 앞자리 선택">
+                                <option>010</option>
+                                <option>011</option>
+                                <option>016</option>
+                                <option>017</option>
+                                <option>018</option>
+                                <option>019</option>
+                            </select>
+
+                            <span class="divi type02 align-middle"></span>
+                            <!--[20241215 퍼블] 클래스 .line 삭제-->
+                            <input type="text" name="" maxlength="4" class="type03 w33per trans-bg" id="phone12" title="휴대폰 중간번호 입력란" onkeyup="return validNumberCheck.keyUp(event);">
+                            <span class="divi type02 align-middle"></span>
+                            <!--[20241215 퍼블] 클래스 .line 삭제-->
+                            <input type="text" name="" maxlength="4" class="type03 w33per trans-bg" id="phone13" title="휴대폰 끝번호 입력란" onkeyup="return validNumberCheck.keyUp(event);">
+                            </div>
+                        </div>
+                        
+                        <!--//[20241215 퍼블] 추가-->
+                        <div class="submit layout-c mb-m border-gray-box"><!--[20241215 퍼블] 클래스 .border-gray-box로 변경 -->
+                            <label for="cotList"><span class="black">상담 신청 내용</span></label>
+                            <select id="cotList" class="st01">
+                                <option value="01">렌탈</option>
+                                <option value="02">넥센</option>
+                            </select>
+                        </div>
+                        <!--[20241215 퍼블] 추가//-->
+                        <p class="desc">※ 콜센터 1855-0100 / 운영시간 09:00 ~ 18:00 (주말 및 공휴일 휴무) / 영업시간 기준 우선 접수 순으로 연락드리겠습니다.</p>
+                        
                     </div>
+                    
+                    <!--//[20241215 퍼블] 추가-->
+                    <div class="bannerWrap">
+                        <img src="../../img/product/sample_banner.png" alt="">
+                    </div>
+                    <div class="btn-box mt-0">
+                        <button type="button" class="btn-select request" disabled>신청하기</button><!--[D] disbaled : 활성화 시 disabled 삭제 -->
+                    </div>
+                    <!--//[20241215 퍼블] 추가//-->
+
                 </div>
             </main>
         </div>
         <!--subContentsWrap-->
 
-        <!--[D] 기존 fullPopup 불러오는 스크립트와 동일-->
-
-        <!--//[20241215 퍼블] 팝업 추가-->
-        <div class="fullPopup md-show bottomPopup sizeAdjust" id="modal"><!--[20241215 퍼블] 클래스 .bottomPopup .sizeAdjust 클래스 추가-->
-            <div class="popContents popup-dark shop-search bg-white "><!--[20241215 퍼블] .bg-white, .bg 클래스 추가-->
+        <!--//[20241215 퍼블] 팝업 추가--><!--[D] 기존 fullPopup 불러오는 스크립트와 동일-->
+        <div class="fullPopup  bottomPopup sizeAdjust md-show" id="modal"><!--[20241215 퍼블] 클래스 .bottomPopup .sizeAdjust 클래스 추가-->
+            <div class="popContents popup-dark shop-search bg-white"><!--[20241215 퍼블] .bg-white, .bg 클래스 추가-->
                 <a href="#;" class="layPopClose md-close" onclick="fn_mapClose()"></a>
                 <header>
-                    <h2>전문점 찾기</h2>
+                    <h2>개인정보 수집 및 이용동의</h2>
                 </header>
 
                 <!--//contents-->
                 <div class="popup-contents-nobottom">
 
                     <div class="agree-wrap">
-                        <div class="check">
+                        <div class="check"><!--[D] 디폴트 : 선택됨으로 처리 -->
                             <input type="checkbox" id="allAgree" name="" value="0" class="type01" onchange="javascript:checkAgree()" checked="">
                             <label for="allAgree"><p>NEXT LEVEL 렌탈 가입 및 구매 상담을 위한 개인정보 수집 및 이용에 동의합니다.</p></label><!--[20241215 퍼블] span태그 삭제 b>p 태그 변경 -->
                         </div>
@@ -130,7 +151,7 @@
                         </div>
 
                         <div class="btn-box"><!--[20241215 퍼블] 버튼 추가 -->
-                            <button type="button" class="btn-select primary">동의</button><!--[D] 동의 안 할 경우 disabled 추가-->
+                            <button type="button" class="btn-select primary">동의</button><!--[D] disabled :: 동의 안 할 경우 disabled 삭제 처리 -->
                         </div>
 
                     </div>
@@ -155,7 +176,7 @@
         <!-- footer 퍼블 예시-// -->
 
         <div class="allBgWrap over-wrap">
-            <div id="bgFullImg"><div class="customer-bg store"></div></div>
+            <div id="bgFullImg"><div class="customer-bg consulting"></div></div>
         </div>
 
     </div>
