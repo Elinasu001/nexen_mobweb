@@ -3070,7 +3070,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .fullPopup.bottomPopup .popContents header h2 { color:var(--sub-0-color); font-weight:500; }
 .fullPopup.bottomPopup .popContents .popup-contents-nobottom { padding:0 1rem; }
 
-.fullPopup.bottomPopup .agree-wrap { margin-top:20px; }
+.fullPopup.bottomPopup .agree-wrap { display:flex; flex-direction: column; margin-top:20px; }
 .fullPopup.bottomPopup .agree-wrap .info { margin:initial; padding:initial; border-top:0;  border-bottom: 0; margin-top:10px;}
 .fullPopup.bottomPopup .agree-wrap .info dl { flex-direction: column; padding:1rem 0.625rem;  border-bottom:1px solid #DEDEDE; }
 .fullPopup.bottomPopup .agree-wrap .info dt,
@@ -3078,7 +3078,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .fullPopup.bottomPopup .agree-wrap .info dt { padding-left: 0; color:var(--sub-2-color); }
 .fullPopup.bottomPopup .agree-wrap .info dd { margin-top:8px; color:var(--sub-6-color);  }
 
-.fullPopup.bottomPopup input[type='checkbox'].type01 + label { display: flex; justify-content: center; padding:1rem; border:1px solid #DEDEDE;  background: var(--sub-color);   }
+.fullPopup.bottomPopup input[type='checkbox'].type01 + label { display: flex; justify-content: center; width:100%; padding:1rem; border:1px solid #DEDEDE;  background: var(--sub-color);   }
 .fullPopup.bottomPopup input[type='checkbox']:checked.type01 + label {  border:1px solid #E7DDE7; background: #E7DDE7;  }
 
 .fullPopup.bottomPopup input[type='checkbox'].type01 + label p { position: relative; padding-left: 25px; color:var(--sub-9-color); }
