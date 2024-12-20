@@ -1,4 +1,56 @@
 <footer id="footerWrap">
+    <!--//[20241210 퍼블]-->
+		<!-- <div class="action-buttons">
+			<div class="quick-menu-area">
+				<a href="" class="quick-btn">
+					<div class="icon-wrap">
+						<img src="../../img/common/ico_quick.png" alt="">
+					</div>
+					<div class="text-wrap">
+						<p class="line1">간편상담</p>
+						<p class="line2">신청하기</p>
+					</div>
+				</a>
+			</div>
+		</div>
+		<script>
+			
+			$(document).ready(function () {
+				/**
+				 * [공통] :: 퀵메뉴 버튼
+				 */
+				function handleScrollButtons() {
+					var $quickMenu = $(".action-buttons").not(".mainPullPage");
+					var $footer = $("footer");
+
+					$quickMenu.show().addClass("keyframes");
+
+					$(window).on('scroll', function() {
+						var footerOffsetTop = $footer.offset().top; // 푸터의 위치
+						var scrollTop = $(window).scrollTop();
+						var windowHeight = $(window).height();
+						var quickMenuHeight = $quickMenu.outerHeight();
+
+						var footerVisible = (scrollTop + windowHeight) > footerOffsetTop;
+
+						var newBottom;
+						if (footerVisible) {
+							newBottom = (scrollTop + windowHeight - footerOffsetTop) + 50;
+						} else {
+							newBottom = 100;
+						}
+
+						$quickMenu.stop().animate({
+							bottom: newBottom + "px"
+						}, 300);
+					});
+				}
+				handleScrollButtons();
+				
+			});
+			
+		</script> -->
+		<!--[20241210 퍼블]//-->
     <div class="footerWrap">
         <p class="foLogo"></p>
         <div class="foCopyright">
