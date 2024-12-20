@@ -2854,6 +2854,8 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .shop-search-result.type02 .shop-btn-box button:last-child,
 .shop-search-result.type02 .shop-btn-box.accordion.on::after button:first-child { margin: initial;}
 
+.shop-search-result.type02 .shop-btn-box button.btn-select { background: var(--m-color); color:var(--sub-color); } 
+
 
 /* 전문점 찾기 - 핀 있을 경우 */
 .shop-search-result.type02 .shop-search-single ul > li.tit b{ position: relative; padding-left: 20px; cursor: pointer; }
@@ -2906,7 +2908,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .btn-box .btn-select.agree { height:40px; line-height: 39px; font-size:0.875rem; }
 .btn-box .btn-select.agree.disabled { color:var(--m-color) !important; background: #F3E9F3; }
 .btn-box .btn-select.request { height:60px; font-size: 1.125rem; border-radius: 0px;  }
-.btn-box .btn-select.request[disabled] { color:var(--m-color) !important; background: #F3E9F3; }
+.btn-box .btn-select.request[disabled] { color:var(--sub-6-color) !important; background: #EEEEEE; }
 
 /* 이용후기 */
 /* 이용후기 박스 */
