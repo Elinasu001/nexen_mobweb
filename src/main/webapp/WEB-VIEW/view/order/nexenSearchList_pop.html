@@ -432,7 +432,7 @@
         </div>
 
         <!--//[20241216 퍼블] :: 이용후기 상세 - 추가-->
-        <div class="fullPopup md-modal-3 md-effect-1 md-show sizeAdjust" id="modalAgencyDetl02">
+        <div class="fullPopup md-modal-3 md-effect-1 sizeAdjust" id="modalAgencyDetl02">
             
             <div class="popContents order-basket bg-white reviewDeatil">
                 <a href="#" onclick="javascript:fn_popupClose();" class="layPopClose md-close"></a>
@@ -663,49 +663,122 @@
             /**
              * 더보기 버튼 [20241206 퍼블] :: 더보기 버튼 변경
              */
-            function expandableTextHandlers() {
+            // function expandableTextHandlers() {
                 
-                function updateExpandableText() {
-                    $(".btnExpandTxt").each(function () {
-                        var $container = $(this);
-                        var $btn = $container.find(".btn-plus");
-                        var $text = $container.find("span");
+            //     function updateExpandableText() {
+                    
+            //         $(".btnExpandTxt").each(function () {
+            //             var $container = $(this);
+            //             var $btn = $container.find(".btn-plus");
+            //             var $text = $container.find("span");
 
-                        // 컨텐츠의 실제 높이와 제한 높이를 비교
-                        var originalHeight = $text[0].scrollHeight;
-                        var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
+            //             // 컨텐츠의 실제 높이와 제한 높이를 비교
+            //             var originalHeight = $text[0].scrollHeight;
+            //             var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
 
-                        if (originalHeight > maxHeight) {
-                            $btn.show();
-                            if (!$container.hasClass("expanded")) {
-                                $container.addClass("collapsed");
-                            }
-                        } else {
-                            $btn.hide();
-                            $container.removeClass("collapsed expanded");
-                        }
-                    });
+            //             if (originalHeight > maxHeight) {
+            //                 $btn.show();
+            //                 if (!$container.hasClass("expanded")) {
+            //                     $container.addClass("collapsed");
+            //                 }
+            //             } else {
+            //                 $btn.hide();
+            //                 $container.removeClass("collapsed expanded");
+            //             }
+            //         });
+            //     }
+
+            //     updateExpandableText();
+
+            //     $(".btnExpandTxt .btn-plus").on("click", function () {
+            //         var $container = $(this).closest(".btnExpandTxt");
+            //         $container.toggleClass("expanded");
+            //         $container.toggleClass("collapsed");
+            //         $(this).text($container.hasClass("expanded") ? "" : "더보기");
+            //     });
+
+            //     $(window).on("resize", function () {
+            //         updateExpandableText();
+            //     });
+            // }
+            // expandableTextHandlers();
+
+
+            // function expandableTextHandlers() {
+
+            //     function updateExpandableText($container) {
+
+            //         var $btn = $container.find(".btn-plus");
+            //         var $text = $container.find("span");
+
+            //         var originalHeight = $text[0].scrollHeight; // 실제 높이
+            //         var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
+
+            //         if (originalHeight > maxHeight) {
+            //             $btn.show();
+            //         } else {
+            //             $btn.hide();
+            //         }
+            //     }
+
+            //     function updateAllExpandableText() {
+            //         $(".btnExpandTxt").each(function () {
+            //             updateExpandableText($(this));
+            //         });
+            //     }
+
+            //     // "더보기" 버튼 클릭 시
+            //     $(".btnExpandTxt").on("click", ".btn-plus", function () {
+            //         var $container = $(this).closest(".btnExpandTxt");
+            //         $container.toggleClass("expanded");
+            //         $(this).text($container.hasClass("expanded") ? "" : "더보기");
+            //     });
+                
+            //     $(window).on("resize", updateAllExpandableText);
+            // }
+
+            // // 함수 실행
+            // expandableTextHandlers();
+
+
+            function expandableTextHandlers() {
+                $(".btnExpandTxt").each(function () {
+                    var $container = $(this);
+                    var $btn = $container.find(".btn-plus");
+                    var $text = $container.find("span");
+
+                    function updateTextState() {
+                    // 컨텐츠의 실제 높이와 제한 높이를 비교
+                    var originalHeight = $text[0].scrollHeight;
+                    var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
+
+                    if (originalHeight > maxHeight) {
+                        $btn.show();
+                        $container.addClass("collapsed");
+                    } else {
+                        $btn.hide();
+                    }
                 }
+                updateTextState();
 
-                updateExpandableText();
+                    $btn.on("click", function () {
+                        $container.addClass("expanded");
+                        $container.removeClass("collapsed");
+                        $btn.text("");
+                    });
+                    
+                    $(window).on("resize", function () {
+                        updateTextState();
+                    });
 
-                $(".btnExpandTxt .btn-plus").on("click", function () {
-                    var $container = $(this).closest(".btnExpandTxt");
-                    $container.toggleClass("expanded");
-                    $container.toggleClass("collapsed");
-                    $(this).text($container.hasClass("expanded") ? "" : "더보기");
                 });
-
-                $(window).on("resize", function () {
-                    updateExpandableText();
-                });
-            }
-            expandableTextHandlers();
+                
+            }expandableTextHandlers();
 
             /**
              * 더보기 버튼 [20241216 퍼블] :: 더보기 버튼 접기 있을 경우 추가
              */
-             function twoExpandableTextHandlers() {
+            function twoExpandableTextHandlers() {
 
             function towUpdateExpandableText() {
                 
