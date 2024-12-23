@@ -708,44 +708,40 @@
             /**
              * 더보기 버튼 :: 더보기 버튼
              */
-            function expandableTextHandlers() {
+             function expandableTextHandlers() {
+                $(".btnExpandTxt").each(function () {
+                    var $container = $(this);
+                    var $btn = $container.find(".btn-plus");
+                    var $text = $container.find("span");
 
-                function updateExpandableText() {
-                    $(".btnExpandTxt").each(function () {
-                        var $container = $(this);
-                        var $btn = $container.find(".btn-plus");
-                        var $text = $container.find("span");
+                    function updateTextState() {
+                    // 컨텐츠의 실제 높이와 제한 높이를 비교
+                    var originalHeight = $text[0].scrollHeight;
+                    var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
 
-                        // 컨텐츠의 실제 높이와 제한 높이를 비교
-                        var originalHeight = $text[0].scrollHeight;
-                        var maxHeight = parseInt(window.getComputedStyle($text[0]).lineHeight, 10) * 2; // 2줄 높이 계산
-
-                        if (originalHeight > maxHeight) {
-                            $btn.show();
-                            if (!$container.hasClass("expanded")) {
-                                $container.addClass("collapsed");
-                            }
-                        } else {
-                            $btn.hide();
-                            $container.removeClass("collapsed expanded");
-                        }
-                    });
+                    if (originalHeight > maxHeight) {
+                        $btn.show();
+                        $container.addClass("collapsed");
+                    } else {
+                        $btn.hide();
+                    }
                 }
+                updateTextState();
 
-                updateExpandableText();
+                    $btn.on("click", function () {
+                        $container.addClass("expanded");
+                        $container.removeClass("collapsed");
+                        $btn.text("");
+                    });
+                    
+                    $(window).on("resize", function () {
+                        updateTextState();
+                    });
 
-                $(".btnExpandTxt .btn-plus").on("click", function () {
-                    var $container = $(this).closest(".btnExpandTxt");
-                    $container.toggleClass("expanded");
-                    $container.toggleClass("collapsed");
-                    $(this).text($container.hasClass("expanded") ? "" : "더보기");
                 });
+                
+            }expandableTextHandlers();
 
-                $(window).on("resize", function () {
-                    updateExpandableText();
-                });
-            }
-            expandableTextHandlers();
 
             /**
              * 더보기 버튼 [20241216 퍼블] :: 더보기 버튼 접기 있을 경우 추가
