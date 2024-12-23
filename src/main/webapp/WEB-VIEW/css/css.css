@@ -2876,9 +2876,10 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 /** 전문점 상세보기 **/
 /* 전문점 사진 */
 .map-detail-gallery {display:flex; flex-direction: column; margin:0 auto; }
-.map-detail-gallery > .thumb-detail {  max-width:100%; height:auto;}
+.map-detail-gallery > .thumb-detail {  max-width:500px; height:auto;}
 .map-detail-gallery > .thumbs { display:flex; gap:8px; margin-top:11px; }
 .map-detail-gallery > .thumbs > a.thumb-img { width:80px; height: 80px; }
+.map-detail-gallery > .thumb-detail > img { min-height:300px; }
 .map-detail-gallery > .thumb-detail > img,
 .map-detail-gallery > .thumbs > a.thumb-img > img { width:100%; height:100%;}
 .map-detail-gallery > .thumbs > a.thumb-img { opacity: 0.8; }
