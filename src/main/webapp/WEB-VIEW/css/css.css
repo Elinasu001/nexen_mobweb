@@ -2739,6 +2739,8 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 	--ic-arrow: url(../img/common/ico_arrow.png);
 
+	--ic-shop-close: url(../img/common/file_attach_cancel.png);
+
 	--m-color: #832082;
 	--review-msub-color: #191478;
 	--pop-tit-color: #1F273D;
@@ -2861,7 +2863,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 /* 전문점 찾기 - 핀 있을 경우 */
 .shop-search-result.type02 .shop-search-single ul > li.tit b{ position: relative; padding-left: 20px; cursor: pointer; }
 .shop-search-result.type02 .shop-search-single ul > li.tit b::before { position: absolute; content:""; left:0; width:18px; height:30px; top:50%; transform: translateY(-50%); background: var(--ic-pin) no-repeat 100%/18px auto; cursor: pointer; }
-
+.shop-search-result.type02 .shop-search-single .btn-close { position: absolute; right:16px; width:24px; height:24px;  background: var(--ic-shop-close) no-repeat 100%/24px auto; font-size:0; }
 
 /* 전문점 찾기 팝업 - 핀 클릭 했을 경우 */
 .popup-map .shop-search-result.type02 .shop-search-single { box-shadow: 2px 2px 2px 10px rgba(0, 0, 0, 0.01); border-radius: 10px 10px 0 0; padding:1.875rem 1rem 1.25rem 1rem; }
@@ -2872,7 +2874,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 /** 전문점 찾기 - 주문하기 **/
 /* 버튼 3개일 경우 - 전문점 찾기 : 주문서*/
 .shop-search-result.type02 .shop-btn-box:has(.btn-select) { flex-direction: column; }
-.shop-search-result.type02 .shop-btn-box .btn-box { display: flex; width:100%; gap:8px; }
+.shop-search-result.type02 .shop-btn-box .btn-box { display: flex; width:100%; gap:8px; margin-top:0; }
 
 /** 전문점 상세보기 **/
 /* 전문점 사진 */
