@@ -2777,7 +2777,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 /** 헤더 - 공통 **/
 
 /* bg 화이트로 들어갈 경우 */
-.topArea.bg-white .topArea-pageTitle { color:#1F273D; border-bottom:1px solid #DEDEDE; }
+.topArea.bg-white .topArea-pageTitle { color:#1F273D; border-bottom:1px solid #DEDEDE; background: #FFFFFF; }
 .topArea.bg-white .topArea-back { background: var(--ic-dark-back) no-repeat 50%/30px auto; }
 .topArea.bg-white .allMenu { background: var(--ic-dark-ham) no-repeat 50%/30px auto; }
 
