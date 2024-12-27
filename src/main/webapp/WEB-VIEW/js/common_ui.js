@@ -39,6 +39,20 @@ $(document).ready(function(){
 		$(event.target).parents('.md-show').removeClass('md-show');
 	});*/
 
+	/**
+	 *  이미지 스크롤
+	*/
+	function galleryScrollHandlers(){
+		$('.thumbs .thumb-img').on('click', function () {
+			var targetOffset = $(this).offset().left;
+			var container = $('.thumbs');
+
+			container.animate({
+			scrollLeft: targetOffset + container.scrollLeft() - container.offset().left
+			}, 400);
+		});
+	}galleryScrollHandlers();
+
 	// Quick menu Show Hide
 	$(window).scroll(function() {
 		var st = $(this).scrollTop();
@@ -190,7 +204,50 @@ $(document).ready(function(){
 			$('#shop-map').show();
 			$('#shop-list').hide();
 			//$('#shop-list .position').removeClass('on');
+
+			var $mapWrap = $('#shop-map');
+			var hasClass = $mapWrap.hasClass('singleP');
+			var $changeBtn = $mapWrap.find('.change-list');
+
+			if (hasClass) {
+
+				$('.topAreaWrap').css({
+					'position': 'fixed',
+					'top': '0',
+					'left': '0',
+					'width': '100%',
+					'z-index': 6000
+				});
+
+				$('.popup-map-ui').css({
+					'position': 'fixed',
+					'top': '72px',
+					'left': '0',
+					'width': '100%',
+					'z-index': 6000
+				});
+			}
+			
+			$changeBtn.on("click", function(){// 초기값 복원
+				$('.topAreaWrap').css({
+					'position': 'relative',
+					'top': '',
+					'left': '',
+					'width': '',
+					'z-index': ''
+				});
+		
+				$('.popup-map-ui').css({
+					'position': '',
+					'top': '',
+					'left': '',
+					'width': '',
+					'z-index': ''
+				});
+			});
+
 		});
+
 	}
 
 	// 주문서 작성

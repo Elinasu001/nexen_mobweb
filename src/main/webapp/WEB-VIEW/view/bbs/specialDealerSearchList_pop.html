@@ -52,7 +52,7 @@
         <!--subContentsWrap-->
 
         <div class="fullPopup md-modal-3 md-effect-1 md-show sizeAdjust" id="modalAgencyDetl"><!--[20241215 퍼블] .sizeAdjust 클래스 추가-->
-            <div class="popContents order-basket bg-white bg02"><!--[20241215 퍼블] 클래스 .bg-white, .bg02 추가 -->
+            <div class="popContents order-basket bg-white"><!--[20241215 퍼블] 클래스 .bg-white, .bg02 추가 --><!--[20241227 퍼블] .bg02 삭제 필요요-->
                 <a href="#" onclick="javascript:fn_popupClose();" class="layPopClose md-close"></a>
 
                 <header class="title" id="agencyHeader">
@@ -78,7 +78,7 @@
                                     <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/front.png" alt=""></a>
                                     <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/panel.png" alt=""></a>
                                     <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/tire.png" alt=""></a>
-                                    <a href="javascript:void(0);" class="thumb-img"><img src="../../img/mypage/sample/tire.png" alt=""></a><!--[D] 이미지가 없을 경우 선택 안됨 처리-->
+                                    <a href="javascript:void(0);" class="thumb-img"><img src="../../img/common/img_no.png" alt=""></a><!--[D] 이미지가 없을 경우 선택 안됨 처리-->
                                 </div>
                             </div>
                             <!--[20241215 퍼블] 추가//-->
@@ -425,7 +425,6 @@
 
     <script>
         $(document).ready(function () {
-
             /**
              * icoArea 여부 스타일 변경
              *
@@ -571,6 +570,8 @@
                 }
 
             }popUpFocus();
+
+         
     
             
     

@@ -2799,6 +2799,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 /** 배경 **/
 .customer-bg.store { background:#FFFFFF; }
 /** 전문점 찾기 **/
+#shop-list .position { width:100% !important; } /*너비 조정*/
 .layout-r { position: relative; overflow: hidden; }
 /* .mapInfoTop.type02 .border-gray-bottom { border-bottom: 1px solid var(--sub-9-color); } */
 .mapInfoTop.type02 .search-area-wrap { background:initial; }
@@ -2859,7 +2860,6 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 /* .shop-search-result.type02 .shop-btn-box button.btn-select { background: var(--m-color); color:var(--sub-color); }  */
 
-
 /* 전문점 찾기 - 핀 있을 경우 */
 .shop-search-result.type02 .shop-search-single ul > li.tit b{ position: relative; padding-left: 20px; cursor: pointer; }
 .shop-search-result.type02 .shop-search-single ul > li.tit b::before { position: absolute; content:""; left:0; width:18px; height:30px; top:50%; transform: translateY(-50%); background: var(--ic-pin) no-repeat 100%/18px auto; cursor: pointer; }
@@ -2879,14 +2879,22 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 /** 전문점 상세보기 **/
 /* 전문점 사진 */
 .map-detail-gallery {display:flex; flex-direction: column; margin:0 auto; }
-.map-detail-gallery > .thumb-detail {  max-width:500px; height:auto;}
-.map-detail-gallery > .thumbs { display:flex; gap:8px; margin-top:11px; }
-.map-detail-gallery > .thumbs > a.thumb-img { width:80px; height: 80px; }
-.map-detail-gallery > .thumb-detail > img { height:300px !important; }
+.map-detail-gallery > .thumb-detail { max-width:375px; max-height:300px; height:auto; border:1px solid #EDEDED;}
+.map-detail-gallery > .thumbs { display:flex; gap:8px; padding:11px 0 8px; }
+.map-detail-gallery > .thumbs > a.thumb-img { width:80px; height: 80px; min-width:79px;  min-height: 80px; }
+/* .map-detail-gallery > .thumb-detail > img { height:300px !important; } */
 .map-detail-gallery > .thumb-detail > img,
 .map-detail-gallery > .thumbs > a.thumb-img > img { width:100%; height:100%;}
 .map-detail-gallery > .thumbs > a.thumb-img { opacity: 0.8; }
 .map-detail-gallery > .thumbs > a.thumb-img.on { opacity: 1; border: 2px solid var(--m-color); }
+
+/* .thumbs 스크롤 스타일 */
+.map-detail-gallery > .thumbs { overflow-x: scroll; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: grey #cbcbcb; }
+/* Webkit 기반 브라우저 (Chrome, Edge, Safari 등) */
+.map-detail-gallery > .thumbs::-webkit-scrollbar { height: 10px; /* 스크롤바 높이 */ }
+.map-detail-gallery > .thumbs::-webkit-scrollbar-thumb { background: #cbcbcb; /* 스크롤바 색상 */ border-radius: 10px; border: 2px solid #cbcbcb; transition: background 0.3s ease; }
+.map-detail-gallery > .thumbs::-webkit-scrollbar-track { background: #cbcbcb; border-radius: 10px; box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1); }
+
 
 .map-detail-container .map-detail-item { margin-top:20px; }
 .map-detail-container .map-detail-item #agencyAddr  { position: relative; }
@@ -2938,7 +2946,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 /* 솔직 이용 후기 */
 /* 솔직 이용 후기 - 컨트롤 */
-.review-controls .review-header { display:flex; justify-content: space-between; align-items: center; margin-top:15px; padding:.5rem 1rem; border-bottom:1px solid #DEDEDE; background: var(--sub-color);  }
+.review-controls .review-header { display:flex; justify-content: space-between; align-items: center; border-top:15px solid #EDEDED; padding:.5rem 1rem; border-bottom:1px solid #DEDEDE; background: var(--sub-color);  }
 .review-controls .review-header .view-count { font-size: .75rem; color:var(--sub-0-color); }
 .review-controls .review-header .view-count span { padding:0 1rem; }
 .review-controls .review-header .view-count span:first-child { position:relative;  padding:initial; padding-right:1rem; }
@@ -2952,7 +2960,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 /* 솔직 이용 후기 - 리스트 */
 .review-controls .review-item > ul > li { display:flex;  padding: 1.25rem 1rem 1.25rem 1rem; background: var(--sub-color); }
-.review-controls .review-item > ul > li + li { margin-top:10px; }
+.review-controls .review-item > ul > li + li { border-top:10px solid #EDEDED; }
 .review-controls .review-item > ul > li:last-of-type { border-bottom:1px solid #EDEDED; }
 .review-controls .review-item > ul > li > .review-area { display:flex; flex-direction: column; width:100%; }
 .review-controls .review-item > ul > li > .review-area > .review-info { display:flex; margin-bottom:12px; }
@@ -2987,8 +2995,8 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 
 .review-controls .review-item > ul > li > .review-area > .review-cont > .thumbs { display:flex; gap:10px; margin-top:10px; }
-.review-controls .review-item > ul > li > .review-area > .review-cont > .thumbs > a { display:block; width:70px; height:70px; }
-.review-controls .review-item > ul > li > .review-area > .review-cont > .thumbs > a > img { width:100%; height:100%; background: #EFEFEF; }
+.review-controls .review-item > ul > li > .review-area > .review-cont > .thumbs > a { display:flex; width:70px; height:70px; border:1px solid #EDEDED; }
+.review-controls .review-item > ul > li > .review-area > .review-cont > .thumbs > a > img {  width:100%; max-height:230px; background: #EFEFEF; }
 .review-controls .review-item > ul > li > .review-area > .review-cont > .thumbs > a.on { border:2px solid var(--m-color); }
 
 .review-controls .review-item > ul > li > .review-area > .review-cont > ul.review-txt {  display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
@@ -3027,7 +3035,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .review-controls .btn-wrap > button.btn-view > span { color:var(--sub-2-color); font-weight: 400; padding-left:10px; text-decoration: underline; text-underline-offset: 5px;  }
 
 /* 전문점 상세보기 정보 */
-.map-container  { margin:20px -1rem 0 -1rem; }
+.map-container  { margin:20px -1rem 0 -1rem; border-top:20px solid #EDEDED; }
 .map-container > .map-box { padding:1.25rem 1rem; border-bottom:1px solid #DEDEDE; background: var(--sub-color); }
 .map-container > .map-box > p { font-size:0.875rem; font-weight: 600; color:var(--sub-0-color); }
 .map-container > .map-box > .mapView { margin-top:10px; width:auto; height:200px; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); background: #F3F3F3; }
@@ -3135,7 +3143,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 /* 이용후기 상세 */
 hr.line { display:inline-block; height:4px; background: #EDEDED; width:100%; padding:0rem 1rem; margin:1.25rem -1rem 0 -1rem; }
-.reviewDeatil .map-detail-gallery .thumb-detail { position:relative; }
+.reviewDeatil .map-detail-gallery .thumb-detail { min-height:300px; position:relative; }
 .reviewDeatil .map-detail-gallery .review-btns { position: absolute; width:100%; left:0; top:50%; transform: translateY(-50%); }
 .reviewDeatil .map-detail-gallery .review-btns button.btn-prev { float:left; }
 .reviewDeatil .map-detail-gallery .review-btns button.btn-next { float:right; }
