@@ -209,25 +209,57 @@ $(document).ready(function(){
 			var $mapWrap = $('#shop-map');
 			var $hasClass = $mapWrap.hasClass('singleP');
 			var $btns = $(".change-list, .topArea-back, .shop-btn-box .md-close");
-
 			if ($hasClass) {
-				$('.topAreaWrap').css({
-					'position': 'fixed',
-					'left': '0',
-					'width': '100%',
-					'z-index': 5000
+				$('.topArea-back').css({
+					'display' : 'none'
 				});
-		
-				$('.popup-map-ui').css({
-					'position': 'fixed',
-					'top': '72px',
-					'left': '0',
-					'width': '100%',
-					'z-index': 5000
+
+                $('.topAreaWrap').css({
+                    'position': 'fixed',
+                    'left': '0',
+                    'width': '100%',
+                    'z-index': 5000
+                });
+        
+                $('.popup-map-ui').css({
+                    'position': 'fixed',
+                    'top': '72px',
+                    'left': '0',
+                    'width': '100%',
+                    'z-index': 5000
+                });
+            } 
+
+            $btns.on("click", function() {
+				$('.topArea-back').css({
+					'display' : 'initial'
 				});
+
+                $('.topAreaWrap').css({
+                    'position': '',
+                    'top': '',
+                    'left': '',
+                    'width': '',
+                    'z-index': ''
+                });
+        
+                $('.popup-map-ui').css({
+                    'position': '',
+                    'top': '',
+                    'left': '',
+                    'width': '',
+                    'z-index': ''
+                });
+            });
+
 			} 
 
 			$btns.on("click", function() {
+
+				$('.topArea-back').css({
+					'display' : 'initial'
+				})
+
 				$('.topAreaWrap').css({
 					'position': '',
 					'top': '',
