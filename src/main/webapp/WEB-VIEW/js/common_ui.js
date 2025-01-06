@@ -205,32 +205,31 @@ $(document).ready(function(){
 			$('#shop-list').hide();
 			//$('#shop-list .position').removeClass('on');
 
+			
 			var $mapWrap = $('#shop-map');
-			var hasClass = $mapWrap.hasClass('singleP');
-			var $changeBtn = $mapWrap.find('.change-list');
+			var $hasClass = $mapWrap.hasClass('singleP');
+			var $btns = $(".change-list, .topArea-back, .shop-btn-box .md-close");
 
-			if (hasClass) {
-
+			if ($hasClass) {
 				$('.topAreaWrap').css({
 					'position': 'fixed',
-					'top': '0',
 					'left': '0',
 					'width': '100%',
-					'z-index': 6000
+					'z-index': 5000
 				});
-
+		
 				$('.popup-map-ui').css({
 					'position': 'fixed',
 					'top': '72px',
 					'left': '0',
 					'width': '100%',
-					'z-index': 6000
+					'z-index': 5000
 				});
-			}
-			
-			$changeBtn.on("click", function(){// 초기값 복원
+			} 
+
+			$btns.on("click", function() {
 				$('.topAreaWrap').css({
-					'position': 'relative',
+					'position': '',
 					'top': '',
 					'left': '',
 					'width': '',
