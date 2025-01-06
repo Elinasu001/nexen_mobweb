@@ -3174,16 +3174,16 @@ hr.line { display:inline-block; height:4px; background: #EDEDED; width:100%; pad
 .reviewDeatil .review-container .review-box .review-satisfaction > ul > li b > span { font-weight: 500;  font-family: 'Spoqa Han Sans', sans-serif; }
 
 /**공통 - 퀵메뉴 버튼**/
-.action-buttons-wrap { display: none; position: fixed; right: 16px; bottom: 180px; display: flex; flex-direction: column; align-items: center; z-index: 3;}
+.action-buttons-wrap { position: fixed; right: 16px; bottom: 180px; display: flex; flex-direction: column; align-items: center; z-index: 3;}
 /* 퀵메뉴 버튼 */
 .quick-menu-area { display:flex; flex-direction: column;}
-.quick-menu-area > .quick-btn { display:flex; align-items: center; flex-direction: column; justify-content: center; width:60px; height:60px; border: none; text-align: center; background: linear-gradient(to right bottom, #832082, #C21DC0);  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);  color: #FFFFFF;  border-radius: 10px; cursor: pointer; font-weight: 500; }
-.quick-menu-area > .quick-btn > .icon-wrap { width:20px; height:20px;}
+.quick-menu-area > .quick-btn { display:flex; align-items: center; flex-direction: column; justify-content: center; width:70px; height:70px; border: none; text-align: center; background: linear-gradient(to right bottom, #832082, #C21DC0);  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);  color: #FFFFFF;  border-radius: 10px; cursor: pointer; font-weight: 500; }
+.quick-menu-area > .quick-btn > .icon-wrap { width:28px; height:28px;}
 .quick-menu-area > .quick-btn > .icon-wrap > img { vertical-align: top; }
 .quick-menu-area > .quick-btn > .text-wrap { margin-top:3px; }
-.quick-menu-area > .quick-btn > .text-wrap > p { font-size:0.625rem; line-height: 1; letter-spacing: 1px; color:#FFFFFF; }
+.quick-menu-area > .quick-btn > .text-wrap > p { font-size:12px; line-height: 1; letter-spacing: 1px; color:#FFFFFF; }
 .quick-menu-area > .quick-btn > .text-wrap > p:first-child{  font-weight: 600; }
-.quick-menu-area > .quick-btn > .text-wrap > p:last-child { margin-top:2px; }
+.quick-menu-area > .quick-btn > .text-wrap > p:last-child { margin-top:3px; }
 /* 퀵메뉴 애니메이션 */
 .action-buttons-wrap .quick-menu-area {transform: translateY(50px); /*animation: fadeInUp 0.3s ease-out forwards; */ }
 /* .quick-menu-area.keyframes .icon-wrap { opacity: 0; animation: fadeInIcon 1s 0.5s ease-out forwards; } */
