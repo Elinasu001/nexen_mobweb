@@ -2847,8 +2847,8 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .shop-search-result.type02 .shop-search-single li:nth-child(3) {color: initial; font-size: initial;}
 
 .shop-search-result.type02 .shop-search-single ul > li.tit { margin-top:10px; }
-.shop-search-result.type02 .shop-search-single ul > li.tit > b { font-size: 1.125rem; }
-.shop-search-result.type02 .shop-search-single ul > li.tit > .score { display:inline-block; padding-left:10px; }
+.shop-search-result.type02 .shop-search-single ul > li.tit > b { font-size: 1.125rem; padding-right:10px; }
+.shop-search-result.type02 .shop-search-single ul > li.tit > .score { display:inline-block; }
 .shop-search-result.type02 .shop-search-single ul > li.tit .num { font-size: 13px; font-weight: 600; color:var(--sub-2-color);}
 .shop-search-result.type02 .shop-search-single ul > li.tit .num > img { padding-right:3px; }
 .shop-search-result.type02 .shop-search-single ul > li.tit .num.all-num { padding-left:6px; font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }
