@@ -3024,7 +3024,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label > em.tit > img { min-width:37px; width:37px; height:auto; }
 
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont { display:flex; align-items: center; justify-content:space-between; gap:10px; flex-wrap: wrap; width:100%; }
-.review-controls .review-item > ul > li > .review-area > .order-card > img { width:60px; height:60px; }
+.review-controls .review-item > ul > li > .review-area > .order-card > img { width:60px; height:55px; }
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label { display:flex; gap:5px;}
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label > em { line-height: 16px; font-style: initial; text-align: center; border-radius: 2px; font-size:10px; font-weight: 500; background:rgb(131, 32, 130, 0.1); color:var(--m-color); }
 /* .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label > label { width:130px; height:auto; } */
