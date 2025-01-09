@@ -3191,7 +3191,7 @@ hr.line { display:inline-block; height:4px; background: #EDEDED; width:100%; pad
 .quick-menu-area > .quick-btn > .text-wrap > p:first-child{  font-weight: 600; }
 .quick-menu-area > .quick-btn > .text-wrap > p:last-child { margin-top:3px; }
 /* 퀵메뉴 애니메이션 */
-.action-buttons-wrap .quick-menu-area {transform: translateY(50px); /*animation: fadeInUp 0.3s ease-out forwards; */ }
+.action-buttons-wrap .quick-menu-area {/*transform: translateY(50px); animation: fadeInUp 0.3s ease-out forwards; */ }
 /* .quick-menu-area.keyframes .icon-wrap { opacity: 0; animation: fadeInIcon 1s 0.5s ease-out forwards; } */
 .action-buttons-wrap.keyframes .quick-menu-area .icon-wrap { opacity: 0; animation: fadeInBounceIcon 1.2s ease-out forwards; }
 .action-buttons-wrap.keyframes .quick-menu-area .text-wrap p { opacity: 0; }
