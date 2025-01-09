@@ -2802,6 +2802,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .popContents.bg-white header { background: var(--sub-color); border-bottom:1px solid #DEDEDE; }
 .popContents.bg-white header h2 { font-size: 1.125rem; color:var(--pop-tit-color); }
 .popContents.bg-white .layPopClose { top:0px; right:0px; width:56px; height:56px; background: var(--ic-dark-close) no-repeat 50%/30px auto; }
+.popContents.bg-white header .popup-contents-nobottom { overflow-x: hidden;}
 
 .fullPopup .popup-contents-nobottom.topCh { top:57px; }
 
@@ -3029,7 +3030,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label > em.tit > img { min-width:37px; width:37px; height:auto; }
 
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont { display:flex; align-items: center; justify-content:space-between; gap:10px; flex-wrap: wrap; width:100%; }
-.review-controls .review-item > ul > li > .review-area > .order-card > img { object-fit: cover; object-position: center; /*width:60px; height:55px; */ width:80px; height:92px; aspect-ratio: 1/1.15;}
+.review-controls .review-item > ul > li > .review-area > .order-card > img { object-fit: cover; object-position: center; /*width:60px; height:55px; */ width:80px; height:109%; aspect-ratio: 20 / 23;}
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label { display:flex; gap:5px;}
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label > em { line-height: 16px; font-style: initial; text-align: center; border-radius: 2px; font-size:10px; font-weight: 500; background:rgb(131, 32, 130, 0.1); color:var(--m-color); }
 /* .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label > label { width:130px; height:auto; } */
