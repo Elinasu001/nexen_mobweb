@@ -2746,6 +2746,8 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 	--ic-bg-like:url(../img/product/ico_bg_like.png);
 
 	--ic-arrow: url(../img/common/ico_arrow.png);
+	--ic-arrow-r: url(../img/common/ico_arrow_next_r.png);
+	--ic-arrow-l: url(../img/common/ico_arrow_prev_l.png);
 
 	--ic-shop-close: url(../img/common/file_attach_cancel.png);
 	
@@ -2890,13 +2892,13 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 
 /** 전문점 상세보기 **/
 /* 전문점 사진 */
-.map-detail-gallery {display:flex; flex-direction: column; margin:0 auto; }
-.map-detail-gallery > .thumb-detail { /*max-width:375px; max-height:300px; height:auto; border:1px solid #EDEDED;*/ height:80%; overflow: hidden;}
-.map-detail-gallery > .thumbs { display:flex; gap:8px; padding:11px 0 8px; }
+.map-detail-gallery {display:flex; flex-direction: column; gap:10px; margin:0 auto; }
+.map-detail-gallery > .thumb-detail { /*max-width:375px; max-height:300px; height:auto; border:1px solid #EDEDED;*/ aspect-ratio:5/4; overflow: hidden;}
+.map-detail-gallery > .thumbs { display:flex; gap:8px; /*padding:11px 0 8px; */}
 .map-detail-gallery > .thumbs > a.thumb-img {  width:100%; /*max-width:80px;*/ aspect-ratio: 1/1;}
-/* .map-detail-gallery > .thumb-detail > img { height:300px !important; } */
-.map-detail-gallery > .thumb-detail > img,
-.map-detail-gallery > .thumbs > a.thumb-img > img { object-fit: cover; object-position:center; width:100%; height:100%; aspect-ratio:5/4; }
+.map-detail-gallery > .thumb-detail > img { object-fit: contain; object-position:center;  width:100%; height:100%; }
+.map-detail-gallery > .thumbs > a.thumb-img > img { object-fit:cover; object-position:center; width:100%; height:100%; }
+/* .map-detail-gallery > .thumbs > a.thumb-img > img { object-position:center; width:100%; height:100%; aspect-ratio:5/4; } */
 .map-detail-gallery > .thumbs > a.thumb-img { opacity: 0.8; }
 .map-detail-gallery > .thumbs > a.thumb-img.on { opacity: 1; border: 2px solid var(--m-color); }
 
@@ -2940,7 +2942,7 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .review-container h3 { position: relative; margin:initial !important; padding:1rem; color:var(--sub-0-color); font-size:1rem; font-weight:600;  background: var(--sub-color);  }
 .review-container h3::before { content:""; position: absolute; top:57px; transform: translateY(-50%); left:0; width:26px; height:25px; background: var(--ic-star1)no-repeat 100%/26px auto;}
 .review-container h3 > span { font-weight: 500; }
-.review-container .review-box { display:flex; justify-content: space-between; align-items:center; gap:10px; margin-top:initial; padding:20px 30px;  border-top: 1px solid #DEDEDE; background: var(--sub-color); }
+.review-container .review-box { display:flex; justify-content:center; align-items:flex-start; gap:30px; margin-top:initial; padding:20px 16px;  border-top: 1px solid #DEDEDE; background: var(--sub-color); }
 .review-container .review-box .review-num { position: relative; }
 .review-container .review-box .review-num::after { content: ""; position: absolute; width:1px; height:90px; background-color:var(--bg-sub-2-color); top:50%; right:-75px; transform: translateY(-50%); }
 .review-container .review-box .review-num > ul { display:flex; gap:60px;}
@@ -2949,6 +2951,13 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .review-container .review-box .review-num > ul > li > .num { margin:4px 0; line-height: 1; font-size:40px; font-weight:600; color:var(--sub-0-color); }
 .review-container .review-box .review-num > ul > li > span.txt { line-height: 20px; font-size:14px; }
 .review-container .review-box .review-num > ul > li > span.txt b { font-size:16px; color:var(--m-color); }
+
+@media screen and (max-width: 320px) {
+	.review-container .review-box {gap:20px;}
+	.review-container .review-box .review-satisfaction { flex:180px 0 0; }
+
+}
+
 
 /* 이용후기- 만족도 */
 .review-container .review-box .review-satisfaction { flex:190px 0 0; }
@@ -3030,12 +3039,12 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label > em.tit > img { min-width:37px; width:37px; height:auto; }
 
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont { display:flex; align-items: center; justify-content:space-between; gap:10px; flex-wrap: wrap; width:100%; }
-.review-controls .review-item > ul > li > .review-area > .order-card > img { object-fit: cover; object-position: center; /*width:60px; height:55px; */ width:80px; height:109%; aspect-ratio: 20 / 23;}
+.review-controls .review-item > ul > li > .review-area > .order-card > img { object-fit: contain; object-position: center; /*width:60px; height:55px; */ width:105px; height:auto; aspect-ratio: 524/480; }
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label { display:flex; gap:5px;}
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label > em { line-height: 16px; font-style: initial; text-align: center; border-radius: 2px; font-size:10px; font-weight: 500; background:rgb(131, 32, 130, 0.1); color:var(--m-color); }
 /* .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > p.card-label > label { width:130px; height:auto; } */
 
-.review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > .img { margin-top:6px; width:150px; height:15px; font-size: .75rem; font-weight: 600; letter-spacing: 1px; color:var(--tit-color);  }
+.review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > .img { margin-top:6px; width:150px; height:auto; font-size: .75rem; font-weight: 600; letter-spacing: 1px; color:var(--tit-color);  }
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > .img > img { width:150px; height:auto; }
 .review-controls .review-item > ul > li > .review-area > .order-card > .order-cont > .card-info > span { margin-top:6px; font-size: .75rem; }
 .review-controls .review-item > ul > li > .review-area > .order-card .btn-order { display:flex; align-items: center; justify-content:center; height:30px; line-height: 30px; padding:0 .75rem; font-size: .75rem; text-align: center; background: #FFFFFF; border:1px solid #888888; border-radius: 100px; transition: background 0.1s ease, color 0.1s ease; color:var(--sub-4-color); }
@@ -3159,13 +3168,25 @@ div.myreco-modal.small .modal-wrap .close-btn { position: absolute; right: 10px;
 hr.line { display:inline-block; height:4px; background: #EDEDED; width:100%; padding:0rem 1rem; margin:1.25rem -1rem 0 -1rem; }
 .reviewDeatil .map-detail-gallery .thumb-detail {/* min-height:300px; */ position:relative; }
 .reviewDeatil .map-detail-gallery > .thumbs > a.thumb-img { max-width:80px; }
-.reviewDeatil .map-detail-gallery .review-btns { position: absolute; width:100%; left:0; top:50%; transform: translateY(-50%); }
-.reviewDeatil .map-detail-gallery .review-btns button.btn-prev { float:left; }
-.reviewDeatil .map-detail-gallery .review-btns button.btn-next { float:right; }
-.reviewDeatil .map-detail-gallery .review-btns button { display:inline-block; width:40px; height:40px; overflow: hidden; color: transparent; cursor: pointer;}
-.reviewDeatil .map-detail-gallery .review-btns button.btn-prev { background: var(--ic-arrow) no-repeat rgba(225, 225, 225, 0.8) 100%/40px auto; }
-.reviewDeatil .map-detail-gallery .review-btns button.btn-next { background: var(--ic-arrow) no-repeat rgba(225, 225, 225, 0.8) 100%/40px auto; transform:rotate(180deg);}
 
+/* .reviewDeatil .review-btns { position: absolute; width:100%; left:0; top:50%; transform: translateY(-50%); }
+.reviewDeatil .review-btns button.btn-prev { float:left; }
+.reviewDeatil .review-btns button.btn-next { float:right; }
+.reviewDeatil .review-btns button { display:inline-block; width:40px; height:40px; overflow: hidden; color: transparent; cursor: pointer;}
+.reviewDeatil .review-btns button.btn-prev { background: var(--ic-arrow) no-repeat rgba(225, 225, 225, 0.8) 100%/40px auto; }
+.reviewDeatil .review-btns button.btn-next { background: var(--ic-arrow) no-repeat rgba(225, 225, 225, 0.8) 100%/40px auto; transform:rotate(180deg);} */
+
+
+.reviewDeatil .review-btns {  display:flex; align-items: center; gap:2px; margin-top:20px; }
+.reviewDeatil .review-btns button { display:inline-block; width:100%; padding:0 20px; height:50px; line-height: 50px; font-size:0.875rem; color:var(--sub-color); cursor: pointer;}
+.reviewDeatil .review-btns button > span { font-weight: 600; }
+.reviewDeatil .review-btns button.btn-prev { text-align: right; background: var(--ic-arrow-l) no-repeat #8E608E left 20px center/28px auto;  }
+.reviewDeatil .review-btns button.btn-next { text-align: left;  background: var(--ic-arrow-r) no-repeat #8E608E right 20px center/28px auto; }
+@media screen and (max-width:340px) {
+	.reviewDeatil .review-btns button { padding:0 10px; font-size: 13px; }
+	.reviewDeatil .review-btns button.btn-prev { background: var(--ic-arrow-l) no-repeat #8E608E left 10px center/20px auto;  }
+	.reviewDeatil .review-btns button.btn-next {  background: var(--ic-arrow-r) no-repeat #8E608E right 10px center/20px auto;   }
+}
 
 .reviewDeatil .review-container { margin-top:0; margin:initial; }
 .reviewDeatil .review-container .review-box { padding:1rem 0; }
@@ -3179,6 +3200,12 @@ hr.line { display:inline-block; height:4px; background: #EDEDED; width:100%; pad
 .reviewDeatil .review-container .review-box .review-satisfaction > ul > li b { padding-right:20px; /*font-weight: 500;*/  font-family: 'Spoqa Han Sans', sans-serif; }
 .reviewDeatil .review-container .review-box .review-satisfaction > ul > li b::after { content: ""; position: absolute; width:14px; height:14px; transform: translateY(-50%); top:50%; right:10px; background: var(--ic-m-star) no-repeat 100%/14px auto; }
 .reviewDeatil .review-container .review-box .review-satisfaction > ul > li b > span { font-weight: 500;  font-family: 'Spoqa Han Sans', sans-serif; }
+
+@media screen and (max-width: 310px) {
+	.reviewDeatil .review-container .review-box .review-satisfaction > ul { gap:5px; }
+	.reviewDeatil .review-container .review-box .review-satisfaction > ul > li b { font-size:.6rem; }
+	.review-container .review-box .review-satisfaction > ul > li > span { font-size:.75rem; }
+}
 
 /**공통 - 퀵메뉴 버튼**/
 .action-buttons-wrap { position: fixed; right: 16px; bottom: 180px; display: flex; flex-direction: column; align-items: center; z-index: 3;}
